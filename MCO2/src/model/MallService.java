@@ -55,7 +55,7 @@ public class MallService {
 		return malls;
 	}
 	
-	public List<Mall> getPreferred(int uid) {
+	public List<Mall> getPreferred(User user) {
 		// create empty list of contacts
 		List<Mall> malls = new ArrayList<Mall>();
 
@@ -72,7 +72,7 @@ public class MallService {
 			// create prepared statement
 			PreparedStatement ps = cnt.prepareStatement(query);
 			
-			ps.setInt(1, uid);
+			ps.setInt(1, user.getId());
 
 			// get result and store in result set
 			ResultSet rs = ps.executeQuery();
