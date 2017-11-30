@@ -2,7 +2,7 @@ package model;
 
 public class Seat {
 	private int id;
-	private int row;
+	private String row;
 	private int col;
 	private Cinema cinema;
 
@@ -20,11 +20,11 @@ public class Seat {
 		this.id = id;
 	}
 
-	public int getRow() {
+	public String getRow() {
 		return row;
 	}
 
-	public void setRow(int row) {
+	public void setRow(String row) {
 		this.row = row;
 	}
 
@@ -46,6 +46,6 @@ public class Seat {
 
 	@Override
 	public String toString() {
-		return String.format("SEAT ID=%s\nROW=%s\nCOL=%s\n", id, row, col);
+		return String.format("SEAT ID=%s\nMALL=%s\nCINEMA=%s\nROW=%s\nCOL=%s\n", id, cinema.getMall().getName(), cinema.getNo(), row, col);
 	}
 }

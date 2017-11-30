@@ -7,6 +7,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.sql.Types;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -14,13 +16,11 @@ public class UserService {
 	private SureseatsDB connection;
 	private ProvinceService provinceService;
 	private CityService cityService;
-	private MallService mallService;
 
 	public UserService(SureseatsDB sureseatsDB) {
 		this.connection = sureseatsDB;
 		this.provinceService = new ProvinceService(sureseatsDB);
 		this.cityService = new CityService(sureseatsDB);
-		this.mallService = new MallService(sureseatsDB);
 	}
 
 	public List<User> getAll() {
@@ -97,6 +97,43 @@ public class UserService {
 		// return list
 		return user;
 	}
+	
+	public User getUser(String username) {
+		User user = new User();
+
+		// get connection from db
+		Connection cnt = connection.getConnection();
+
+		// create string query
+		String query = "SELECT * FROM " + User.TABLE + " WHERE " + User.COL_USERNAME + " = ?";
+
+		try {
+			// create prepared statement
+			PreparedStatement ps = cnt.prepareStatement(query);
+			
+			ps.setString(1, username);
+
+			// get result and store in result set
+			ResultSet rs = ps.executeQuery();
+
+			if (rs.next()) {
+				user = toUser(rs);
+			}
+
+			// close all the resources
+			ps.close();
+			rs.close();
+			cnt.close();
+
+			System.out.println("[USER] SELECT SUCCESS!");
+		} catch (SQLException e) {
+			System.out.println("[USER] SELECT FAILED!");
+			e.printStackTrace();
+		}
+
+		// return list
+		return user;
+	}
 
 	private User toUser(ResultSet rs) throws SQLException {
 		User user = new User();
@@ -115,7 +152,6 @@ public class UserService {
 		user.setIslocked(rs.getBoolean(User.COL_ISLOCKED));
 		user.setProvince(provinceService.getProvince(rs.getInt(User.COL_PROVINCE)));
 		user.setCity(cityService.getCity(rs.getInt(User.COL_CITY)));
-		user.setPrefmalls(mallService.getPreferred(rs.getInt(User.COL_ID)));
 
 		return user;
 	}
@@ -141,9 +177,9 @@ public class UserService {
 			ps.setString(7, user.getLastname());
 			ps.setString(8, user.getGender());
 			ps.setDate(9, Date.valueOf(user.getBdate()));
-			ps.setDate(10, Date.valueOf(user.getRdate()));
-			ps.setTimestamp(11, Timestamp.valueOf(user.getLastlogin()));
-			ps.setBoolean(12, user.islocked());
+			ps.setDate(10, Date.valueOf(LocalDate.now()));
+			ps.setTimestamp(11, Timestamp.valueOf(LocalDateTime.now()));
+			ps.setBoolean(12, false);
 			ps.setInt(13, user.getProvince().getId());
 			ps.setInt(14, user.getCity().getId());
 
@@ -254,9 +290,8 @@ public class UserService {
 			PreparedStatement ps = cnt.prepareStatement(query);
 
 			// prepare the values
-			ps.setInt(1, Types.NULL); // because id is auto-increment anyway
-			ps.setInt(2, user.getId());
-			ps.setInt(3, mall.getId());
+			ps.setInt(1, user.getId());
+			ps.setInt(2, mall.getId());
 
 			// execute the update
 			ps.executeUpdate();
@@ -301,11 +336,15 @@ public class UserService {
 
 	public static void main(String[] args) {
 		UserService service = new UserService(new SureseatsDB());
+		MallService mservice = new MallService(new SureseatsDB());
 		List<User> users = service.getAll();
 		User user = service.getUser(1);
 
 		for (User u : users) {
 			System.out.println(u.toString());
+			for (Mall m : mservice.getPreferred(u)) {
+				System.out.println(m.getName());
+			}
 		}
 		System.out.println(user.toString());
 	}
