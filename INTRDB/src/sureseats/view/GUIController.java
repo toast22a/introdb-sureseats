@@ -1,8 +1,6 @@
 package sureseats.view;
 
 import java.io.IOException;
-import java.net.URL;
-
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,21 +11,31 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import sureseats.Main0;
+
 
 public class GUIController {
     @FXML
     private AnchorPane apMain;
 
     @FXML
-    private Button register1;
+    private Button moviesBtnRegister;
 
-    public Button getRegister1() {
-		return register1;
+
+
+	public Button getMoviesBtnRegister() {
+		return moviesBtnRegister;
 	}
 
-	public void setRegister1(Button register1) {
-		this.register1 = register1;
+	public void setMoviesBtnRegister(Button moviesBtnRegister) {
+		this.moviesBtnRegister = moviesBtnRegister;
+	}
+
+	public Button getMoviesBtnLogin() {
+		return moviesBtnLogin;
+	}
+
+	public void setMoviesBtnLogin(Button moviesBtnLogin) {
+		this.moviesBtnLogin = moviesBtnLogin;
 	}
 
 	public ImageView getPanel00() {
@@ -81,7 +89,7 @@ public class GUIController {
 
 
 	@FXML
-    private Button Login;
+    private Button moviesBtnLogin;
 
     @FXML
     private ImageView panel00;
@@ -103,13 +111,12 @@ public class GUIController {
     @FXML
     private Button login1;
 
-   private Main0 main;
    
-   @FXML
+/*   @FXML
    private void reg() throws Exception{
 	   Stage stage = (Stage) apMain.getScene().getWindow();
 	   main.register(stage);
-   }
+   }*/
    
    
 /* @FXML
@@ -118,7 +125,7 @@ public class GUIController {
    }
    */
    
-   public void changeScreenButtonPushed(ActionEvent event) throws IOException
+   public void gotoreg(ActionEvent event) throws IOException
    {
 	   FXMLLoader loader = new FXMLLoader();
 	   loader.setLocation(getClass().getResource("/sureseats/view/register.fxml"));
@@ -130,53 +137,20 @@ public class GUIController {
        window.setScene(tableViewScene);
        window.show();
    }
+  
+   public void gotologin (ActionEvent event) throws IOException
+   {
+	   FXMLLoader loader = new FXMLLoader();
+	   loader.setLocation(getClass().getResource("/sureseats/view/sign_in.fxml"));
+       Parent tableViewParent = loader.load(); 
+       Scene tableViewScene = new Scene(tableViewParent);
+       //This line gets the Stage information
+       Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+       
+       window.setScene(tableViewScene);
+       window.show();
+   }
    
-     @FXML
-   private void ChangeScene(ActionEvent event) throws IOException {
-       System.out.println("You clicked me!");
-       
-       String sceneFile = "/sureseats/view/Register.fxml";
-       Parent root = null;
-       URL    url  = null;
-       try
-       {
-           url  = getClass().getResource( sceneFile );
-           root = FXMLLoader.load( url );
-           System.out.println( "  fxmlResource = " + sceneFile );
-       }
-       catch ( Exception ex )
-       {
-           System.out.println( "Exception on FXMLLoader.load()" );
-           System.out.println( "  * url: " + url );
-           System.out.println( "  * " + ex );
-           System.out.println( "    ----------------------------------------\n" );
-           throw ex;
-       }
-       
-       root = (AnchorPane) FXMLLoader.load(getClass().getResource("/sureseats/view/Register.fxml"));
-       Scene scene = new Scene(root);
-       Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-               app_stage.hide(); //optional
-               app_stage.setScene(scene);
-               app_stage.show();  
-               }
-     
-     @FXML private void handleButtonAction(ActionEvent e)throws IOException{
-    	 Stage stage; 
-    	 Parent root;
-    	
-    	 if(e.getSource()==register1)
-    	 {
-    		 stage=(Stage) register1.getScene().getWindow();
-    		 root = FXMLLoader.load(getClass().getResource("/sureseats/view/Register.fxml"));
-    	 }else
-    		 stage=(Stage) login1.getScene().getWindow();
-		 root = FXMLLoader.load(getClass().getResource("/sureseats/view/Sign_Inr.fxml"));
-		 Scene scene = new Scene(root);
-	     	stage.setScene(scene);
-	     	stage.show();
-     }
-     	
           
    }
 

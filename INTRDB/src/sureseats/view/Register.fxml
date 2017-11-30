@@ -21,7 +21,7 @@
                <font>
                   <Font name="System Bold" size="18.0" />
                </font></Button>
-            <Button fx:id="rback" layoutX="407.0" layoutY="526.0" mnemonicParsing="false" prefHeight="38.0" prefWidth="92.0" text="Back" />
+            <Button fx:id="rback" layoutX="407.0" layoutY="526.0" mnemonicParsing="false" onAction="#goMain" prefHeight="38.0" prefWidth="92.0" text="Back" />
             <Text layoutX="137.0" layoutY="123.0" strokeType="OUTSIDE" strokeWidth="0.0" text="User's Registration" wrappingWidth="427.171875" AnchorPane.leftAnchor="137.0" AnchorPane.topAnchor="66.88671875">
                <font>
                   <Font size="52.0" />
