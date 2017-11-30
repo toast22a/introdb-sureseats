@@ -37,6 +37,11 @@ public class registerController {
 	// ObservableList<String> preferredList= FXCollections.observableArrayList({})
 
 	private User user;
+	private SureseatsDB sdb;
+	private ProvinceService ps;
+	private CityService cs;
+	private UserService us;
+	private MallService ms;
 
 	@FXML
 	private Button rRegister;
@@ -123,9 +128,12 @@ public class registerController {
 		if (rPassword.getText().equals(rVPassword.getText()) && rEmail.getText().equals("") == false
 				&& rFName.getText().equals("") == false && rLName.getText().equals("") == false
 				&& rUsername.getText().equals("") == false && rMobile.getText().equals("") == false
-				&& (rCBFemale.isSelected() || rCBMale.isSelected()) && rBirthdate.getValue() != null) {
+				&& (rCBFemale.isSelected() || rCBMale.isSelected()) && rBirthdate.getValue() != null
+				&& rp1.getValue() != null && (rp1.getValue() != rp2.getValue()) && (rp2.getValue() != rp3.getValue())
+				&& (rp1.getValue() != rp3.getValue())){
 			user = new User();
 			user.setEmail(rEmail.getText());
+			user.setPassword(rPassword.getText());
 			user.setFirstname(rFName.getText());
 			user.setLastname(rLName.getText());
 			user.setUsername(rUsername.getText());
@@ -136,6 +144,14 @@ public class registerController {
 				user.setGender("Male");
 			user.setBdate(rBirthdate.getValue());
 			user.setIslocked(false);
+			user.setProvince(rProvince.getValue());
+			user.setCity(rCity.getValue());
+			
+			user = us.addUser(user);
+			
+			us.addPreferred(user, rp1.getValue());
+			us.addPreferred(user, rp2.getValue());
+			us.addPreferred(user, rp3.getValue());
 
 			Alert alert = new Alert(AlertType.INFORMATION);
 			alert.setTitle("Sign Up Complete!");
@@ -164,16 +180,16 @@ public class registerController {
 
 	@FXML
 	public void initialize() {
-		SureseatsDB sdb = new SureseatsDB();
-		ProvinceService ps = new ProvinceService(sdb);
-		CityService cs = new CityService(sdb);
-		UserService us = new UserService(sdb);
-		MallService ms = new MallService(sdb);
-		
-		ObservableList<Province> provinceList= FXCollections.observableArrayList(ps.getAll());
-		ObservableList<City> cityList= FXCollections.observableArrayList(cs.getAll());
-		ObservableList<Mall> mallList= FXCollections.observableArrayList(ms.getAll());
-		
+		sdb = new SureseatsDB();
+		ps = new ProvinceService(sdb);
+		cs = new CityService(sdb);
+		us = new UserService(sdb);
+		ms = new MallService(sdb);
+
+		ObservableList<Province> provinceList = FXCollections.observableArrayList(ps.getAll());
+		ObservableList<City> cityList = FXCollections.observableArrayList(cs.getAll());
+		ObservableList<Mall> mallList = FXCollections.observableArrayList(ms.getAll());
+
 		rProvince.setItems(provinceList);
 		rCity.setItems(cityList);
 		rp1.setItems(mallList);

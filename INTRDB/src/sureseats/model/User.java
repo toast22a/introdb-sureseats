@@ -2,8 +2,6 @@ package sureseats.model;
 
 import java.time.LocalDate;
 import java.time.LocalDateTime;
-import java.util.ArrayList;
-import java.util.List;
 
 public class User {
 	private int id;
@@ -20,7 +18,6 @@ public class User {
 	private boolean islocked;
 	private Province province;
 	private City city;
-	private List<Mall> prefmalls;
 
 	public static final String TABLE = "USER";
 	public static final String COL_ID = "UID";
@@ -41,10 +38,6 @@ public class User {
 	public static final String TABLE_PREFMALLS = "PREFERS";
 	public static final String PMCOL_USER = User.COL_ID;
 	public static final String PMCOL_MALL = Mall.COL_ID;
-
-	public User() {
-		this.prefmalls = new ArrayList<Mall>();
-	}
 
 	public int getId() {
 		return id;
@@ -156,14 +149,6 @@ public class User {
 
 	public void setCity(City city) {
 		this.city = city;
-	}
-
-	public List<Mall> getPrefmalls() {
-		return prefmalls;
-	}
-
-	public void setPrefmalls(List<Mall> prefmalls) {
-		this.prefmalls = prefmalls;
 	}
 
 	@Override

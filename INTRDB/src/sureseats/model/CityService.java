@@ -55,6 +55,47 @@ public class CityService {
 		return cities;
 	}
 
+	
+	public List<City> getCitiesInProvince(Province province) {
+		// create empty list of contacts
+		List<City> cities = new ArrayList<City>();
+
+		// get connection from db
+		Connection cnt = connection.getConnection();
+
+		// create string query
+		String query = "SELECT * FROM " + City.TABLE + " WHERE " + City.COL_PROVINCE + " = ?";
+
+		try {
+			// create prepared statement
+			PreparedStatement ps = cnt.prepareStatement(query);
+			
+			ps.setInt(1, province.getId());
+
+			// get result and store in result set
+			ResultSet rs = ps.executeQuery();
+
+			// transform set to list
+			// rs.next() means get next in result set
+			while (rs.next()) {
+				cities.add(toCity(rs));
+			}
+
+			// close all the resources
+			ps.close();
+			rs.close();
+			cnt.close();
+
+			System.out.println("[CITY] SELECT SUCCESS!");
+		} catch (SQLException e) {
+			System.out.println("[CITY] SELECT FAILED!");
+			e.printStackTrace();
+		}
+
+		// return list
+		return cities;
+	}
+	
 	public City getCity(int id) {
 		City city = new City();
 
