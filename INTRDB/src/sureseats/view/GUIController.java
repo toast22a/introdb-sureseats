@@ -151,6 +151,19 @@ public class GUIController {
        window.show();
    }
    
+   public void gotoSched (ActionEvent event) throws IOException
+   {
+	   FXMLLoader loader = new FXMLLoader();
+	   loader.setLocation(getClass().getResource("/sureseats/view/schedule.fxml"));
+       Parent tableViewParent = loader.load(); 
+       Scene tableViewScene = new Scene(tableViewParent);
+       //This line gets the Stage information
+       Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+       
+       window.setScene(tableViewScene);
+       window.show();
+   }
+   
           
    }
 

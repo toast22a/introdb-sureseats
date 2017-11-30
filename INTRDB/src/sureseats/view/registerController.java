@@ -18,6 +18,7 @@ import javafx.scene.control.DatePicker;
 import javafx.scene.control.PasswordField;
 
 public class registerController {
+	
 
     @FXML
     private Button rRegister;
