@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.TextArea?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.text.TextFlow?>
+
+<AnchorPane prefHeight="567.0" prefWidth="865.0" xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1">
+   <children>
+      <TitledPane animated="false" prefHeight="567.0" prefWidth="865.0" text="SURE SEATS">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="435.0" prefWidth="692.0">
+               <children>
+                  <Button layoutX="732.0" layoutY="40.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="84.0" text="Back" />
+                  <Text layoutX="34.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Schedule: Chesapeake shores">
+                     <font>
+                        <Font size="52.0" />
+                     </font>
+                  </Text>
+                  <ImageView fitHeight="256.0" fitWidth="183.0" layoutX="38.0" layoutY="193.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Resources/poster1.jpg" />
+                     </image>
+                  </ImageView>
+                  <Text layoutX="237.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date: Noveember 27,2017" wrappingWidth="260.115234375">
+                     <font>
+                        <Font size="18.0" />
+                     </font>
+                  </Text>
+                  <TextFlow layoutX="245.0" layoutY="220.0" prefHeight="188.0" prefWidth="139.0" AnchorPane.leftAnchor="275.0" AnchorPane.topAnchor="220.0">
+                     <children>
+                        <TextArea prefHeight="197.0" prefWidth="141.0" text="Glorietta 4&#10;&#10;Cinema 4          php270&#10;&#10;November 27, 2017&#10;&#10;01:15 PM&#10;04:00 PM&#10;06:45 PM&#10;09:30 PM" />
+                     </children>
+                  </TextFlow>
+                  <TextFlow layoutX="406.0" layoutY="220.0" prefHeight="188.0" prefWidth="139.0" AnchorPane.leftAnchor="450.0" AnchorPane.topAnchor="220.0">
+                     <children>
+                        <TextArea prefHeight="201.0" prefWidth="143.0" text="Greenbelt 3&#10;&#10;Cinema 3          php280&#10;&#10;November 27, 2017&#10;&#10;02:15 PM&#10;04:50 PM&#10;07:25 PM&#10;10:00 PM" />
+                     </children>
+                  </TextFlow>
+                  <TextFlow layoutX="73.0" layoutY="234.0" prefHeight="188.0" prefWidth="139.0" />
+                  <TextArea layoutX="679.0" layoutY="225.0" prefHeight="197.0" prefWidth="141.0" text="Harbor Point&#10;&#10;Cinema 1     php190&#10;&#10;November 27, 2017&#10;&#10;10:30 AM&#10;01:00 PM&#10;03:30 PM&#10;06:00 PM&#10;08:30 PM" AnchorPane.leftAnchor="640.0" AnchorPane.topAnchor="220.0" />
+                  <Button layoutX="320.0" layoutY="459.0" mnemonicParsing="false" style="-fx-background-color: royalblue;" text="Reserve" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="504.0" layoutY="459.0" mnemonicParsing="false" style="-fx-background-color: royalblue;" text="Reserve" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button layoutX="696.0" layoutY="459.0" mnemonicParsing="false" style="-fx-background-color: royalblue;" text="Reserve" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <ImageView fitHeight="114.0" fitWidth="301.0" layoutX="34.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
+                     <image>
+                        <Image url="@../../Resources/logo.png" />
+                     </image>
+                  </ImageView>
+               </children>
+            </AnchorPane>
+         </content>
+      </TitledPane>
+   </children>
+</AnchorPane>
