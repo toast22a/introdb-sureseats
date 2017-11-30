@@ -6,6 +6,8 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Border;
+import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
 public class Main extends Application{
@@ -37,10 +39,12 @@ public class Main extends Application{
 	public void showScene() throws IOException
 	{
 		FXMLLoader loader = new FXMLLoader();
-		 loader.setLocation(getClass().getResource("/view/Register.fxml"));
+		 loader.setLocation(Main.class.getResource("/sureseats/view/Register.fxml"));
 		 AnchorPane register =loader.load();
-		 mainLayout= register;
+		 mainLayout= (register);
 	}
+	
+	
 
 	public Stage getPrimaryStage() {
 		return primaryStage;

@@ -17,6 +17,13 @@ public class Main0 extends Application {
 	        stage.show();
 	    }
 	  
+	  public void register(Stage stage) throws Exception {
+		  Parent root = FXMLLoader.load(getClass().getResource("/sureseats/view/Register.fxml"));
+		  Scene scene = new Scene(root);
+		  stage.setScene(scene);
+		  stage.show();
+	  }
+	  
 	  
 	  public static void main(String[] args) {
 	        launch(args);

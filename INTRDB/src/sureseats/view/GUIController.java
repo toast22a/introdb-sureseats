@@ -1,6 +1,7 @@
 package sureseats.view;
 
 import java.io.IOException;
+import java.net.URL;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,10 +11,13 @@ import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-import sureseats.Main;
+import sureseats.Main0;
 
 public class GUIController {
+    @FXML
+    private AnchorPane apMain;
 
     @FXML
     private Button register1;
@@ -74,13 +78,7 @@ public class GUIController {
 		this.panel05 = panel05;
 	}
 
-	public Main getMain() {
-		return main;
-	}
 
-	public void setMain(Main main) {
-		this.main = main;
-	}
 
 	@FXML
     private Button Login;
@@ -105,24 +103,64 @@ public class GUIController {
     @FXML
     private Button login1;
 
-   private Main main;
+   private Main0 main;
    
-/*  @FXML
+   @FXML
+   private void reg() throws Exception{
+	   Stage stage = (Stage) apMain.getScene().getWindow();
+	   main.register(stage);
+   }
+   
+   
+/* @FXML
    private void reg() throws IOException {
-	   main.showScene();
-   }*/
+	 apMain.getChildren().setAll(FXMLLoader.load("sureseats/view/register.fxml"));
+   }
+   */
    
-/*     @FXML
+   public void changeScreenButtonPushed(ActionEvent event) throws IOException
+   {
+	   FXMLLoader loader = new FXMLLoader();
+	   loader.setLocation(getClass().getResource("/sureseats/view/register.fxml"));
+       Parent tableViewParent = loader.load(); 
+       Scene tableViewScene = new Scene(tableViewParent);
+       //This line gets the Stage information
+       Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+       
+       window.setScene(tableViewScene);
+       window.show();
+   }
+   
+     @FXML
    private void ChangeScene(ActionEvent event) throws IOException {
        System.out.println("You clicked me!");
-       Parent root = FXMLLoader.load(getClass().getResource("/sureseats/view/Register.fxml"));
+       
+       String sceneFile = "/sureseats/view/Register.fxml";
+       Parent root = null;
+       URL    url  = null;
+       try
+       {
+           url  = getClass().getResource( sceneFile );
+           root = FXMLLoader.load( url );
+           System.out.println( "  fxmlResource = " + sceneFile );
+       }
+       catch ( Exception ex )
+       {
+           System.out.println( "Exception on FXMLLoader.load()" );
+           System.out.println( "  * url: " + url );
+           System.out.println( "  * " + ex );
+           System.out.println( "    ----------------------------------------\n" );
+           throw ex;
+       }
+       
+       root = (AnchorPane) FXMLLoader.load(getClass().getResource("/sureseats/view/Register.fxml"));
        Scene scene = new Scene(root);
        Stage app_stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
                app_stage.hide(); //optional
                app_stage.setScene(scene);
                app_stage.show();  
                }
-     */
+     
      @FXML private void handleButtonAction(ActionEvent e)throws IOException{
     	 Stage stage; 
     	 Parent root;
