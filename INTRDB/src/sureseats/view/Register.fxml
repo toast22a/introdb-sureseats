@@ -17,7 +17,7 @@
    <content>
       <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="570.0" prefWidth="823.0">
          <children>
-            <Button fx:id="rRegister" layoutX="288.0" layoutY="525.0" mnemonicParsing="false" prefHeight="36.0" prefWidth="104.0" style="-fx-background-color: orange;" text="Register" textFill="WHITE">
+            <Button fx:id="rRegister" layoutX="288.0" layoutY="525.0" mnemonicParsing="false" onAction="#confirmRegister" prefHeight="36.0" prefWidth="104.0" style="-fx-background-color: orange;" text="Register" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="18.0" />
                </font></Button>
@@ -49,8 +49,8 @@
             <ChoiceBox fx:id="rp1" layoutX="438.0" layoutY="267.0" prefWidth="150.0" AnchorPane.leftAnchor="430.0" AnchorPane.topAnchor="261.0" />
             <ChoiceBox fx:id="rCity" layoutX="156.0" layoutY="462.0" prefWidth="150.0" AnchorPane.leftAnchor="145.0" AnchorPane.topAnchor="462.0" />
             <ChoiceBox fx:id="rProvince" layoutX="431.0" layoutY="441.0" prefWidth="150.0" AnchorPane.leftAnchor="430.0" AnchorPane.topAnchor="462.0" />
-            <CheckBox fx:id="rCBFemale" layoutX="424.0" layoutY="413.0" mnemonicParsing="false" text="Female" AnchorPane.leftAnchor="430.0" AnchorPane.topAnchor="428.0" />
-            <CheckBox fx:id="rCBMale" layoutX="514.0" layoutY="413.0" mnemonicParsing="false" text="Male" AnchorPane.leftAnchor="514.0" AnchorPane.topAnchor="428.0" />
+            <CheckBox fx:id="rCBFemale" layoutX="424.0" layoutY="413.0" mnemonicParsing="false" onAction="#handleFemale" text="Female" AnchorPane.leftAnchor="430.0" AnchorPane.topAnchor="428.0" />
+            <CheckBox fx:id="rCBMale" layoutX="514.0" layoutY="413.0" mnemonicParsing="false" onAction="#handleMale" text="Male" AnchorPane.leftAnchor="514.0" AnchorPane.topAnchor="428.0" />
             <DatePicker fx:id="rBirthdate" layoutX="144.0" layoutY="433.0" AnchorPane.leftAnchor="144.0" AnchorPane.topAnchor="428.0" />
             <Text fill="#326ed7" layoutX="22.0" layoutY="170.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Account information" wrappingWidth="295.13671875">
                <font>

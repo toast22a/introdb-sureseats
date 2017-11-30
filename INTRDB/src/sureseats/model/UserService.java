@@ -115,7 +115,7 @@ public class UserService {
 		user.setIslocked(rs.getBoolean(User.COL_ISLOCKED));
 		user.setProvince(provinceService.getProvince(rs.getInt(User.COL_PROVINCE)));
 		user.setCity(cityService.getCity(rs.getInt(User.COL_CITY)));
-		user.setPrefmalls(mallService.getPreferred(user));
+		user.setPrefmalls(mallService.getPreferred(rs.getInt(User.COL_ID)));
 
 		return user;
 	}
