@@ -134,6 +134,46 @@ public class UserService {
 		// return list
 		return user;
 	}
+	
+	public User getUser(String username, String password) {
+		User user = new User();
+
+		// get connection from db
+		Connection cnt = connection.getConnection();
+
+		// create string query
+		String query = "SELECT * FROM " + User.TABLE + " WHERE "
+		+ User.COL_USERNAME + " = ? AND "
+		+ User.COL_PASSWORD + " = ?";
+
+		try {
+			// create prepared statement
+			PreparedStatement ps = cnt.prepareStatement(query);
+			
+			ps.setString(1, username);
+			ps.setString(2, password);
+
+			// get result and store in result set
+			ResultSet rs = ps.executeQuery();
+
+			if (rs.next()) {
+				user = toUser(rs);
+			}
+
+			// close all the resources
+			ps.close();
+			rs.close();
+			cnt.close();
+
+			System.out.println("[USER] SELECT SUCCESS!");
+		} catch (SQLException e) {
+			System.out.println("[USER] SELECT FAILED!");
+			e.printStackTrace();
+		}
+
+		// return list
+		return user;
+	}
 
 	private User toUser(ResultSet rs) throws SQLException {
 		User user = new User();
@@ -218,7 +258,7 @@ public class UserService {
 				+ " SET "
 				+ User.COL_USERNAME + " = ?,"
 				+ User.COL_EMAIL + " = ?,"
-				+ User.COL_PASSWORD + " = ?"
+				+ User.COL_PASSWORD + " = ?,"
 				+ User.COL_MOBILENO + " = ?,"
 				+ User.COL_FIRSTNAME + " = ?,"
 				+ User.COL_LASTNAME + " = ?,"

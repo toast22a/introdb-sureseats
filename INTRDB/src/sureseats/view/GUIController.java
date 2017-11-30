@@ -11,16 +11,16 @@ import javafx.scene.control.Button;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.stage.Stage;
-
+import sureseats.model.*;
 
 public class GUIController {
-    @FXML
-    private AnchorPane apMain;
+	private User user;
+	
+	@FXML
+	private AnchorPane apMain;
 
-    @FXML
-    private Button moviesBtnRegister;
-
-
+	@FXML
+	private Button moviesBtnRegister;
 
 	public Button getMoviesBtnRegister() {
 		return moviesBtnRegister;
@@ -86,85 +86,86 @@ public class GUIController {
 		this.panel05 = panel05;
 	}
 
-
+	@FXML
+	private Button moviesBtnLogin;
 
 	@FXML
-    private Button moviesBtnLogin;
+	private ImageView panel00;
 
-    @FXML
-    private ImageView panel00;
+	@FXML
+	private ImageView panel01;
 
-    @FXML
-    private ImageView panel01;
+	@FXML
+	private ImageView panel02;
 
-    @FXML
-    private ImageView panel02;
+	@FXML
+	private ImageView panel03;
 
-    @FXML
-    private ImageView panel03;
+	@FXML
+	private ImageView panel04;
 
-    @FXML
-    private ImageView panel04;
+	@FXML
+	private ImageView panel05;
+	@FXML
+	private Button login1;
 
-    @FXML
-    private ImageView panel05;
-    @FXML
-    private Button login1;
+	/*
+	 * @FXML private void reg() throws Exception{ Stage stage = (Stage)
+	 * apMain.getScene().getWindow(); main.register(stage); }
+	 */
 
-   
-/*   @FXML
-   private void reg() throws Exception{
-	   Stage stage = (Stage) apMain.getScene().getWindow();
-	   main.register(stage);
-   }*/
-   
-   
-/* @FXML
-   private void reg() throws IOException {
-	 apMain.getChildren().setAll(FXMLLoader.load("sureseats/view/register.fxml"));
-   }
-   */
-   
-   public void gotoreg(ActionEvent event) throws IOException
-   {
-	   FXMLLoader loader = new FXMLLoader();
-	   loader.setLocation(getClass().getResource("/sureseats/view/register.fxml"));
-       Parent tableViewParent = loader.load(); 
-       Scene tableViewScene = new Scene(tableViewParent);
-       //This line gets the Stage information
-       Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-       
-       window.setScene(tableViewScene);
-       window.show();
-   }
-  
-   public void gotologin (ActionEvent event) throws IOException
-   {
-	   FXMLLoader loader = new FXMLLoader();
-	   loader.setLocation(getClass().getResource("/sureseats/view/sign_in.fxml"));
-       Parent tableViewParent = loader.load(); 
-       Scene tableViewScene = new Scene(tableViewParent);
-       //This line gets the Stage information
-       Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-       
-       window.setScene(tableViewScene);
-       window.show();
-   }
-   
-   public void gotoSched (ActionEvent event) throws IOException
-   {
-	   FXMLLoader loader = new FXMLLoader();
-	   loader.setLocation(getClass().getResource("/sureseats/view/schedule.fxml"));
-       Parent tableViewParent = loader.load(); 
-       Scene tableViewScene = new Scene(tableViewParent);
-       //This line gets the Stage information
-       Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-       
-       window.setScene(tableViewScene);
-       window.show();
-   }
-   
-          
-   }
+	/*
+	 * @FXML private void reg() throws IOException {
+	 * apMain.getChildren().setAll(FXMLLoader.load("sureseats/view/register.fxml"));
+	 * }
+	 */
 
+	public void gotoreg(ActionEvent event) throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("/sureseats/view/register.fxml"));
+		Parent tableViewParent = loader.load();
+		Scene tableViewScene = new Scene(tableViewParent);
+		// This line gets the Stage information
+		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
+		window.setScene(tableViewScene);
+		window.show();
+	}
+
+	public void gotologin(ActionEvent event) throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("/sureseats/view/sign_in.fxml"));
+		Parent tableViewParent = loader.load();
+		Scene tableViewScene = new Scene(tableViewParent);
+		// This line gets the Stage information
+		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+		window.setScene(tableViewScene);
+		window.show();
+	}
+
+	public void gotoSched(ActionEvent event) throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("/sureseats/view/schedule.fxml"));
+		Parent tableViewParent = loader.load();
+		Scene tableViewScene = new Scene(tableViewParent);
+		// This line gets the Stage information
+		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+		window.setScene(tableViewScene);
+		window.show();
+	}
+	
+	public User getUser() {
+		return user;
+	}
+	
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
+	public void setGuestMode(boolean choice) {
+		moviesBtnRegister.visibleProperty().set(choice);
+		moviesBtnLogin.visibleProperty().set(choice);
+	}
+}
