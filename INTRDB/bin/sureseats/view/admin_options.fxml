@@ -7,8 +7,6 @@
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.TitledPane?>
 <?import javafx.scene.image.Image?>
@@ -29,7 +27,7 @@
                      <top>
                         <ImageView fitHeight="99.0" fitWidth="323.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
                            <image>
-                              <Image url="@../../../bin/Resources/logo.png" />
+                              <Image url="@../../../../introdb-sureseats/INTRDB/src/Resources/logo.png" />
                            </image>
                         </ImageView>
                      </top>
@@ -40,41 +38,6 @@
                                  <children>
                                     <TabPane layoutX="41.0" layoutY="14.0" prefHeight="464.0" prefWidth="712.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                       <tabs>
-                                        <Tab text="Films">
-                                             <content>
-                                                <TableView prefHeight="200.0" prefWidth="200.0">
-                                                  <columns>
-                                                    <TableColumn prefWidth="75.0" text="C1" />
-                                                    <TableColumn prefWidth="75.0" text="C2" />
-                                                  </columns>
-                                                </TableView>
-                                             </content>
-                                          </Tab>
-                                        <Tab text="Schedule">
-                                             <content>
-                                                <TableView prefHeight="200.0" prefWidth="200.0">
-                                                  <columns>
-                                                    <TableColumn prefWidth="75.0" text="C1" />
-                                                    <TableColumn prefWidth="75.0" text="C2" />
-                                                  </columns>
-                                                </TableView>
-                                             </content>
-                                          </Tab>
-                                          <Tab text="Seats" />
-                                          <Tab text="Resevations">
-                                            <content>
-                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                                   <children>
-                                                      <TableView layoutX="47.0" layoutY="111.0" prefHeight="450.0" prefWidth="712.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                        <columns>
-                                                          <TableColumn prefWidth="75.0" text="C1" />
-                                                          <TableColumn prefWidth="75.0" text="C2" />
-                                                        </columns>
-                                                      </TableView>
-                                                   </children>
-                                                </AnchorPane>
-                                            </content>
-                                          </Tab>
                                           <Tab text="Cinema">
                                             <content>
                                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
@@ -98,38 +61,68 @@
                                  <items>
                                     <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
                                       <tabs>
-                                        <Tab text="films">
-                                          <content>
-                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: royalblue;" />
-                                          </content>
-                                        </Tab>
-                                        <Tab text="Scheduke">
-                                          <content>
-                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: orange;" />
-                                          </content>
-                                        </Tab>
-                                          <Tab text="Seats">
-                                            <content>
-                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: lightgreen;" />
-                                            </content>
-                                          </Tab>
-                                          <Tab text="Resevations">
-                                            <content>
-                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: pink;" />
-                                            </content>
-                                          </Tab>
                                           <Tab text="Cinema">
                                             <content>
-                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: lightgray;" />
+                                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: lightgray;">
+                                                   <children>
+                                                      <SplitPane dividerPositions="0.30505050505050507" orientation="VERTICAL" prefHeight="497.0" prefWidth="451.0" style="-fx-background-color: lightgray;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                        <items>
+                                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+                                                               <children>
+                                                                  <AnchorPane layoutY="2.0" minHeight="0.0" minWidth="0.0" prefHeight="144.0" prefWidth="449.0">
+                                                                     <children>
+                                                                        <Label layoutX="113.0" layoutY="38.0" text="ID NUMBER" AnchorPane.leftAnchor="113.0" AnchorPane.topAnchor="38.0">
+                                                                           <font>
+                                                                              <Font name="System Bold" size="14.0" />
+                                                                           </font>
+                                                                        </Label>
+                                                                        <TextField layoutX="219.0" layoutY="35.0" prefHeight="25.0" prefWidth="122.0" AnchorPane.leftAnchor="219.0" AnchorPane.topAnchor="35.0" />
+                                                                        <Button layoutX="129.0" layoutY="86.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="SEARCH" textFill="WHITE" AnchorPane.leftAnchor="129.0" AnchorPane.topAnchor="86.0">
+                                                                           <font>
+                                                                              <Font name="System Bold" size="14.0" />
+                                                                           </font>
+                                                                        </Button>
+                                                                        <Button layoutX="260.0" layoutY="87.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="81.0" style="-fx-background-color: gray;" text="DELETE" textFill="WHITE" AnchorPane.leftAnchor="260.0" AnchorPane.topAnchor="87.0">
+                                                                           <font>
+                                                                              <Font name="System Bold" size="14.0" />
+                                                                           </font>
+                                                                        </Button>
+                                                                     </children>
+                                                                  </AnchorPane>
+                                                               </children></AnchorPane>
+                                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                                                        </items>
+                                                      </SplitPane>
+                                                   </children>
+                                                </AnchorPane>
                                             </content>
                                           </Tab>
                                           <Tab text="Malls">
                                             <content>
                                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: lightyellow;">
                                                    <children>
-                                                      <SplitPane dividerPositions="0.34545454545454546" layoutX="168.0" layoutY="14.0" orientation="VERTICAL" prefHeight="497.0" prefWidth="451.0" style="-fx-background-color: lightyellow;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                      <SplitPane dividerPositions="0.296969696969697" orientation="VERTICAL" prefHeight="497.0" prefWidth="451.0" style="-fx-background-color: lightyellow;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                         <items>
-                                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" />
+                                                          <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="136.0" prefWidth="449.0">
+                                                               <children>
+                                                                  <Label layoutX="106.0" layoutY="40.0" text="ID NUMBER">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="14.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                                  <TextField layoutX="210.0" layoutY="37.0" prefHeight="25.0" prefWidth="122.0" />
+                                                                  <Button layoutX="114.0" layoutY="85.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="SEARCH" textFill="#f4ff99">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="14.0" />
+                                                                     </font>
+                                                                  </Button>
+                                                                  <Button layoutX="251.0" layoutY="85.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="81.0" style="-fx-background-color: gray;" text="DELETE" textFill="#f4ff99">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="14.0" />
+                                                                     </font>
+                                                                  </Button>
+                                                               </children>
+                                                            </AnchorPane>
                                                           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="306.0" prefWidth="449.0" />
                                                         </items>
                                                       </SplitPane>

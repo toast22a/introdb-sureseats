@@ -14,4 +14,11 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>src/sureseats/view/admin_options.fxml</name>
+			<type>1</type>
+			<locationURI>PARENT-2-PROJECT_LOC/INTRDB_GUI/src/sureseats/view/admin_options.fxml</locationURI>
+		</link>
+	</linkedResources>
 </projectDescription>
