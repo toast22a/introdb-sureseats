@@ -54,7 +54,7 @@
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Button>
-                  <Button fx:id="SReseve3" layoutX="696.0" layoutY="459.0" mnemonicParsing="false" style="-fx-background-color: royalblue;" text="Reserve" textFill="WHITE">
+                  <Button fx:id="SReserve3" layoutX="696.0" layoutY="459.0" mnemonicParsing="false" style="-fx-background-color: royalblue;" text="Reserve" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>

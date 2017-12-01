@@ -6,6 +6,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -29,6 +30,48 @@ public class FilmService {
 		try {
 			// create prepared statement
 			PreparedStatement ps = cnt.prepareStatement(query);
+
+			// get result and store in result set
+			ResultSet rs = ps.executeQuery();
+
+			// transform set to list
+			// rs.next() means get next in result set
+			while (rs.next()) {
+				films.add(toFilm(rs));
+			}
+
+			// close all the resources
+			ps.close();
+			rs.close();
+			cnt.close();
+
+			System.out.println("[FILM] SELECT SUCCESS!");
+		} catch (SQLException e) {
+			System.out.println("[FILM] SELECT FAILED!");
+			e.printStackTrace();
+		}
+
+		// return list
+		return films;
+	}
+	
+	// no arguments -- use current month
+	public List<Film> getFilmsInMonth() {
+		// create empty list of contacts
+		List<Film> films = new ArrayList<Film>();
+
+		// get connection from db
+		Connection cnt = connection.getConnection();
+
+		// create string query
+		String query = "SELECT * FROM " + Film.TABLE + " WHERE MONTH("
+				+ Film.COL_DATE + ") = MONTH(?) ORDER BY " + Film.COL_TITLE;
+
+		try {
+			// create prepared statement
+			PreparedStatement ps = cnt.prepareStatement(query);
+			
+			ps.setDate(1, Date.valueOf(LocalDate.now()));
 
 			// get result and store in result set
 			ResultSet rs = ps.executeQuery();

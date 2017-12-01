@@ -98,12 +98,12 @@
                                  <items>
                                     <TabPane prefHeight="200.0" prefWidth="200.0" tabClosingPolicy="UNAVAILABLE">
                                       <tabs>
-                                        <Tab text="films">
+                                        <Tab text="Films">
                                           <content>
                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: royalblue;" />
                                           </content>
                                         </Tab>
-                                        <Tab text="Scheduke">
+                                        <Tab text="Schedule">
                                           <content>
                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: orange;" />
                                           </content>
