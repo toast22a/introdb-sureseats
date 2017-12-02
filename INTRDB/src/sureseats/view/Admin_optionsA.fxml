@@ -21,7 +21,7 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<AnchorPane xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1">
+<AnchorPane xmlns="http://javafx.com/javafx/8.0.141" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sureseats.view.Admin_OptionsAController">
    <children>
       <TitledPane animated="false" layoutX="-80.0" layoutY="-12.0" prefHeight="650.0" prefWidth="1120.0" text="SURE SEATS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
          <content>
@@ -57,7 +57,7 @@
                                                 </AnchorPane>
                                              </content>
                                           </Tab>
-                                          <Tab text="Malls">
+                                          <Tab fx:id="User_Malls" text="Malls">
                                              <content>
                                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                                    <children>
@@ -75,7 +75,7 @@
                                              <content>
                                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                                    <children>
-                                                      <TableView layoutX="107.0" layoutY="95.0" prefHeight="497.0" prefWidth="720.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                      <TableView fx:id="Users_Table" layoutX="107.0" layoutY="95.0" prefHeight="497.0" prefWidth="720.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                          <columns>
                                                             <TableColumn prefWidth="75.0" text="C1" />
                                                             <TableColumn prefWidth="75.0" text="C2" />
@@ -89,7 +89,7 @@
                                              <content>
                                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                                    <children>
-                                                      <TableView layoutX="88.0" layoutY="83.0" prefHeight="497.0" prefWidth="720.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                      <TableView fx:id="Province_Table" layoutX="88.0" layoutY="83.0" prefHeight="497.0" prefWidth="720.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                          <columns>
                                                             <TableColumn prefWidth="75.0" text="C1" />
                                                             <TableColumn prefWidth="75.0" text="C2" />
@@ -103,7 +103,7 @@
                                              <content>
                                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                                    <children>
-                                                      <TableView layoutX="88.0" layoutY="83.0" prefHeight="497.0" prefWidth="720.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                      <TableView fx:id="City_Table" layoutX="88.0" layoutY="83.0" prefHeight="497.0" prefWidth="720.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                          <columns>
                                                             <TableColumn prefWidth="75.0" text="C1" />
                                                             <TableColumn prefWidth="75.0" text="C2" />
@@ -136,18 +136,18 @@
                                                                               <Font name="System Bold" size="14.0" />
                                                                            </font>
                                                                         </Label>
-                                                                        <TextField layoutX="219.0" layoutY="35.0" prefHeight="27.0" prefWidth="180.0" AnchorPane.leftAnchor="219.0" AnchorPane.topAnchor="35.0" />
-                                                                        <Button layoutX="113.0" layoutY="86.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="SEARCH" textFill="WHITE" AnchorPane.leftAnchor="113.0" AnchorPane.topAnchor="86.0">
+                                                                        <TextField fx:id="CCID" layoutX="219.0" layoutY="35.0" prefHeight="27.0" prefWidth="180.0" AnchorPane.leftAnchor="219.0" AnchorPane.topAnchor="35.0" />
+                                                                        <Button fx:id="CSearch" layoutX="113.0" layoutY="86.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="SEARCH" textFill="WHITE" AnchorPane.leftAnchor="113.0" AnchorPane.topAnchor="86.0">
                                                                            <font>
                                                                               <Font name="System Bold" size="14.0" />
                                                                            </font>
                                                                         </Button>
-                                                                        <Button layoutX="323.0" layoutY="87.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="81.0" style="-fx-background-color: gray;" text="DELETE" textFill="WHITE" AnchorPane.leftAnchor="323.0" AnchorPane.topAnchor="87.0">
+                                                                        <Button fx:id="CDelete" layoutX="323.0" layoutY="87.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="81.0" style="-fx-background-color: gray;" text="DELETE" textFill="WHITE" AnchorPane.leftAnchor="323.0" AnchorPane.topAnchor="87.0">
                                                                            <font>
                                                                               <Font name="System Bold" size="14.0" />
                                                                            </font>
                                                                         </Button>
-                                                                        <Button layoutX="219.0" layoutY="86.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="UPDATE" textFill="WHITE">
+                                                                        <Button fx:id="CUpdate" layoutX="219.0" layoutY="86.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="UPDATE" textFill="WHITE">
                                                                            <font>
                                                                               <Font name="System Bold" size="14.0" />
                                                                            </font>
@@ -172,14 +172,14 @@
                                                                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cinema Number" />
                                                                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cinema Type" GridPane.rowIndex="1" />
                                                                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mall ID" GridPane.rowIndex="2" />
-                                                                        <TextField GridPane.columnIndex="1" />
-                                                                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                                        <TextField fx:id="CCNo" GridPane.columnIndex="1" />
+                                                                        <TextField fx:id="CCtype" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                                        <TextField fx:id="CMID" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                                                      </children>
                                                                   </GridPane>
                                                                   <AnchorPane layoutX="281.0" layoutY="220.0" prefHeight="101.0" prefWidth="136.0">
                                                                      <children>
-                                                                        <Button layoutX="32.0" layoutY="20.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="ADD" textFill="WHITE">
+                                                                        <Button fx:id="Cadd" layoutX="32.0" layoutY="20.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="ADD" textFill="WHITE">
                                                                            <font>
                                                                               <Font name="System Bold" size="14.0" />
                                                                            </font>
@@ -206,18 +206,18 @@
                                                                         <Font name="System Bold" size="14.0" />
                                                                      </font>
                                                                   </Label>
-                                                                  <TextField layoutX="210.0" layoutY="37.0" prefHeight="27.0" prefWidth="165.0" />
-                                                                  <Button layoutX="94.0" layoutY="85.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="SEARCH" textFill="#f4ff99">
+                                                                  <TextField fx:id="MMID" layoutX="210.0" layoutY="37.0" prefHeight="27.0" prefWidth="165.0" />
+                                                                  <Button fx:id="MSearch" layoutX="94.0" layoutY="85.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="SEARCH" textFill="#f4ff99">
                                                                      <font>
                                                                         <Font name="System Bold" size="14.0" />
                                                                      </font>
                                                                   </Button>
-                                                                  <Button layoutX="300.0" layoutY="86.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="81.0" style="-fx-background-color: gray;" text="DELETE" textFill="#f4ff99">
+                                                                  <Button fx:id="MDelete" layoutX="300.0" layoutY="86.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="81.0" style="-fx-background-color: gray;" text="DELETE" textFill="#f4ff99">
                                                                      <font>
                                                                         <Font name="System Bold" size="14.0" />
                                                                      </font>
                                                                   </Button>
-                                                                  <Button layoutX="195.0" layoutY="85.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="UPDATE" textFill="#fff5b7">
+                                                                  <Button fx:id="MUpdate" layoutX="195.0" layoutY="85.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="UPDATE" textFill="#fff5b7">
                                                                      <font>
                                                                         <Font name="System Bold" size="14.0" />
                                                                      </font>
@@ -228,7 +228,7 @@
                                                                <children>
                                                                   <AnchorPane layoutX="281.0" layoutY="223.0" prefHeight="101.0" prefWidth="136.0">
                                                                      <children>
-                                                                        <Button layoutX="32.0" layoutY="15.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="ADD" textFill="#fff5b7">
+                                                                        <Button fx:id="Madd" layoutX="32.0" layoutY="15.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="ADD" textFill="#fff5b7">
                                                                            <font>
                                                                               <Font name="System Bold" size="14.0" />
                                                                            </font>
@@ -247,8 +247,8 @@
                                                                      <children>
                                                                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mall Name" />
                                                                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="City ID" GridPane.rowIndex="1" />
-                                                                        <TextField prefWidth="122.0" GridPane.columnIndex="1" />
-                                                                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                                        <TextField fx:id="MMType" prefWidth="122.0" GridPane.columnIndex="1" />
+                                                                        <TextField fx:id="MCID" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                                      </children>
                                                                   </GridPane>
                                                                </children></AnchorPane>
@@ -276,18 +276,18 @@
                                                                         <Font name="System Bold" size="14.0" />
                                                                      </font>
                                                                   </Label>
-                                                                  <TextField layoutX="219.0" layoutY="35.0" prefHeight="27.0" prefWidth="169.0" AnchorPane.leftAnchor="219.0" AnchorPane.topAnchor="35.0" />
-                                                                  <Button layoutX="107.0" layoutY="85.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="SEARCH" textFill="#ff9500" AnchorPane.leftAnchor="107.0" AnchorPane.topAnchor="85.0">
+                                                                  <TextField fx:id="UUID" layoutX="219.0" layoutY="35.0" prefHeight="27.0" prefWidth="169.0" AnchorPane.leftAnchor="219.0" AnchorPane.topAnchor="35.0" />
+                                                                  <Button fx:id="USearch" layoutX="107.0" layoutY="85.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="SEARCH" textFill="#ff9500" AnchorPane.leftAnchor="107.0" AnchorPane.topAnchor="85.0">
                                                                      <font>
                                                                         <Font name="System Bold" size="14.0" />
                                                                      </font>
                                                                   </Button>
-                                                                  <Button layoutX="311.0" layoutY="87.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="81.0" style="-fx-background-color: gray;" text="DELETE" textFill="#ff9000" AnchorPane.leftAnchor="311.0" AnchorPane.topAnchor="87.0">
+                                                                  <Button fx:id="UDelete" layoutX="311.0" layoutY="87.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="81.0" style="-fx-background-color: gray;" text="DELETE" textFill="#ff9000" AnchorPane.leftAnchor="311.0" AnchorPane.topAnchor="87.0">
                                                                      <font>
                                                                         <Font name="System Bold" size="14.0" />
                                                                      </font>
                                                                   </Button>
-                                                                  <Button layoutX="211.0" layoutY="85.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="UPDATE" textFill="#ff9500" AnchorPane.leftAnchor="211.0" AnchorPane.topAnchor="85.0">
+                                                                  <Button fx:id="Update" layoutX="211.0" layoutY="85.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="UPDATE" textFill="#ff9500" AnchorPane.leftAnchor="211.0" AnchorPane.topAnchor="85.0">
                                                                      <font>
                                                                         <Font name="System Bold" size="14.0" />
                                                                      </font>
@@ -302,35 +302,35 @@
                                                                            <children>
                                                                               <Text layoutX="26.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Username" AnchorPane.leftAnchor="26.0" AnchorPane.topAnchor="30.0" />
                                                                               <Text layoutX="238.0" layoutY="47.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Password" AnchorPane.leftAnchor="240.0" AnchorPane.topAnchor="30.0" />
-                                                                              <TextField layoutX="92.0" layoutY="30.0" prefHeight="25.0" prefWidth="124.0" AnchorPane.leftAnchor="92.0" AnchorPane.topAnchor="30.0" />
+                                                                              <TextField fx:id="UUsername" layoutX="92.0" layoutY="30.0" prefHeight="25.0" prefWidth="124.0" AnchorPane.leftAnchor="92.0" AnchorPane.topAnchor="30.0" />
                                                                               <Text layoutX="38.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Email" AnchorPane.leftAnchor="26.0" AnchorPane.topAnchor="85.0" />
                                                                               <Text layoutX="32.0" layoutY="149.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Mobile " AnchorPane.leftAnchor="26.0" AnchorPane.topAnchor="135.0" />
                                                                               <Text layoutX="24.0" layoutY="193.0" strokeType="OUTSIDE" strokeWidth="0.0" text="First Name" AnchorPane.leftAnchor="26.0" AnchorPane.topAnchor="185.0" />
                                                                               <Text layoutX="238.0" layoutY="192.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Last Name" AnchorPane.leftAnchor="240.0" AnchorPane.topAnchor="185.0" />
                                                                               <Text layoutX="240.0" layoutY="141.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Birth Date" AnchorPane.leftAnchor="240.0" AnchorPane.topAnchor="135.0" />
-                                                                              <RadioButton layoutX="95.0" layoutY="276.0" mnemonicParsing="false" text="Female" AnchorPane.leftAnchor="95.0" AnchorPane.topAnchor="276.0" />
-                                                                              <RadioButton layoutX="171.0" layoutY="276.0" mnemonicParsing="false" text="Male" AnchorPane.leftAnchor="171.0" AnchorPane.topAnchor="276.0" />
+                                                                              <RadioButton fx:id="UFemale" layoutX="95.0" layoutY="276.0" mnemonicParsing="false" text="Female" AnchorPane.leftAnchor="95.0" AnchorPane.topAnchor="276.0" />
+                                                                              <RadioButton fx:id="Umale" layoutX="171.0" layoutY="276.0" mnemonicParsing="false" text="Male" AnchorPane.leftAnchor="171.0" AnchorPane.topAnchor="276.0" />
                                                                               <Text layoutX="26.0" layoutY="289.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Gender" AnchorPane.leftAnchor="26.0" AnchorPane.topAnchor="276.0" />
                                                                               <Text layoutX="31.0" layoutY="322.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Status" AnchorPane.leftAnchor="31.0" AnchorPane.topAnchor="309.05078125" />
-                                                                              <RadioButton layoutX="95.0" layoutY="310.0" mnemonicParsing="false" text="locked" AnchorPane.leftAnchor="95.0" AnchorPane.topAnchor="310.0" />
-                                                                              <RadioButton layoutX="171.0" layoutY="310.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="91.0" text="Unlocked" AnchorPane.leftAnchor="171.0" AnchorPane.topAnchor="310.0" />
+                                                                              <RadioButton fx:id="Ulocked" layoutX="95.0" layoutY="310.0" mnemonicParsing="false" text="locked" AnchorPane.leftAnchor="95.0" AnchorPane.topAnchor="310.0" />
+                                                                              <RadioButton fx:id="UUnlocked" layoutX="171.0" layoutY="310.0" mnemonicParsing="false" prefHeight="17.0" prefWidth="91.0" text="Unlocked" AnchorPane.leftAnchor="171.0" AnchorPane.topAnchor="310.0" />
                                                                               <Text layoutX="240.0" layoutY="98.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Province" AnchorPane.leftAnchor="240.0" AnchorPane.topAnchor="85.0" />
-                                                                              <TextField layoutX="87.0" layoutY="81.0" prefHeight="25.0" prefWidth="124.0" AnchorPane.leftAnchor="92.0" AnchorPane.topAnchor="85.0" />
-                                                                              <TextField layoutX="92.0" layoutY="132.0" prefHeight="25.0" prefWidth="124.0" AnchorPane.leftAnchor="92.0" AnchorPane.topAnchor="135.0" />
-                                                                              <TextField layoutX="100.0" layoutY="175.0" prefHeight="25.0" prefWidth="124.0" AnchorPane.leftAnchor="92.0" AnchorPane.topAnchor="185.0" />
-                                                                              <TextField layoutX="301.0" layoutY="30.0" prefHeight="25.0" prefWidth="124.0" AnchorPane.leftAnchor="301.0" AnchorPane.topAnchor="85.0" />
-                                                                              <TextField layoutX="301.0" layoutY="81.0" prefHeight="25.0" prefWidth="124.0" AnchorPane.leftAnchor="301.0" AnchorPane.topAnchor="30.0" />
-                                                                              <TextField layoutX="301.0" layoutY="124.0" prefHeight="25.0" prefWidth="124.0" AnchorPane.leftAnchor="301.0" AnchorPane.topAnchor="135.0" />
-                                                                              <TextField layoutX="309.0" layoutY="175.0" prefHeight="25.0" prefWidth="124.0" AnchorPane.leftAnchor="301.0" AnchorPane.topAnchor="185.0" />
-                                                                              <Button layoutX="320.0" layoutY="285.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="ADD" textFill="#ff9500" AnchorPane.leftAnchor="320.0" AnchorPane.topAnchor="285.0">
+                                                                              <TextField fx:id="UUEmail" layoutX="87.0" layoutY="81.0" prefHeight="25.0" prefWidth="124.0" AnchorPane.leftAnchor="92.0" AnchorPane.topAnchor="85.0" />
+                                                                              <TextField fx:id="UUMobile" layoutX="92.0" layoutY="132.0" prefHeight="25.0" prefWidth="124.0" AnchorPane.leftAnchor="92.0" AnchorPane.topAnchor="135.0" />
+                                                                              <TextField fx:id="UUFirst" layoutX="100.0" layoutY="175.0" prefHeight="25.0" prefWidth="124.0" AnchorPane.leftAnchor="92.0" AnchorPane.topAnchor="185.0" />
+                                                                              <TextField fx:id="UUProvince" layoutX="301.0" layoutY="30.0" prefHeight="25.0" prefWidth="124.0" AnchorPane.leftAnchor="301.0" AnchorPane.topAnchor="85.0" />
+                                                                              <TextField fx:id="UUPassword" layoutX="301.0" layoutY="81.0" prefHeight="25.0" prefWidth="124.0" AnchorPane.leftAnchor="301.0" AnchorPane.topAnchor="30.0" />
+                                                                              <TextField fx:id="UUBdate" layoutX="301.0" layoutY="124.0" prefHeight="25.0" prefWidth="124.0" AnchorPane.leftAnchor="301.0" AnchorPane.topAnchor="135.0" />
+                                                                              <TextField fx:id="UULast" layoutX="309.0" layoutY="175.0" prefHeight="25.0" prefWidth="124.0" AnchorPane.leftAnchor="301.0" AnchorPane.topAnchor="185.0" />
+                                                                              <Button fx:id="UAdd" layoutX="320.0" layoutY="285.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="ADD" textFill="#ff9500" AnchorPane.leftAnchor="320.0" AnchorPane.topAnchor="285.0">
                                                                                  <font>
                                                                                     <Font name="System Bold" size="14.0" />
                                                                                  </font>
                                                                               </Button>
                                                                               <Text layoutX="36.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="City" AnchorPane.leftAnchor="26.0" AnchorPane.topAnchor="228.0" />
                                                                               <Text layoutX="242.0" layoutY="241.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Province" AnchorPane.leftAnchor="240.0" AnchorPane.topAnchor="228.0" />
-                                                                              <ChoiceBox layoutX="86.0" layoutY="224.0" prefHeight="25.0" prefWidth="131.0" AnchorPane.leftAnchor="92.0" AnchorPane.topAnchor="224.0" />
-                                                                              <ChoiceBox layoutX="301.0" layoutY="224.0" prefHeight="25.0" prefWidth="128.0" AnchorPane.leftAnchor="301.0" AnchorPane.topAnchor="224.0" />
+                                                                              <ChoiceBox fx:id="UCID" layoutX="86.0" layoutY="224.0" prefHeight="25.0" prefWidth="131.0" AnchorPane.leftAnchor="92.0" AnchorPane.topAnchor="224.0" />
+                                                                              <ChoiceBox fx:id="UPID" layoutX="301.0" layoutY="224.0" prefHeight="25.0" prefWidth="128.0" AnchorPane.leftAnchor="301.0" AnchorPane.topAnchor="224.0" />
                                                                            </children>
                                                                         </AnchorPane>
                                                                      </items>
@@ -356,18 +356,18 @@
                                                                         <Font name="System Bold" size="14.0" />
                                                                      </font>
                                                                   </Label>
-                                                                  <TextField layoutX="210.0" layoutY="37.0" prefHeight="27.0" prefWidth="180.0" />
-                                                                  <Button layoutX="106.0" layoutY="86.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="SEARCH" textFill="#f5f5f5">
+                                                                  <TextField fx:id="PPID" layoutX="210.0" layoutY="37.0" prefHeight="27.0" prefWidth="180.0" />
+                                                                  <Button fx:id="PSearch" layoutX="106.0" layoutY="86.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="SEARCH" textFill="#f5f5f5">
                                                                      <font>
                                                                         <Font name="System Bold" size="14.0" />
                                                                      </font>
                                                                   </Button>
-                                                                  <Button layoutX="314.0" layoutY="87.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="81.0" style="-fx-background-color: gray;" text="DELETE" textFill="#f5f5f5">
+                                                                  <Button fx:id="PDelete" layoutX="314.0" layoutY="87.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="81.0" style="-fx-background-color: gray;" text="DELETE" textFill="#f5f5f5">
                                                                      <font>
                                                                         <Font name="System Bold" size="14.0" />
                                                                      </font>
                                                                   </Button>
-                                                                  <Button layoutX="210.0" layoutY="86.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="UPDATE" textFill="#f5f5f5">
+                                                                  <Button fx:id="PUpdate" layoutX="210.0" layoutY="86.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="UPDATE" textFill="#f5f5f5">
                                                                      <font>
                                                                         <Font name="System Bold" size="14.0" />
                                                                      </font>
@@ -378,7 +378,7 @@
                                                                <children>
                                                                   <AnchorPane layoutX="281.0" layoutY="223.0" prefHeight="101.0" prefWidth="136.0">
                                                                      <children>
-                                                                        <Button layoutX="23.0" layoutY="20.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="ADD" textFill="#f5f5f5">
+                                                                        <Button fx:id="PAdd" layoutX="23.0" layoutY="20.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="ADD" textFill="#f5f5f5">
                                                                            <font>
                                                                               <Font name="System Bold" size="14.0" />
                                                                            </font>
@@ -399,7 +399,7 @@
                                                                               <Font name="System Bold" size="13.0" />
                                                                            </font>
                                                                         </Text>
-                                                                        <TextField prefHeight="27.0" prefWidth="169.0" GridPane.columnIndex="1" />
+                                                                        <TextField fx:id="PPName" prefHeight="27.0" prefWidth="169.0" GridPane.columnIndex="1" />
                                                                      </children>
                                                                   </GridPane>
                                                                </children>
@@ -423,18 +423,18 @@
                                                                         <Font name="System Bold" size="14.0" />
                                                                      </font>
                                                                   </Label>
-                                                                  <TextField layoutX="210.0" layoutY="37.0" prefHeight="27.0" prefWidth="180.0" />
-                                                                  <Button layoutX="106.0" layoutY="86.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="SEARCH" textFill="#f4ff99">
+                                                                  <TextField fx:id="CCTID" layoutX="210.0" layoutY="37.0" prefHeight="27.0" prefWidth="180.0" />
+                                                                  <Button fx:id="CTSearch" layoutX="106.0" layoutY="86.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="SEARCH" textFill="#f4ff99">
                                                                      <font>
                                                                         <Font name="System Bold" size="14.0" />
                                                                      </font>
                                                                   </Button>
-                                                                  <Button layoutX="314.0" layoutY="87.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="81.0" style="-fx-background-color: gray;" text="DELETE" textFill="#f4ff99">
+                                                                  <Button fx:id="CTDelete" layoutX="314.0" layoutY="87.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="81.0" style="-fx-background-color: gray;" text="DELETE" textFill="#f4ff99">
                                                                      <font>
                                                                         <Font name="System Bold" size="14.0" />
                                                                      </font>
                                                                   </Button>
-                                                                  <Button layoutX="210.0" layoutY="86.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="UPDATE" textFill="#fff5b7">
+                                                                  <Button fx:id="CTUpdate" layoutX="210.0" layoutY="86.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="UPDATE" textFill="#fff5b7">
                                                                      <font>
                                                                         <Font name="System Bold" size="14.0" />
                                                                      </font>
@@ -445,7 +445,7 @@
                                                                <children>
                                                                   <AnchorPane layoutX="281.0" layoutY="223.0" prefHeight="101.0" prefWidth="136.0">
                                                                      <children>
-                                                                        <Button layoutX="23.0" layoutY="20.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="ADD" textFill="#fff5b7">
+                                                                        <Button fx:id="CTAdd" layoutX="23.0" layoutY="20.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="ADD" textFill="#fff5b7">
                                                                            <font>
                                                                               <Font name="System Bold" size="14.0" />
                                                                            </font>
@@ -464,12 +464,12 @@
                                                                      </rowConstraints>
                                                                      <children>
                                                                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="City Name" />
-                                                                        <TextField prefHeight="27.0" prefWidth="169.0" GridPane.columnIndex="1" />
+                                                                        <TextField fx:id="CCTName" prefHeight="27.0" prefWidth="169.0" GridPane.columnIndex="1" />
                                                                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="City Type" GridPane.rowIndex="1" />
                                                                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Province ID" GridPane.rowIndex="2" />
                                                                         <Text strokeType="OUTSIDE" strokeWidth="0.0" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                                        <TextField fx:id="CCTType" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                                        <TextField fx:id="CTPID" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                                                      </children>
                                                                   </GridPane>
                                                                </children>
