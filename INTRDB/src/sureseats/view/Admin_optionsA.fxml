@@ -29,13 +29,6 @@
                <children>
                   <Label layoutX="353.0" layoutY="390.0" />
                   <BorderPane layoutX="20.4" layoutY="18.4" prefHeight="622.0" prefWidth="1118.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                     <top>
-                        <ImageView fitHeight="99.0" fitWidth="323.0" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">
-                           <image>
-                              <Image url="@../../Resources/logo.png" />
-                           </image>
-                        </ImageView>
-                     </top>
                      <center>
                         <SplitPane dividerPositions="0.5894160583941606" prefHeight="510.0" prefWidth="1089.0" BorderPane.alignment="CENTER">
                            <items>
@@ -487,6 +480,31 @@
                            </items>
                         </SplitPane>
                      </center>
+                     <top>
+                        <BorderPane prefHeight="86.0" prefWidth="1099.0" BorderPane.alignment="CENTER">
+                           <right>
+                              <Button fx:id="admin1Next" mnemonicParsing="false" onAction="#toNext" prefHeight="53.0" prefWidth="98.0" style="-fx-background-color: orange;" text="Next" BorderPane.alignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Button>
+                           </right>
+                           <center>
+                              <ImageView fitHeight="83.0" fitWidth="296.0" BorderPane.alignment="CENTER">
+                                 <image>
+                                    <Image url="@../../Resources/logo.png" />
+                                 </image>
+                              </ImageView>
+                           </center>
+                           <left>
+                              <Button fx:id="Back" mnemonicParsing="false" onAction="#ToSignIn" prefHeight="53.0" prefWidth="100.0" style="-fx-background-color: orange;" text="Go To Sign In" BorderPane.alignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Button>
+                           </left>
+                        </BorderPane>
+                     </top>
                   </BorderPane>
                </children>
             </AnchorPane>
