@@ -16,7 +16,7 @@
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="435.0" prefWidth="692.0">
                <children>
-                  <Button fx:id="Sback" layoutX="732.0" layoutY="40.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="84.0" text="Back" />
+                  <Button fx:id="Sback" layoutX="732.0" layoutY="40.0" mnemonicParsing="false" onAction="#toback" prefHeight="29.0" prefWidth="84.0" text="Back" />
                   <Text fx:id="STitle" layoutX="34.0" layoutY="153.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Schedule: Chesapeake shores">
                      <font>
                         <Font size="52.0" />
@@ -44,17 +44,17 @@
                   </TextFlow>
                   <TextFlow layoutX="38.0" layoutY="194.0" prefHeight="256.0" prefWidth="173.0" />
                   <TextArea fx:id="SSched3" layoutX="679.0" layoutY="225.0" prefHeight="197.0" prefWidth="141.0" text="Harbor Point&#10;&#10;Cinema 1     php190&#10;&#10;November 27, 2017&#10;&#10;10:30 AM&#10;01:00 PM&#10;03:30 PM&#10;06:00 PM&#10;08:30 PM" AnchorPane.leftAnchor="640.0" AnchorPane.topAnchor="220.0" />
-                  <Button fx:id="SReserve1" layoutX="320.0" layoutY="459.0" mnemonicParsing="false" style="-fx-background-color: royalblue;" text="Reserve" textFill="WHITE">
+                  <Button fx:id="SReserve1" layoutX="320.0" layoutY="459.0" mnemonicParsing="false" onAction="#toReseve" style="-fx-background-color: royalblue;" text="Reserve" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Button>
-                  <Button fx:id="SReserve2" layoutX="504.0" layoutY="459.0" mnemonicParsing="false" style="-fx-background-color: royalblue;" text="Reserve" textFill="WHITE">
+                  <Button fx:id="SReserve2" layoutX="504.0" layoutY="459.0" mnemonicParsing="false" onAction="#toReseve" style="-fx-background-color: royalblue;" text="Reserve" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
                   </Button>
-                  <Button fx:id="SReserve3" layoutX="696.0" layoutY="459.0" mnemonicParsing="false" style="-fx-background-color: royalblue;" text="Reserve" textFill="WHITE">
+                  <Button fx:id="SReserve3" layoutX="696.0" layoutY="459.0" mnemonicParsing="false" onAction="#toReseve" style="-fx-background-color: royalblue;" text="Reserve" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="14.0" />
                      </font>
