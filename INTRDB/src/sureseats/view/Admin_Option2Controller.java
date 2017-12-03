@@ -45,7 +45,7 @@ public class Admin_Option2Controller {
 
     @FXML
     private TextField FFDate;
-
+    
     @FXML
     private TextField FFTitle;
 
@@ -156,11 +156,12 @@ public class Admin_Option2Controller {
 
     @FXML
     private Button Sign_In;
+
     
     public void toback(ActionEvent event) throws IOException
     {
  	   FXMLLoader loader = new FXMLLoader();
- 	   loader.setLocation(getClass().getResource("/sureseats/view/Admin_OptionsA.fxml"));
+ 	   loader.setLocation(getClass().getResource("/sureseats/view/Admin_optionsA.fxml"));
         Parent tableViewParent = loader.load(); 
         Scene tableViewScene = new Scene(tableViewParent);
         //This line gets the Stage information
