@@ -7,7 +7,9 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.sql.Types;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Random;
 
 public class ReservationService {
 	private SureseatsDB connection;
@@ -20,6 +22,23 @@ public class ReservationService {
 		this.userService = new UserService(sureseatsDB);
 		this.seatService = new SeatService(sureseatsDB);
 		this.scheduleService = new ScheduleService(sureseatsDB);
+	}
+
+	public String generateCode() {
+		Random random = new Random(System.currentTimeMillis());
+		List<String> letters = Arrays.asList("A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O",
+				"P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z");
+		String code = "";
+		for (int i = 0; i < 2; i++) {
+			code = code + letters.get(random.nextInt(letters.size()));
+		}
+		for (int i = 0; i < 4; i++) {
+			code = code + random.nextInt(10);
+		}
+		if (getReservationsWithCode(code).size() == 0)
+			return code;
+		else
+			return "AA0000";
 	}
 
 	public List<Reservation> getAll() {
@@ -60,6 +79,46 @@ public class ReservationService {
 		return reservations;
 	}
 
+	// get all reservations associated with a certain RCode
+	public List<Reservation> getReservationsWithCode(String code) {
+		// create empty list of contacts
+		List<Reservation> reservations = new ArrayList<Reservation>();
+
+		// get connection from db
+		Connection cnt = connection.getConnection();
+
+		// create string query
+		String query = "SELECT * FROM " + Reservation.TABLE + " WHERE " + Reservation.COL_CODE + " = ?";
+
+		try {
+			// create prepared statement
+			PreparedStatement ps = cnt.prepareStatement(query);
+			ps.setString(1, code);
+
+			// get result and store in result set
+			ResultSet rs = ps.executeQuery();
+
+			// transform set to list
+			// rs.next() means get next in result set
+			while (rs.next()) {
+				reservations.add(toReservation(rs));
+			}
+
+			// close all the resources
+			ps.close();
+			rs.close();
+			cnt.close();
+
+			System.out.println("[RESERVATION] SELECT SUCCESS!");
+		} catch (SQLException e) {
+			System.out.println("[RESERVATION] SELECT FAILED!");
+			e.printStackTrace();
+		}
+
+		// return list
+		return reservations;
+	}
+
 	public Reservation getReservation(int id) {
 		Reservation reservation = new Reservation();
 
@@ -72,7 +131,7 @@ public class ReservationService {
 		try {
 			// create prepared statement
 			PreparedStatement ps = cnt.prepareStatement(query);
-			
+
 			ps.setInt(1, id);
 
 			// get result and store in result set
@@ -151,16 +210,10 @@ public class ReservationService {
 		Connection cnt = connection.getConnection();
 
 		// create a query
-		String query = "UPDATE " + Reservation.TABLE
-				+ " SET "
-				+ Reservation.COL_CODE + " = ?,"
-				+ Reservation.COL_TYPE + " = ?,"
-				+ Reservation.COL_DATETIME + " = ?,"
-				+ Reservation.COL_STATUS + " = ?,"
-				+ Reservation.COL_USER + " = ?,"
-				+ Reservation.COL_SEAT + " = ?,"
-				+ Reservation.COL_SCHEDULE + " = ?"
-				+ " WHERE " + Reservation.COL_ID + " = ?";
+		String query = "UPDATE " + Reservation.TABLE + " SET " + Reservation.COL_CODE + " = ?," + Reservation.COL_TYPE
+				+ " = ?," + Reservation.COL_DATETIME + " = ?," + Reservation.COL_STATUS + " = ?," + Reservation.COL_USER
+				+ " = ?," + Reservation.COL_SEAT + " = ?," + Reservation.COL_SCHEDULE + " = ?" + " WHERE "
+				+ Reservation.COL_ID + " = ?";
 
 		try {
 			// create prepared statement
