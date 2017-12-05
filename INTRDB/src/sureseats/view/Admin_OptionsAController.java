@@ -2,6 +2,8 @@ package sureseats.view;
 
 import java.io.IOException;
 
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,23 +14,110 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.Tab;
+import javafx.scene.control.TableColumn;
 import javafx.scene.control.TableView;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
+import sureseats.model.Cinema;
+import sureseats.model.CinemaService;
+import sureseats.model.City;
+import sureseats.model.CityService;
+import sureseats.model.Mall;
+import sureseats.model.MallService;
+import sureseats.model.Province;
+import sureseats.model.ProvinceService;
+import sureseats.model.SureseatsDB;
+import sureseats.model.User;
+import sureseats.model.UserService;
 
 public class Admin_OptionsAController {
+	
+	private SureseatsDB sureseatsDB;
+	private CinemaService cs;
+	
+	
+	private MallService ms;
+	
+
+	private ProvinceService ps;
+	
+	
+	private UserService us;
+	
+
+	private CityService cts;
+	 
+	
+
+    @FXML
+    private Button admin1Next;
+
+    @FXML
+    private Button Back;
+    
+    @FXML
+    private TableView<Cinema> Cinema_Table;
+    
+    @FXML
+    private TableColumn<Cinema, Integer> COL_CID;
+
+    @FXML
+    private TableColumn<Cinema, String > COL_Cno;
+
+    @FXML
+    private TableColumn<Cinema, String> COL_CTpye;
+
+    @FXML
+    private TableColumn<Cinema, Mall > Cinema_COL_MID;
 
     @FXML
     private Tab User_Malls;
+    
+    @FXML
+    private Button M_load;
+                                     
+    @FXML
+    private TableView<Mall> Mall_Tables;
+    
+    @FXML
+    private TableColumn<Mall, Integer> COL_MID;
 
     @FXML
-    private TableView<?> Users_Table;
+    private TableColumn<Mall, String> COL_MName;
 
     @FXML
-    private TableView<?> Province_Table;
+    private TableColumn<Mall, City> Mall_COL_CID;
 
     @FXML
-    private TableView<?> City_Table;
+    private TableView<Province> Province_Table;
+
+    @FXML
+    private TableColumn<Province, Integer> COL_PID;
+
+    @FXML
+    private TableColumn<Province, String> COL_PName;
+
+    @FXML
+    private Tab TCTID;
+    
+    @FXML
+    private Button CT_load;
+
+    @FXML
+    private TableView<City> City_Table;
+
+    @FXML
+    private TableColumn<City, Integer> COL_CTID;
+
+    @FXML
+    private TableColumn<City, String> COT_CTNAME;
+
+    @FXML
+    private TableColumn<City, String> COL_CTType;
+
+    @FXML
+    private TableColumn<City, Province> City_COL_PID;
 
     @FXML
     private TextField CCID;
@@ -53,7 +142,10 @@ public class Admin_OptionsAController {
 
     @FXML
     private Button Cadd;
-
+    
+    @FXML
+    private Button Cload;
+    
     @FXML
     private TextField MMID;
 
@@ -127,6 +219,9 @@ public class Admin_OptionsAController {
     private Button UAdd;
 
     @FXML
+    private Button P_Load;
+    
+    @FXML
     private ChoiceBox<?> UCID;
 
     @FXML
@@ -174,11 +269,79 @@ public class Admin_OptionsAController {
     @FXML
     private TextField CTPID;
 
-    @FXML
-    private Button admin1Next;
+    public void initialize() {
+		sureseatsDB = new SureseatsDB();
+		us = new UserService(sureseatsDB);
+		cs = new CinemaService(sureseatsDB);
+		ps = new ProvinceService(sureseatsDB);
+		ms = new MallService(sureseatsDB);
+		cts = new CityService(sureseatsDB);
+	}
+    
+  
 
-    @FXML
-    private Button Back;
+    public void loadCinema(ActionEvent event) throws IOException
+    {
+    	  ObservableList<Cinema> C_data = FXCollections.observableArrayList(
+    	    		cs.getAll()
+    	    	);
+    	COL_CID.setCellValueFactory(new PropertyValueFactory<>("id"));
+    	COL_Cno.setCellValueFactory(new PropertyValueFactory<>("no"));
+    	COL_CTpye.setCellValueFactory(new PropertyValueFactory<>("type"));
+    	Cinema_COL_MID.setCellValueFactory(new PropertyValueFactory<>("mall"));
+  
+    	Cinema_Table.setItems(C_data);
+    	
+    }
+    
+    public void loadProvince(ActionEvent event) throws IOException
+    {
+    	  ObservableList<Province> p_data = FXCollections.observableArrayList(
+    	    		ps.getAll()
+    	    	);
+    	  
+    	  COL_PID.setCellValueFactory(new PropertyValueFactory<>("id"));
+    	  COL_PName.setCellValueFactory(new PropertyValueFactory<>("name"));
+    	
+    	 
+    	  Province_Table.setItems(p_data);
+    	
+    }
+    
+
+    public void loadMall(ActionEvent event) throws IOException
+    {
+    	  ObservableList<Mall> m_data = FXCollections.observableArrayList(
+    	    		ms.getAll()
+    	    	);
+    	  
+    	  COL_MID.setCellValueFactory(new PropertyValueFactory<>("id"));
+    	  COL_MName.setCellValueFactory(new PropertyValueFactory<>("name"));
+    	  Mall_COL_CID.setCellValueFactory(new PropertyValueFactory<>("city"));
+    	 
+    	  
+    	  Mall_Tables.setItems(m_data);
+    	
+    }
+    
+    
+    public void loadCity(ActionEvent event) throws IOException
+    {
+    	  ObservableList<City> ct_data = FXCollections.observableArrayList(
+    	    		cts.getAll()
+    	    	);
+    	  
+    	  COL_CTID.setCellValueFactory(new PropertyValueFactory<>("id"));
+    	  COT_CTNAME.setCellValueFactory(new PropertyValueFactory<>("name"));
+    	  COL_CTType.setCellValueFactory(new PropertyValueFactory<>("type"));
+    	  City_COL_PID.setCellValueFactory(new PropertyValueFactory<>("province"));
+    	  
+    	  City_Table.setItems(ct_data);
+    	
+    }
+    
+    
+    
     
     public void toNext(ActionEvent event) throws IOException
     {

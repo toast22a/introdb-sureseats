@@ -4,6 +4,7 @@
 <?import javafx.scene.control.ChoiceBox?>
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.RadioButton?>
+<?import javafx.scene.control.ScrollPane?>
 <?import javafx.scene.control.SplitPane?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
@@ -29,8 +30,33 @@
                <children>
                   <Label layoutX="353.0" layoutY="390.0" />
                   <BorderPane layoutX="20.4" layoutY="18.4" prefHeight="622.0" prefWidth="1118.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <top>
+                        <BorderPane prefHeight="86.0" prefWidth="1099.0" BorderPane.alignment="CENTER">
+                           <right>
+                              <Button fx:id="admin1Next" mnemonicParsing="false" onAction="#toNext" prefHeight="53.0" prefWidth="98.0" style="-fx-background-color: orange;" text="Next" BorderPane.alignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Button>
+                           </right>
+                           <center>
+                              <ImageView fitHeight="83.0" fitWidth="296.0" BorderPane.alignment="CENTER">
+                                 <image>
+                                    <Image url="@../../Resources/logo.png" />
+                                 </image>
+                              </ImageView>
+                           </center>
+                           <left>
+                              <Button fx:id="Back" mnemonicParsing="false" onAction="#ToSignIn" prefHeight="53.0" prefWidth="100.0" style="-fx-background-color: orange;" text="Go To Sign In" BorderPane.alignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold" size="12.0" />
+                                 </font>
+                              </Button>
+                           </left>
+                        </BorderPane>
+                     </top>
                      <center>
-                        <SplitPane dividerPositions="0.5894160583941606" prefHeight="510.0" prefWidth="1089.0" BorderPane.alignment="CENTER">
+                        <SplitPane dividerPositions="0.6144029170464904" prefHeight="510.0" prefWidth="1089.0" BorderPane.alignment="CENTER">
                            <items>
                               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
                                  <children>
@@ -40,10 +66,12 @@
                                              <content>
                                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                                    <children>
-                                                      <TableView layoutX="88.0" layoutY="83.0" prefHeight="497.0" prefWidth="720.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                      <TableView fx:id="Cinema_Table" layoutX="88.0" layoutY="83.0" prefHeight="497.0" prefWidth="720.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                          <columns>
-                                                            <TableColumn prefWidth="75.0" text="C1" />
-                                                            <TableColumn prefWidth="75.0" text="C2" />
+                                                            <TableColumn fx:id="COL_CID" prefWidth="108.00000154972076" text="Cinema ID" />
+                                                            <TableColumn fx:id="COL_Cno" prefWidth="132.99993133544922" text="Number" />
+                                                            <TableColumn fx:id="COL_CTpye" prefWidth="119.0" text=" Type" />
+                                                            <TableColumn fx:id="Cinema_COL_MID" minWidth="6.0" prefWidth="113.0" text="Mall ID" />
                                                          </columns>
                                                       </TableView>
                                                    </children>
@@ -54,10 +82,11 @@
                                              <content>
                                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                                    <children>
-                                                      <TableView layoutX="72.0" layoutY="127.0" prefHeight="497.0" prefWidth="720.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                      <TableView fx:id="Mall_Tables" layoutX="72.0" layoutY="127.0" prefHeight="497.0" prefWidth="720.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                          <columns>
-                                                            <TableColumn prefWidth="75.0" text="C1" />
-                                                            <TableColumn prefWidth="75.0" text="C2" />
+                                                            <TableColumn fx:id="COL_MID" prefWidth="108.00006258487701" text="MID" />
+                                                            <TableColumn fx:id="COL_MName" prefWidth="415.99996185302734" text="Name" />
+                                                            <TableColumn fx:id="Mall_COL_CID" minWidth="0.0" prefWidth="120.0" text="City ID" />
                                                          </columns>
                                                       </TableView>
                                                    </children>
@@ -66,16 +95,22 @@
                                           </Tab>
                                           <Tab text="Users">
                                              <content>
-                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                                   <children>
-                                                      <TableView fx:id="Users_Table" layoutX="107.0" layoutY="95.0" prefHeight="497.0" prefWidth="720.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                                         <columns>
-                                                            <TableColumn prefWidth="75.0" text="C1" />
-                                                            <TableColumn prefWidth="75.0" text="C2" />
-                                                         </columns>
+                                                <ScrollPane prefHeight="200.0" prefWidth="200.0">
+                                                   <content>
+                                                      <TableView prefHeight="489.0" prefWidth="1102.0">
+                                                        <columns>
+                                                          <TableColumn prefWidth="75.0" text="UID" />
+                                                          <TableColumn prefWidth="75.0" text="Username" />
+                                                            <TableColumn prefWidth="183.99993896484375" text="Email" />
+                                                            <TableColumn prefWidth="101.0" text="Password" />
+                                                            <TableColumn prefWidth="101.0" text="Mobile Number" />
+                                                            <TableColumn prefWidth="101.0" text="First Name" />
+                                                            <TableColumn prefWidth="101.0" text="Mobile Number" />
+                                                            <TableColumn prefWidth="101.0" text="First Name" />
+                                                        </columns>
                                                       </TableView>
-                                                   </children>
-                                                </AnchorPane>
+                                                   </content>
+                                                </ScrollPane>
                                              </content>
                                           </Tab>
                                           <Tab text="Province">
@@ -84,22 +119,24 @@
                                                    <children>
                                                       <TableView fx:id="Province_Table" layoutX="88.0" layoutY="83.0" prefHeight="497.0" prefWidth="720.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                          <columns>
-                                                            <TableColumn prefWidth="75.0" text="C1" />
-                                                            <TableColumn prefWidth="75.0" text="C2" />
+                                                            <TableColumn fx:id="COL_PID" prefWidth="119.00000154972076" text="Province ID" />
+                                                            <TableColumn fx:id="COL_PName" prefWidth="337.99999237060547" text="Province Name" />
                                                          </columns>
                                                       </TableView>
                                                    </children>
                                                 </AnchorPane>
                                              </content>
                                           </Tab>
-                                          <Tab text="City">
+                                          <Tab fx:id="TCTID" text="City">
                                              <content>
                                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                                                    <children>
                                                       <TableView fx:id="City_Table" layoutX="88.0" layoutY="83.0" prefHeight="497.0" prefWidth="720.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                                          <columns>
-                                                            <TableColumn prefWidth="75.0" text="C1" />
-                                                            <TableColumn prefWidth="75.0" text="C2" />
+                                                            <TableColumn fx:id="COL_CTID" prefWidth="124.00006258487701" text="ID" />
+                                                            <TableColumn fx:id="COT_CTNAME" prefWidth="287.9999313354492" text=" Name" />
+                                                            <TableColumn fx:id="COL_CTType" prefWidth="114.00003051757812" text="Type" />
+                                                            <TableColumn fx:id="City_COL_PID" prefWidth="122.0" text="Province ID" />
                                                          </columns>
                                                       </TableView>
                                                    </children>
@@ -151,7 +188,7 @@
                                                             </AnchorPane>
                                                             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
                                                                <children>
-                                                                  <GridPane layoutX="111.0" layoutY="19.0" prefHeight="145.0" prefWidth="240.0">
+                                                                  <GridPane layoutX="109.0" layoutY="59.0" prefHeight="145.0" prefWidth="240.0">
                                                                     <columnConstraints>
                                                                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                                                       <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -179,6 +216,11 @@
                                                                         </Button>
                                                                      </children>
                                                                   </AnchorPane>
+                                                                  <Button fx:id="Cload" layoutX="78.0" layoutY="232.0" mnemonicParsing="false" onAction="#loadCinema" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="LOAD" textFill="WHITE">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="14.0" />
+                                                                     </font>
+                                                                  </Button>
                                                                </children></AnchorPane>
                                                          </items>
                                                       </SplitPane>
@@ -244,6 +286,11 @@
                                                                         <TextField fx:id="MCID" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                                                                      </children>
                                                                   </GridPane>
+                                                                  <Button fx:id="M_load" layoutX="50.0" layoutY="243.0" mnemonicParsing="false" onAction="#loadMall" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="LOAD" textFill="#fff5b7">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="14.0" />
+                                                                     </font>
+                                                                  </Button>
                                                                </children></AnchorPane>
                                                          </items>
                                                       </SplitPane>
@@ -378,7 +425,7 @@
                                                                         </Button>
                                                                      </children>
                                                                   </AnchorPane>
-                                                                  <GridPane layoutX="95.0" layoutY="71.0" prefHeight="79.0" prefWidth="283.0">
+                                                                  <GridPane layoutX="90.0" layoutY="75.0" prefHeight="79.0" prefWidth="283.0">
                                                                      <columnConstraints>
                                                                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="138.0" minWidth="10.0" prefWidth="123.0" />
                                                                         <ColumnConstraints hgrow="SOMETIMES" maxWidth="160.0" minWidth="10.0" prefWidth="160.0" />
@@ -395,6 +442,11 @@
                                                                         <TextField fx:id="PPName" prefHeight="27.0" prefWidth="169.0" GridPane.columnIndex="1" />
                                                                      </children>
                                                                   </GridPane>
+                                                                  <Button fx:id="P_Load" layoutX="45.0" layoutY="244.0" mnemonicParsing="false" onAction="#loadProvince" prefHeight="0.0" prefWidth="90.0" style="-fx-background-color: gray;" text="LOAD" textFill="#f5f5f5">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="14.0" />
+                                                                     </font>
+                                                                  </Button>
                                                                </children>
                                                             </AnchorPane>
                                                          </items>
@@ -465,6 +517,82 @@
                                                                         <TextField fx:id="CTPID" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                                                      </children>
                                                                   </GridPane>
+                                                                  <Button fx:id="CT_load" layoutX="50.0" layoutY="243.0" mnemonicParsing="false" onAction="#loadCity" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="LOAD" textFill="#fff5b7">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="14.0" />
+                                                                     </font>
+                                                                  </Button>
+                                                               </children>
+                                                            </AnchorPane>
+                                                         </items>
+                                                      </SplitPane>
+                                                   </children>
+                                                </AnchorPane>
+                                             </content>
+                                          </Tab>
+                                          <Tab text="Malls">
+                                             <content>
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" style="-fx-background-color: lightyellow;">
+                                                   <children>
+                                                      <SplitPane dividerPositions="0.296969696969697" orientation="VERTICAL" prefHeight="497.0" prefWidth="451.0" style="-fx-background-color: lightyellow;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                         <items>
+                                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="136.0" prefWidth="449.0">
+                                                               <children>
+                                                                  <Label layoutX="106.0" layoutY="40.0" text="ID NUMBER">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="14.0" />
+                                                                     </font>
+                                                                  </Label>
+                                                                  <TextField fx:id="MMID1" layoutX="210.0" layoutY="37.0" prefHeight="27.0" prefWidth="165.0" />
+                                                                  <Button fx:id="MSearch1" layoutX="94.0" layoutY="85.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="SEARCH" textFill="#f4ff99">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="14.0" />
+                                                                     </font>
+                                                                  </Button>
+                                                                  <Button fx:id="MDelete1" layoutX="300.0" layoutY="86.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="81.0" style="-fx-background-color: gray;" text="DELETE" textFill="#f4ff99">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="14.0" />
+                                                                     </font>
+                                                                  </Button>
+                                                                  <Button fx:id="MUpdate1" layoutX="195.0" layoutY="85.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="UPDATE" textFill="#fff5b7">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="14.0" />
+                                                                     </font>
+                                                                  </Button>
+                                                               </children>
+                                                            </AnchorPane>
+                                                            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="306.0" prefWidth="449.0">
+                                                               <children>
+                                                                  <AnchorPane layoutX="281.0" layoutY="223.0" prefHeight="101.0" prefWidth="136.0">
+                                                                     <children>
+                                                                        <Button fx:id="Madd1" layoutX="32.0" layoutY="15.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="ADD" textFill="#fff5b7">
+                                                                           <font>
+                                                                              <Font name="System Bold" size="14.0" />
+                                                                           </font>
+                                                                        </Button>
+                                                                     </children>
+                                                                  </AnchorPane>
+                                                                  <GridPane layoutX="95.0" layoutY="71.0" prefHeight="79.0" prefWidth="262.0">
+                                                                     <columnConstraints>
+                                                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                                                     </columnConstraints>
+                                                                     <rowConstraints>
+                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                        <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                                                                     </rowConstraints>
+                                                                     <children>
+                                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Mall Name" />
+                                                                        <Text strokeType="OUTSIDE" strokeWidth="0.0" text="City ID" GridPane.rowIndex="1" />
+                                                                        <TextField fx:id="MMType1" prefWidth="122.0" GridPane.columnIndex="1" />
+                                                                        <TextField fx:id="MCID1" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+                                                                     </children>
+                                                                  </GridPane>
+                                                                  <Button fx:id="M_load1" layoutX="34.0" layoutY="243.0" mnemonicParsing="false" onAction="#loadMall" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="LOAD" textFill="#fff5b7">
+                                                                     <font>
+                                                                        <Font name="System Bold" size="14.0" />
+                                                                     </font>
+                                                                  </Button>
                                                                </children>
                                                             </AnchorPane>
                                                          </items>
@@ -480,31 +608,6 @@
                            </items>
                         </SplitPane>
                      </center>
-                     <top>
-                        <BorderPane prefHeight="86.0" prefWidth="1099.0" BorderPane.alignment="CENTER">
-                           <right>
-                              <Button fx:id="admin1Next" mnemonicParsing="false" onAction="#toNext" prefHeight="53.0" prefWidth="98.0" style="-fx-background-color: orange;" text="Next" BorderPane.alignment="CENTER">
-                                 <font>
-                                    <Font name="System Bold" size="14.0" />
-                                 </font>
-                              </Button>
-                           </right>
-                           <center>
-                              <ImageView fitHeight="83.0" fitWidth="296.0" BorderPane.alignment="CENTER">
-                                 <image>
-                                    <Image url="@../../Resources/logo.png" />
-                                 </image>
-                              </ImageView>
-                           </center>
-                           <left>
-                              <Button fx:id="Back" mnemonicParsing="false" onAction="#ToSignIn" prefHeight="53.0" prefWidth="100.0" style="-fx-background-color: orange;" text="Go To Sign In" BorderPane.alignment="CENTER">
-                                 <font>
-                                    <Font name="System Bold" size="12.0" />
-                                 </font>
-                              </Button>
-                           </left>
-                        </BorderPane>
-                     </top>
                   </BorderPane>
                </children>
             </AnchorPane>
