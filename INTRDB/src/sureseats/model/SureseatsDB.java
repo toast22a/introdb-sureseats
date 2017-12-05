@@ -8,7 +8,7 @@ public class SureseatsDB {
 	private static String DRIVER_NAME = "com.mysql.jdbc.Driver";
 	private static String URL = "jdbc:mysql://127.0.0.1:3306/";
 	private static String USERNAME = "root";
-	private static String PASSWORD = "5646";
+	private static String PASSWORD = "1234";
 	private static String DATABASE = "sureseats_db";
 	
 	public Connection getConnection() {

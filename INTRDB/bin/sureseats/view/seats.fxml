@@ -18,7 +18,7 @@
          <content>
             <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="435.0" prefWidth="692.0">
                <children>
-                  <Button fx:id="to_Back" layoutX="745.0" layoutY="27.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="86.0" text="Back" />
+                  <Button fx:id="to_Back" layoutX="745.0" layoutY="27.0" mnemonicParsing="false" onAction="#toback" prefHeight="28.0" prefWidth="86.0" text="Back" />
                   <Button fx:id="to_Reserve" layoutX="746.0" layoutY="63.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="84.0" text="Reserve" />
                   <Text layoutX="385.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Seats">
                      <font>
