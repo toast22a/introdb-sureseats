@@ -24,6 +24,7 @@ import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
 <<<<<<< HEAD
+<<<<<<< HEAD
 import sureseats.model.Cinema;
 import sureseats.model.CinemaService;
 import sureseats.model.City;
@@ -262,6 +263,126 @@ public class Admin_OptionsAController {
 	@FXML
 	private ChoiceBox<?> UCID;
 >>>>>>> e1308bd16cd15d5d22fecfc3723c59563b53dc1c
+=======
+import sureseats.model.*;
+
+public class Admin_OptionsAController {
+	private SureseatsDB sdb;
+	private UserService us;
+	private ProvinceService ps;
+	private CityService cs;
+
+	@FXML
+	private Tab User_Malls;
+
+	@FXML
+	private TableView<User> Users_Table;
+
+	@FXML
+	private TableView<Province> Province_Table;
+
+	@FXML
+	private TableView<?> City_Table;
+
+	@FXML
+	private TextField CCID;
+
+	@FXML
+	private Button CSearch;
+
+	@FXML
+	private Button CDelete;
+
+	@FXML
+	private Button CUpdate;
+
+	@FXML
+	private TextField CCNo;
+
+	@FXML
+	private TextField CCtype;
+
+	@FXML
+	private TextField CMID;
+
+	@FXML
+	private Button Cadd;
+
+	@FXML
+	private TextField MMID;
+
+	@FXML
+	private Button MSearch;
+
+	@FXML
+	private Button MDelete;
+
+	@FXML
+	private Button MUpdate;
+
+	@FXML
+	private Button Madd;
+
+	@FXML
+	private TextField MMType;
+
+	@FXML
+	private TextField MCID;
+
+	@FXML
+	private TextField UUID;
+
+	@FXML
+	private Button USearch;
+
+	@FXML
+	private Button UDelete;
+
+	@FXML
+	private Button Update;
+
+	@FXML
+	private TextField UUsername;
+
+	@FXML
+	private RadioButton UFemale;
+
+	@FXML
+	private RadioButton Umale;
+
+	@FXML
+	private RadioButton Ulocked;
+
+	@FXML
+	private RadioButton UUnlocked;
+
+	@FXML
+	private TextField UUEmail;
+
+	@FXML
+	private TextField UUMobile;
+
+	@FXML
+	private TextField UUFirst;
+
+	@FXML
+	private TextField UUProvince;
+
+	@FXML
+	private TextField UUPassword;
+
+	@FXML
+	private TextField UUBdate;
+
+	@FXML
+	private TextField UULast;
+
+	@FXML
+	private Button UAdd;
+
+	@FXML
+	private ChoiceBox<?> UCID;
+>>>>>>> e1308bd16cd15d5d22fecfc3723c59563b53dc1c
 
 	@FXML
 	private ChoiceBox<?> UPID;
@@ -281,6 +402,7 @@ public class Admin_OptionsAController {
 	@FXML
 	private Button PAdd;
 
+<<<<<<< HEAD
 <<<<<<< HEAD
     @FXML
     private TextField PPName;
@@ -409,6 +531,8 @@ public class Admin_OptionsAController {
         window.show();
     }
 =======
+=======
+>>>>>>> e1308bd16cd15d5d22fecfc3723c59563b53dc1c
 	@FXML
 	private TextField PPName;
 
@@ -518,6 +642,9 @@ public class Admin_OptionsAController {
 		window.setScene(tableViewScene);
 		window.show();
 	}
+<<<<<<< HEAD
+>>>>>>> e1308bd16cd15d5d22fecfc3723c59563b53dc1c
+=======
 >>>>>>> e1308bd16cd15d5d22fecfc3723c59563b53dc1c
 
 }
