@@ -21,21 +21,15 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import sureseats.model.City;
-import sureseats.model.Film;
-import sureseats.model.FilmService;
-import sureseats.model.MallService;
-import sureseats.model.Province;
-import sureseats.model.Schedule;
-import sureseats.model.SureseatsDB;
-import sureseats.model.User;
-import sureseats.model.UserService;
+import sureseats.model.*;
 
 public class Admin_Option3Controller {
 	
 	private SureseatsDB sureseatsDB;
 	private FilmService fs;
 	private UserService us;
+	private ProvinceService ps;
+	private CityService cs;
 
     @FXML
     private Button admin1Next;
@@ -218,10 +212,10 @@ public class Admin_Option3Controller {
     private Button UAdd;
 
     @FXML
-    private ChoiceBox<?> UCID;
+    private ChoiceBox<City> UCID;
 
     @FXML
-    private ChoiceBox<?> UPID;
+    private ChoiceBox<Province> UPID;
 
     @FXML
     private Button ULoad;
@@ -231,6 +225,8 @@ public class Admin_Option3Controller {
     	sureseatsDB = new SureseatsDB();
     	fs= new FilmService(sureseatsDB );
     	us= new UserService(sureseatsDB );
+    	ps= new ProvinceService(sureseatsDB );
+    	
     	
     }
 
@@ -253,6 +249,66 @@ public class Admin_Option3Controller {
     	Film_Table.setItems(f_data);
     	
     }
+    
+	public void searchFilm(ActionEvent event) throws IOException {
+		loadFilm(null);
+		try {
+			ObservableList<Film> f_data = FXCollections.observableArrayList();
+			Film f = fs.getFilm(Integer.parseInt(FFID.getText()));
+			if (f.getId() != 0)
+				f_data.add(f);
+			Film_Table.setItems(f_data);
+		} catch (Exception e) {
+			System.out.println("Invalid info");
+		}
+	}
+	
+	public void addFilm(ActionEvent event) throws IOException{
+		try {
+			Film f = new Film();
+			f.setTitle(FFTitle.getText());
+			f.setGenre(FFGenre.getText());
+			f.setDate(LocalDate.parse(FFDate.getText()));
+			f.setRating(FFRating.getText());
+			f.setCast(FFCast.getText());
+			f.setRuntime(Integer.parseInt(FFRuntime.getText()));
+			f.setPrice(Double.parseDouble(FFPrice.getText()));
+			f.setSynopsis(FFSynopsis.getText());
+			f.setImage(FFImage.getText());
+			fs.addFilm(f);
+			loadFilm(null);
+		} catch (Exception e) {
+			System.out.println("Invalid info");
+		}
+	}
+	
+	public void updateFilm(ActionEvent event) throws IOException{
+		try {
+			Film f = fs.getFilm(Integer.parseInt(FFID.getText()));
+			f.setTitle(FFTitle.getText());
+			f.setGenre(FFGenre.getText());
+			f.setDate(LocalDate.parse(FFDate.getText()));
+			f.setRating(FFRating.getText());
+			f.setCast(FFCast.getText());
+			f.setRuntime(Integer.parseInt(FFRuntime.getText()));
+			f.setPrice(Double.parseDouble(FFPrice.getText()));
+			f.setSynopsis(FFSynopsis.getText());
+			f.setImage(FFImage.getText());
+			fs.updateFilm(f);
+			loadFilm(null);
+		} catch (Exception e) {
+			System.out.println("Invalid info");
+		}
+	}
+	
+	public void deleteFilm(ActionEvent event) throws IOException{
+		try {
+			fs.deleteFilm(Integer.parseInt(FFID.getText()));
+			loadFilm(null);
+		} catch (Exception e) {
+			System.out.println("Invalid info");
+		}
+	}
     
     public void loadUser(ActionEvent event) throws IOException
     {
@@ -277,6 +333,99 @@ public class Admin_Option3Controller {
     	Users_Table.setItems(u_data);
     	
     }
+    
+	public void searchUser(ActionEvent event) throws IOException {
+		loadUser(null);
+		try {
+			ObservableList<User> u_data = FXCollections.observableArrayList();
+			User u = us.getUser(Integer.parseInt(UUID.getText()));
+			if (u.getId() != 0)
+				u_data.add(u);
+			Users_Table.setItems(u_data);
+		} catch (Exception e) {
+			System.out.println("Invalid info");
+		}
+	}
+	
+	public void addUser(ActionEvent event) throws IOException{
+		try {
+			User u = new User();
+			
+			u.setUsername(UUsername.getText());
+			u.setEmail(UUEmail.getText());
+			u.setPassword(UUPassword.getText());
+			u.setMobileno(UUMobile.getText());
+			u.setFirstname(UUFirst.getText());
+			u.setLastname(UULast.getText());
+			
+			if (Umale.isSelected()) {
+				u.setGender("M");
+			} else {
+				u.setGender("F");
+			}
+			
+			u.setBdate(LocalDate.parse(UUBdate.getText()));
+			
+			if (Ulocked.isSelected()) {
+				u.setIslocked(true);
+			} else {
+				u.setIslocked(false);
+			}
+			
+			if (UPID.getValue() != null && UCID.getValue() != null) {
+				u.setProvince(UPID.getValue());
+				u.setCity(UCID.getValue());
+				us.addUser(u);
+				loadUser(null);
+			}
+		} catch (Exception e) {
+			System.out.println("Invalid info");
+		}
+	}
+	
+	public void updateUser(ActionEvent event) throws IOException{
+		try {
+			User u = us.getUser(Integer.parseInt(UUID.getText()));
+			u.setUsername(UUsername.getText());
+			u.setEmail(UUEmail.getText());
+			u.setPassword(UUPassword.getText());
+			u.setMobileno(UUMobile.getText());
+			u.setFirstname(UUFirst.getText());
+			u.setLastname(UULast.getText());
+			
+			if (Umale.isSelected()) {
+				u.setGender("M");
+			} else {
+				u.setGender("F");
+			}
+			
+			u.setBdate(LocalDate.parse(UUBdate.getText()));
+			
+			if (Ulocked.isSelected()) {
+				u.setIslocked(true);
+			} else {
+				u.setIslocked(false);
+			}
+			
+			if (UPID.getValue() != null && UCID.getValue() != null) {
+				u.setProvince(UPID.getValue());
+				u.setCity(UCID.getValue());
+				us.updateUser(u);
+				loadUser(null);
+			}
+		} catch (Exception e) {
+			System.out.println("Invalid info");
+		}
+	}
+	
+	public void deleteUser(ActionEvent event) throws IOException{
+		try {
+			us.deleteUser(Integer.parseInt(UUID.getText()));
+			loadUser(null);
+		} catch (Exception e) {
+			System.out.println("Invalid info");
+		}
+	}
     
     @FXML
      public void Toback(ActionEvent event) throws IOException {
