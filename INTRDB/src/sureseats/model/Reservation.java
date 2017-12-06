@@ -13,14 +13,14 @@ public class Reservation {
 	private Schedule schedule;
 
 	public static final String TABLE = "RESERVATION";
-	public static final String COL_ID = "RID";
-	public static final String COL_CODE = "RCode";
-	public static final String COL_TYPE = "RType";
-	public static final String COL_DATETIME = "RDateTime";
-	public static final String COL_STATUS = "RStatus";
-	public static final String COL_USER = "UID";
-	public static final String COL_SEAT = "SeID";
-	public static final String COL_SCHEDULE = "SID";
+	public static final String COL_ID = TABLE + ".RID";
+	public static final String COL_CODE = TABLE + ".RCode";
+	public static final String COL_TYPE = TABLE + ".RType";
+	public static final String COL_DATETIME = TABLE + ".RDateTime";
+	public static final String COL_STATUS = TABLE + ".RStatus";
+	public static final String COL_USER = TABLE + ".UID";
+	public static final String COL_SEAT = TABLE + ".SeID";
+	public static final String COL_SCHEDULE = TABLE + ".SID";
 
 	public int getId() {
 		return id;

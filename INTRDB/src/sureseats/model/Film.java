@@ -15,16 +15,16 @@ public class Film {
 	private String image;
 
 	public static final String TABLE = "FILM";
-	public static final String COL_ID = "FID";
-	public static final String COL_TITLE = "FTitle";
-	public static final String COL_GENRE = "FGenre";
-	public static final String COL_DATE = "FDate";
-	public static final String COL_RATING = "FRating";
-	public static final String COL_CAST = "FCast";
-	public static final String COL_RUNTIME = "FRuntime";
-	public static final String COL_PRICE = "FPrice";
-	public static final String COL_SYNOPSIS = "FSynopsis";
-	public static final String COL_IMAGE = "FImage";
+	public static final String COL_ID = TABLE + ".FID";
+	public static final String COL_TITLE = TABLE + ".FTitle";
+	public static final String COL_GENRE = TABLE + ".FGenre";
+	public static final String COL_DATE = TABLE + ".FDate";
+	public static final String COL_RATING = TABLE + ".FRating";
+	public static final String COL_CAST = TABLE + ".FCast";
+	public static final String COL_RUNTIME = TABLE + ".FRuntime";
+	public static final String COL_PRICE = TABLE + ".FPrice";
+	public static final String COL_SYNOPSIS = TABLE + ".FSynopsis";
+	public static final String COL_IMAGE = TABLE + ".FImage";
 
 	public int getId() {
 		return id;

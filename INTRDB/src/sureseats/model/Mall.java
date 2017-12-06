@@ -6,9 +6,9 @@ public class Mall {
 	private City city;
 
 	public static final String TABLE = "MALL";
-	public static final String COL_ID = "MID";
-	public static final String COL_NAME = "MName";
-	public static final String COL_CITY = "CTID";
+	public static final String COL_ID = TABLE + ".MID";
+	public static final String COL_NAME = TABLE + ".MName";
+	public static final String COL_CITY = TABLE + ".CTID";
 
 	public int getId() {
 		return id;

@@ -7,10 +7,10 @@ public class Seat {
 	private Cinema cinema;
 
 	public static final String TABLE = "SEAT";
-	public static final String COL_ID = "SeID";
-	public static final String COL_ROW = "SeRow";
-	public static final String COL_COL = "SeCol";
-	public static final String COL_CINEMA = "CID";
+	public static final String COL_ID = TABLE + ".SeID";
+	public static final String COL_ROW = TABLE + ".SeRow";
+	public static final String COL_COL = TABLE + ".SeCol";
+	public static final String COL_CINEMA = TABLE + ".CID";
 
 	public int getId() {
 		return id;

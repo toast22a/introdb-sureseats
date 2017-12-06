@@ -193,12 +193,6 @@ public class ReservationService {
 			ResultSet rs = ps.executeQuery();
 			ResultSetMetaData rsmd = rs.getMetaData();
 			
-			/*for (int i = 0 ; i < rsmd.getColumnCount(); i++) {
-				ArrayList<String> col = new ArrayList<String>();
-				col.add(rsmd.getColumnName(i+1));
-				list.add(col);
-			}*/
-			
 			ArrayList<String> header = new ArrayList<String>();
 			for (int i = 0 ; i < rsmd.getColumnCount() ; i++) {
 				header.add(rsmd.getColumnName(i+1));
