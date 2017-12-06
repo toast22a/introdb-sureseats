@@ -135,17 +135,17 @@
                                                                </font>
                                                             </Label>
                                                             <TextField fx:id="SSID" layoutX="210.0" layoutY="37.0" prefHeight="27.0" prefWidth="151.0" />
-                                                            <Button fx:id="Sched_Search" layoutX="86.0" layoutY="86.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="SEARCH" textFill="#ff9500">
+                                                            <Button fx:id="Sched_Search" layoutX="86.0" layoutY="86.0" mnemonicParsing="false" onAction="#searchSched" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="SEARCH" textFill="#ff9500">
                                                                <font>
                                                                   <Font name="System Bold" size="14.0" />
                                                                </font>
                                                             </Button>
-                                                            <Button fx:id="Sched_Delete" layoutX="282.0" layoutY="86.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="81.0" style="-fx-background-color: gray;" text="DELETE" textFill="#ff9000">
+                                                            <Button fx:id="Sched_Delete" layoutX="282.0" layoutY="86.0" mnemonicParsing="false" onAction="#deleteSched" prefHeight="30.0" prefWidth="81.0" style="-fx-background-color: gray;" text="DELETE" textFill="#ff9000">
                                                                <font>
                                                                   <Font name="System Bold" size="14.0" />
                                                                </font>
                                                             </Button>
-                                                            <Button fx:id="Sched_Update" layoutX="184.0" layoutY="86.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="UPDATE" textFill="#e48928">
+                                                            <Button fx:id="Sched_Update" layoutX="184.0" layoutY="86.0" mnemonicParsing="false" onAction="#updateSched" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="UPDATE" textFill="#e48928">
                                                                <font>
                                                                   <Font name="System Bold" size="14.0" />
                                                                </font>
@@ -154,7 +154,7 @@
                                                       </AnchorPane>
                                                       <AnchorPane layoutX="283.0" layoutY="377.0" prefHeight="101.0" prefWidth="136.0">
                                                          <children>
-                                                            <Button fx:id="Sched_Add" layoutX="32.0" layoutY="28.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="ADD" textFill="#e48928">
+                                                            <Button fx:id="Sched_Add" layoutX="32.0" layoutY="28.0" mnemonicParsing="false" onAction="#addSched" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="ADD" textFill="#e48928">
                                                                <font>
                                                                   <Font name="System Bold" size="14.0" />
                                                                </font>
@@ -176,7 +176,7 @@
                                                                <children>
                                                                   <AnchorPane layoutX="281.0" layoutY="205.0" prefHeight="101.0" prefWidth="136.0">
                                                                      <children>
-                                                                        <Button layoutX="23.0" layoutY="35.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="ADD" textFill="#7bda6e">
+                                                                        <Button layoutX="23.0" layoutY="35.0" mnemonicParsing="false" onAction="#addSeats" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="ADD" textFill="#7bda6e">
                                                                            <font>
                                                                               <Font name="System Bold" size="14.0" />
                                                                            </font>
@@ -218,17 +218,17 @@
                                                                </font>
                                                             </Label>
                                                             <TextField fx:id="SSeID" layoutX="210.0" layoutY="37.0" prefHeight="27.0" prefWidth="157.0" />
-                                                            <Button fx:id="Seats_Search" layoutX="100.0" layoutY="85.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="SEARCH" textFill="#95f56f">
+                                                            <Button fx:id="Seats_Search" layoutX="100.0" layoutY="85.0" mnemonicParsing="false" onAction="#searchSeats" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="SEARCH" textFill="#95f56f">
                                                                <font>
                                                                   <Font name="System Bold" size="14.0" />
                                                                </font>
                                                             </Button>
-                                                            <Button fx:id="Seats_Delete" layoutX="292.0" layoutY="86.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="81.0" style="-fx-background-color: gray;" text="DELETE" textFill="#95f56f">
+                                                            <Button fx:id="Seats_Delete" layoutX="292.0" layoutY="86.0" mnemonicParsing="false" onAction="#deleteSeats" prefHeight="30.0" prefWidth="81.0" style="-fx-background-color: gray;" text="DELETE" textFill="#95f56f">
                                                                <font>
                                                                   <Font name="System Bold" size="14.0" />
                                                                </font>
                                                             </Button>
-                                                            <Button fx:id="Seats_Update" layoutX="195.0" layoutY="85.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="UPDATE" textFill="#7bda6e">
+                                                            <Button fx:id="Seats_Update" layoutX="195.0" layoutY="85.0" mnemonicParsing="false" onAction="#updateSeats" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="UPDATE" textFill="#7bda6e">
                                                                <font>
                                                                   <Font name="System Bold" size="14.0" />
                                                                </font>
@@ -255,17 +255,17 @@
                                                                            </font>
                                                                         </Label>
                                                                         <TextField fx:id="RRid" layoutX="210.0" layoutY="37.0" prefHeight="27.0" prefWidth="156.0" />
-                                                                        <Button fx:id="RSearch" layoutX="94.0" layoutY="84.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="SEARCH" textFill="#ffaef8">
+                                                                        <Button fx:id="RSearch" layoutX="94.0" layoutY="84.0" mnemonicParsing="false" onAction="#searchSReservation" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="SEARCH" textFill="#ffaef8">
                                                                            <font>
                                                                               <Font name="System Bold" size="14.0" />
                                                                            </font>
                                                                         </Button>
-                                                                        <Button fx:id="RDelete" layoutX="295.0" layoutY="85.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="81.0" style="-fx-background-color: gray;" text="DELETE" textFill="#ffaef8">
+                                                                        <Button fx:id="RDelete" layoutX="295.0" layoutY="85.0" mnemonicParsing="false" onAction="#deleteReservation" prefHeight="30.0" prefWidth="81.0" style="-fx-background-color: gray;" text="DELETE" textFill="#ffaef8">
                                                                            <font>
                                                                               <Font name="System Bold" size="14.0" />
                                                                            </font>
                                                                         </Button>
-                                                                        <Button fx:id="RUpdate" layoutX="195.0" layoutY="84.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="UPDATE" textFill="#fca1fa">
+                                                                        <Button fx:id="RUpdate" layoutX="195.0" layoutY="84.0" mnemonicParsing="false" onAction="#updateRes" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="UPDATE" textFill="#fca1fa">
                                                                            <font>
                                                                               <Font name="System Bold" size="14.0" />
                                                                            </font>
@@ -278,7 +278,7 @@
                                                                <children>
                                                                   <AnchorPane layoutX="282.0" layoutY="225.0" prefHeight="101.0" prefWidth="136.0">
                                                                      <children>
-                                                                        <Button fx:id="RAdd" layoutX="23.0" layoutY="43.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="ADD" textFill="#fca1fa">
+                                                                        <Button fx:id="RAdd" layoutX="23.0" layoutY="43.0" mnemonicParsing="false" onAction="#deleteReservation" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="ADD" textFill="#fca1fa">
                                                                            <font>
                                                                               <Font name="System Bold" size="14.0" />
                                                                            </font>

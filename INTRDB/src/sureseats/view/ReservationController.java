@@ -1,16 +1,19 @@
 package sureseats.view;
 
+import java.io.IOException;
+
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
-import sureseats.model.ReservationService;
-import sureseats.model.SureseatsDB;
+import javafx.stage.Stage;
 
 public class ReservationController {
 
-	private ReservationService rs;
-	private SureseatsDB sureseatsDB;
     @FXML
     private Button to_Back;
 
@@ -31,17 +34,19 @@ public class ReservationController {
 
     @FXML
     private Text Total;
-    
-    public void initialize()
-    {
-    	sureseatsDB = new SureseatsDB();
-    	rs= new ReservationService(sureseatsDB);
-    	Reservation_Code.setText(rs.generateCode());
-    }
-    
-    @FXML
-    void toback(ActionEvent event) {
 
+    public void toback(ActionEvent event) throws IOException
+    {
+ 	   FXMLLoader loader = new FXMLLoader();
+ 	   loader.setLocation(getClass().getResource("/sureseats/view/GUI.fxml"));
+        Parent tableViewParent = loader.load(); 
+        Scene tableViewScene = new Scene(tableViewParent);
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+        
+        window.setScene(tableViewScene);
+        window.show();
     }
 
 }
+

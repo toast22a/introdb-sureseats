@@ -24,6 +24,7 @@ import sureseats.model.CinemaService;
 import sureseats.model.CityService;
 import sureseats.model.Film;
 import sureseats.model.FilmService;
+import sureseats.model.Mall;
 import sureseats.model.MallService;
 import sureseats.model.Province;
 import sureseats.model.ProvinceService;
@@ -262,6 +263,14 @@ public class Admin_Option2Controller {
 		rs= new ReservationService(sureseatsDB);
 		cs= new CinemaService (sureseatsDB);
 		fs= new FilmService(sureseatsDB);
+
+		try {
+			loadSched(null);
+			loadSeats(null);
+			loadReservations(null);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
     
     
@@ -275,6 +284,7 @@ public class Admin_Option2Controller {
     	COL_End.setCellValueFactory(new PropertyValueFactory<>("end"));
     	COL_sched_Cinema.setCellValueFactory(new PropertyValueFactory<>("cinema"));
     	COL_sched_FID.setCellValueFactory(new PropertyValueFactory<>("film"));
+    	
     	Sched_Table.setItems(s_data);
     	
     }
@@ -311,6 +321,7 @@ public class Admin_Option2Controller {
     private TableColumn<Seat, Cinema> Col_SeCID;
 */
    
+    
 
 	
 	
@@ -327,21 +338,40 @@ public class Admin_Option2Controller {
 		}
 	}
 	
-	
+	public void addSeats(ActionEvent event) throws IOException{
+		try {
+			Seat se = new Seat();
+			se.setRow( COL_SeRow.getText());
+			se.setCol( Integer.parseInt(Col_SeCol.getText()));
+			se.setCinema(cs.getCinema(Integer.parseInt( SSeCID.getText())));
+			ses.addSeat(se);
+			loadSeats(null);
+		} catch (Exception e) {
+			System.out.println("Invalid info");
+		}
+	}
 	
     
     public void updateSeats(ActionEvent event) throws IOException{
-		Seat s = ses.getSeat(Integer.parseInt( COL__SeID.getText()));
-		s.setRow( COL_SeRow.getText());
-		s.setCol( Integer.parseInt(Col_SeCol.getText()));
-		s.setCinema(cs.getCinema(Integer.parseInt( SSeCID.getText())));
-		ses.updateSeat(s);
-		loadSched(null);
+    	try {
+    		Seat s = ses.getSeat(Integer.parseInt( COL__SeID.getText()));
+    		s.setRow( COL_SeRow.getText());
+			s.setCol( Integer.parseInt(Col_SeCol.getText()));
+			s.setCinema(cs.getCinema(Integer.parseInt( SSeCID.getText())));
+			ses.updateSeat(s);
+			loadSched(null);
+    	} catch (Exception e) {
+			System.out.println("Invalid info");
+		}
 	}
     
     public void deleteSeats(ActionEvent event) throws IOException{
+    	try {
   		ses.deleteSeat(Integer.parseInt(COL__SeID.getText()));
   		loadSeats(null);
+    	} catch (Exception e) {
+			System.out.println("Invalid info");
+		}
   	}
 /*	@FXML
     private TableView<Schedule> Sched_Table;
@@ -363,6 +393,9 @@ public class Admin_Option2Controller {
 	
  /*   private TableColumn<Schedule, Film> COL_sched_FID;*/
     
+
+    
+    
     public void searchSched(ActionEvent event) throws IOException {
 		loadSched(null);
 		try {
@@ -377,11 +410,31 @@ public class Admin_Option2Controller {
 	}
     
     public void deleteSched(ActionEvent event) throws IOException{
+    	try {
 		ss.deleteSchedule(Integer.parseInt(COL_SID.getText()));
 		loadSched(null);
+    	} catch (Exception e) {
+			System.out.println("Invalid info");
+		}
 	}
     
+    
+	public void addSched(ActionEvent event) throws IOException{
+		try {
+			Schedule sched = ss.getSchedule(Integer.parseInt(COL_SID.getText()));
+			sched.setStart(LocalDateTime.parse((CharSequence) COL_Start));
+			sched.setEnd(LocalDateTime.parse((CharSequence)COL_End));
+			sched.setCinema(cs.getCinema(Integer.parseInt( COL_sched_Cinema.getText())));
+			sched.setFilm(fs.getFilm(Integer.parseInt( COL_sched_FID.getText())));
+			ss.addSchedule(sched);
+			loadSched(null);
+		} catch (Exception e) {
+			System.out.println("Invalid info");
+		}
+	}
+	
 	public void updateSched(ActionEvent event) throws IOException{
+		try {
 		Schedule sched = ss.getSchedule(Integer.parseInt(COL_SID.getText()));
 		sched.setStart(LocalDateTime.parse((CharSequence) COL_Start));
 		sched.setEnd(LocalDateTime.parse((CharSequence)COL_End));
@@ -389,6 +442,9 @@ public class Admin_Option2Controller {
 		sched.setFilm(fs.getFilm(Integer.parseInt( COL_sched_FID.getText())));
 		ss.updateSchedule(sched);
 		loadSched(null);
+		} catch (Exception e) {
+			System.out.println("Invalid info");
+		}
 	}
 	
     
@@ -437,22 +493,41 @@ public class Admin_Option2Controller {
     @FXML
     private TableColumn<Reservation, Schedule> COL_RSID;*/
     
+  
  
     
-/*    public void searchSReservation(ActionEvent event) throws IOException {
+    public void searchSReservation(ActionEvent event) throws IOException {
 		loadReservations(null);
 		try {
-			ObservableList<Reservation> r_data = FXCollections.observableArrayList();
-			Schedule s = ss.getSchedule(Integer.parseInt(COL_SID.getText()));
-			if (s.getId() != 0)
-				s_data.add(s);
-			Sched_Table.setItems(s_data);
+			ObservableList<Reservation> se_data = FXCollections.observableArrayList();
+			Reservation r = rs.getReservation(Integer.parseInt(COL_RID.getText()));
+			if (r.getId() != 0)
+				se_data.add(r);
+			R_Table.setItems(se_data);
 		} catch (Exception e) {
 			System.out.println("Invalid ID");
 		}
-	}*/
+    }
+    
+	public void addRes(ActionEvent event) throws IOException{
+		try {
+			Reservation r = rs.getReservation(Integer.parseInt(COL_RID.getText()));
+			r.setCode( COL_Rcode.getText());
+			r.setType( COL_Rtype.getText());
+			r.setDatetime(LocalDateTime.parse((CharSequence) COL_Start));
+			r.setStatus(Col_RStatus.getText());
+			r.setUser(us.getUser(Integer.parseInt( Col_RUID.getText())));
+			r.setSchedule(ss.getSchedule(Integer.parseInt(COL_RSID.getText())));
+			r.setSeat(ses.getSeat(Integer.parseInt( COL_RSEID.getText())));
+			rs.addReservation(r);
+			loadReservations(null);
+		} catch (Exception e) {
+			System.out.println("Invalid info");
+		}
+	}
     
     public void updateRes(ActionEvent event) throws IOException{
+    	try {
 		Reservation r = rs.getReservation(Integer.parseInt(COL_RID.getText()));
 		r.setCode( COL_Rcode.getText());
 		r.setType( COL_Rtype.getText());
@@ -463,11 +538,18 @@ public class Admin_Option2Controller {
 		r.setSeat(ses.getSeat(Integer.parseInt( COL_RSEID.getText())));
 		rs.updateReservation(r);
 		loadReservations(null);
+		} catch (Exception e) {
+			System.out.println("Invalid info");
+		}
 	}
     
     public void deleteReservation(ActionEvent event) throws IOException{
+    	try {
   		rs.deleteReservation(Integer.parseInt(COL_RID.getText()));
   		loadReservations(null);
+    	} catch (Exception e) {
+			System.out.println("Invalid info");
+		}
   	}
     
     public void toback(ActionEvent event) throws IOException
