@@ -118,11 +118,11 @@ public class UserTransactionController {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("/sureseats/view/GUI.fxml"));
 		Parent tableViewParent = loader.load();
-
+		if(user!=null) {
 		GUIController gc = loader.<GUIController>getController();
 		gc.setUser(user);
 		gc.setGuestMode(false);
-
+		}
 		Scene tableViewScene = new Scene(tableViewParent);
 		// This line gets the Stage information
 		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();

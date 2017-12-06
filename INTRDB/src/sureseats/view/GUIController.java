@@ -125,6 +125,10 @@ public class GUIController {
 	private ImageView panel05;
 	@FXML
 	private Button login1;
+	 @FXML
+	  private Button btn_logout;
+	 @FXML
+	 private Button moviesBtnCommingSoon;
 
 	/*
 	 * @FXML private void reg() throws Exception{ Stage stage = (Stage)
@@ -178,7 +182,7 @@ public class GUIController {
 
 	public void gotologin(ActionEvent event) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("/sureseats/view/sign_in.fxml"));
+		loader.setLocation(getClass().getResource("/sureseats/view/Sign_In.fxml"));
 		Parent tableViewParent = loader.load();
 		Scene tableViewScene = new Scene(tableViewParent);
 		// This line gets the Stage information
@@ -188,7 +192,7 @@ public class GUIController {
 		window.show();
 	}
 
-	@FXML
+@FXML
 	public void gotoSched(MouseEvent event) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("/sureseats/view/schedule.fxml"));
@@ -204,6 +208,19 @@ public class GUIController {
 		window.show();
 	}
 	
+
+	
+	public void gotoCommingSoon(ActionEvent event) throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("/sureseats/view/Comming_Soon.fxml"));
+		Parent tableViewParent = loader.load();
+		Scene tableViewScene = new Scene(tableViewParent);
+		// This line gets the Stage information
+		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+		window.setScene(tableViewScene);
+		window.show();
+	}
 
 	public void gotoTrans(ActionEvent event) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
@@ -221,6 +238,24 @@ public class GUIController {
 		window.setScene(tableViewScene);
 		window.show();
 	}
+	
+	public void log_out(ActionEvent event) throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("/sureseats/view/Sign_up.fxml"));
+		Parent tableViewParent = loader.load();
+		//scheduleController sc = loader.<scheduleController>getController();
+		//sc.setUser(user);
+		//sc.setFilm(film);
+		UserTransactionController utc = loader.<UserTransactionController>getController();
+		utc.setUser(user);
+		Scene tableViewScene = new Scene(tableViewParent);
+		// This line gets the Stage information
+		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+		window.setScene(tableViewScene);
+		window.show();
+	}
+	
 	
 	public User getUser() {
 		return user;

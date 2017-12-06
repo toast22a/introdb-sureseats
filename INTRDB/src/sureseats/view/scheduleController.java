@@ -18,8 +18,10 @@ import sureseats.model.*;
 
 public class scheduleController {
 	private User user;
+	private SureseatsDB sureseatsDB;
+	private UserService us;
 	private Film film;
-	private SureseatsDB sdb;
+	
 	private ScheduleService ss;
 
 	@FXML
@@ -65,13 +67,12 @@ public class scheduleController {
 		SDate.setText(film.getDate().toString());
 	}*/
 	
-	public User getUser() {
-		return user;
+
+	public void initialize() {
+		sureseatsDB = new SureseatsDB();
+		us = new UserService(sureseatsDB);
 	}
 	
-	public void setUser(User user) {
-		this.user = user;
-	}
 	
 	public Film getFilm() {
 		return film;
@@ -87,21 +88,29 @@ public class scheduleController {
 	
 
 	
-	  public void toback(ActionEvent event) throws IOException {
-	    	FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(getClass().getResource("/sureseats/view/GUI.fxml"));
-			Parent tableViewParent = loader.load();
-		
-			GUIController gc = loader.<GUIController>getController();
-			gc.setUser(gc.getUser());
-			gc.setGuestMode(false);
-
-			Scene tableViewScene = new Scene(tableViewParent);
-			// This line gets the Stage information
-			Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-			window.setScene(tableViewScene);
-			window.show();
+	public void toback(ActionEvent event) throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("/sureseats/view/GUI.fxml"));
+		Parent tableViewParent = loader.load();
+		if(user!=null) {
+		GUIController gc = loader.<GUIController>getController();
+		gc.setUser(user);
+		gc.setGuestMode(false);
 		}
+		Scene tableViewScene = new Scene(tableViewParent);
+		// This line gets the Stage information
+		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		window.setScene(tableViewScene);
+		window.show();
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
 	
 	public void toReseve(ActionEvent event) throws IOException
     {

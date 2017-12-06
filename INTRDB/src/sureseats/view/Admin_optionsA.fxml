@@ -30,7 +30,7 @@
                      <top>
                         <BorderPane prefHeight="86.0" prefWidth="1099.0" BorderPane.alignment="CENTER">
                            <right>
-                              <Button fx:id="admin1Next" mnemonicParsing="false" onAction="#toNext" prefHeight="53.0" prefWidth="98.0" style="-fx-background-color: orange;" text="Next" BorderPane.alignment="CENTER">
+                              <Button fx:id="admin1Next" mnemonicParsing="false" onAction="#toNext" prefHeight="53.0" prefWidth="98.0" style="-fx-background-color: orange;" text="Next" textFill="WHITE" BorderPane.alignment="CENTER">
                                  <font>
                                     <Font name="System Bold" size="14.0" />
                                  </font>
@@ -44,9 +44,9 @@
                               </ImageView>
                            </center>
                            <left>
-                              <Button fx:id="Back" mnemonicParsing="false" onAction="#ToSignIn" prefHeight="53.0" prefWidth="100.0" style="-fx-background-color: orange;" text="Go To Sign In" BorderPane.alignment="CENTER">
+                              <Button fx:id="Back" mnemonicParsing="false" onAction="#ToSignIn" prefHeight="53.0" prefWidth="118.0" style="-fx-background-color: orange;" text="Go To Sign In" textFill="WHITE" BorderPane.alignment="CENTER">
                                  <font>
-                                    <Font name="System Bold" size="12.0" />
+                                    <Font name="System Bold" size="14.0" />
                                  </font>
                               </Button>
                            </left>
