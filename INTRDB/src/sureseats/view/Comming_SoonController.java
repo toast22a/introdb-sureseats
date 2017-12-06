@@ -1,7 +1,6 @@
 package sureseats.view;
 
 import java.io.IOException;
-import java.time.LocalDateTime;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,50 +9,59 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
-import javafx.scene.control.TableColumn;
-import javafx.scene.control.TableView;
+import javafx.scene.image.ImageView;
+import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 import sureseats.model.SureseatsDB;
 import sureseats.model.User;
 import sureseats.model.UserService;
 
-public class UserTransactionController {
+public class Comming_SoonController {
 
-	private User user;
+    @FXML
+    private Button moviesBtnLogin1;
+
+    @FXML
+    private Button moviesBtnTHistory;
+
+    @FXML
+    private Button moviesBtnRegister;
+
+    @FXML
+    private Button moviesBtnLogin;
+
+    @FXML
+    private GridPane CommingSoon_Pane;
+
+    @FXML
+    private ImageView panel01;
+
+    @FXML
+    private ImageView panel02;
+
+    @FXML
+    private ImageView panel03;
+
+    @FXML
+    private ImageView panel04;
+
+    @FXML
+    private ImageView panel05;
+
+    @FXML
+    private ImageView panel00;
+    
+    private User user;
 	private SureseatsDB sureseatsDB;
 	private UserService us;
-
-	@FXML
-	private Button to_Back;
-
-	@FXML
-	private TableView<?> Transac_Table;
-
-	@FXML
-	private TableColumn<?, ?> COL_Trans_Date;
-
-	@FXML
-	private TableColumn<?, ?> COL_Trans_type;
-
-	@FXML
-	private TableColumn<?, ?> COL_Trans_title;
-
-	@FXML
-	private TableColumn<?, ?> COL_Trans_Cinema;
-
-	@FXML
-	private TableColumn<?, ?> COL_Trans_Row;
-
-	@FXML
-	private TableColumn<?, ?> COL_Trans_Col;
-
-	@FXML
-	private TableColumn<?, ?> COL_Trans_Status;
-
+	
 	public void initialize() {
 		sureseatsDB = new SureseatsDB();
 		us = new UserService(sureseatsDB);
 	}
+
+	
 
 	public void goback(ActionEvent event) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
@@ -71,12 +79,20 @@ public class UserTransactionController {
 		window.show();
 	}
 
-	public User getUser() {
-		return user;
-	}
+    @FXML
+    void gotoTrans(ActionEvent event) {
 
-	public void setUser(User user) {
-		this.user = user;
-	}
+    }
+
+    @FXML
+    void gotologin(ActionEvent event) {
+
+    }
+
+    @FXML
+    void gotoreg(ActionEvent event) {
+
+    }
 
 }
+

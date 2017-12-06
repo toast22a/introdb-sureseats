@@ -17,9 +17,17 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="435.0" prefWidth="692.0">
                <children>
+                  <Button fx:id="btn_logout" layoutX="701.0" layoutY="68.0" mnemonicParsing="false" onAction="#gotologin" prefHeight="27.0" prefWidth="131.0" text="Logout" />
                   <Button fx:id="moviesBtnTHistory" layoutX="696.0" layoutY="27.0" mnemonicParsing="false" onAction="#gotoTrans" prefHeight="28.0" prefWidth="136.0" text="Transaction History" />
-                  <Button fx:id="moviesBtnRegister" layoutX="696.0" layoutY="27.0" mnemonicParsing="false" onAction="#gotoreg" prefHeight="28.0" prefWidth="136.0" text="Register" />
-                  <Button fx:id="moviesBtnLogin" layoutX="698.0" layoutY="68.0" mnemonicParsing="false" onAction="#gotologin" prefHeight="29.0" prefWidth="132.0" text="Login" />
+                  <Button fx:id="moviesBtnRegister" layoutX="696.0" layoutY="27.0" mnemonicParsing="false" onAction="#gotoreg" prefHeight="28.0" prefWidth="136.0" style="-fx-background-color: ORANGE;" text="Register" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font></Button>
+                  <Button fx:id="moviesBtnLogin" layoutX="700.0" layoutY="67.0" mnemonicParsing="false" onAction="#gotologin" prefHeight="29.0" prefWidth="132.0" style="-fx-background-color: ORANGE;" text="Login" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Button>
                   <Text layoutX="350.0" layoutY="187.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Movies">
                      <font>
                         <Font size="52.0" />
@@ -82,6 +90,11 @@
                         <Image url="@../../Resources/logo.png" />
                      </image>
                   </ImageView>
+                  <Button fx:id="moviesBtnCommingSoon" layoutX="696.0" layoutY="116.0" mnemonicParsing="false" onAction="#gotoCommingSoon" prefHeight="29.0" prefWidth="137.0" style="-fx-background-color: orange;" text="Comming Soon" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="13.0" />
+                     </font>
+                  </Button>
                </children>
             </AnchorPane>
         </content>
