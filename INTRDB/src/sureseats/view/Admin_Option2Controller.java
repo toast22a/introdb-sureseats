@@ -23,7 +23,9 @@ import sureseats.model.Cinema;
 import sureseats.model.CinemaService;
 import sureseats.model.CityService;
 import sureseats.model.Film;
+import sureseats.model.FilmService;
 import sureseats.model.MallService;
+import sureseats.model.Province;
 import sureseats.model.ProvinceService;
 import sureseats.model.Reservation;
 import sureseats.model.ReservationService;
@@ -40,7 +42,10 @@ public class Admin_Option2Controller {
 	private SureseatsDB sureseatsDB;
 	private ScheduleService ss;
 	private SeatService ses;
+	private UserService us;
 	private ReservationService rs;
+	private CinemaService cs;
+	private FilmService fs;
 	
 	@FXML
     private TableView<Schedule> Sched_Table;
@@ -122,6 +127,9 @@ public class Admin_Option2Controller {
 
     @FXML
     private TextField SSID;
+    
+    @FXML
+    private TextField SSeCID;
 
     @FXML
     private Button Sched_Search;
@@ -249,8 +257,11 @@ public class Admin_Option2Controller {
     public void initialize() {
 		sureseatsDB = new SureseatsDB();
 		ss= new ScheduleService(sureseatsDB);
+		us = new UserService(sureseatsDB);
 		ses = new SeatService(sureseatsDB);
 		rs= new ReservationService(sureseatsDB);
+		cs= new CinemaService (sureseatsDB);
+		fs= new FilmService(sureseatsDB);
 	}
     
     
@@ -268,6 +279,8 @@ public class Admin_Option2Controller {
     	
     }
     
+
+    
     public void loadSeats(ActionEvent event) throws IOException
     {
     	  ObservableList<Seat> se_data = FXCollections.observableArrayList(
@@ -281,6 +294,103 @@ public class Admin_Option2Controller {
     	Seats_Table.setItems(se_data);
     	
     }
+    
+ /*   @FXML
+    private TableView<Seat> Seats_Table;
+
+    @FXML
+    private TableColumn<Seat, Integer> COL__SeID;
+
+    @FXML
+    private TableColumn<Seat, String> COL_SeRow;
+
+    @FXML
+    private TableColumn<Seat, Integer> Col_SeCol;
+
+    @FXML
+    private TableColumn<Seat, Cinema> Col_SeCID;
+*/
+   
+
+	
+	
+	public void searchSeats(ActionEvent event) throws IOException {
+		loadSeats(null);
+		try {
+			ObservableList<Seat> se_data = FXCollections.observableArrayList();
+			Seat s = ses.getSeat(Integer.parseInt(COL__SeID.getText()));
+			if (s.getId() != 0)
+				se_data.add(s);
+			Seats_Table.setItems(se_data);
+		} catch (Exception e) {
+			System.out.println("Invalid ID");
+		}
+	}
+	
+	
+	
+    
+    public void updateSeats(ActionEvent event) throws IOException{
+		Seat s = ses.getSeat(Integer.parseInt( COL__SeID.getText()));
+		s.setRow( COL_SeRow.getText());
+		s.setCol( Integer.parseInt(Col_SeCol.getText()));
+		s.setCinema(cs.getCinema(Integer.parseInt( SSeCID.getText())));
+		ses.updateSeat(s);
+		loadSched(null);
+	}
+    
+    public void deleteSeats(ActionEvent event) throws IOException{
+  		ses.deleteSeat(Integer.parseInt(COL__SeID.getText()));
+  		loadSeats(null);
+  	}
+/*	@FXML
+    private TableView<Schedule> Sched_Table;
+
+    @FXML
+    private TableColumn<Schedule, Integer> COL_SID;
+
+    @FXML
+    private TableColumn<Schedule, LocalDateTime> COL_Start;
+
+    @FXML
+    private TableColumn<Schedule, LocalDateTime> COL_End;
+
+    @FXML
+    private TableColumn<Schedule, Cinema> COL_sched_Cinema;
+
+    @FXML*/
+
+	
+ /*   private TableColumn<Schedule, Film> COL_sched_FID;*/
+    
+    public void searchSched(ActionEvent event) throws IOException {
+		loadSched(null);
+		try {
+			ObservableList<Schedule> s_data = FXCollections.observableArrayList();
+			Schedule s = ss.getSchedule(Integer.parseInt(COL_SID.getText()));
+			if (s.getId() != 0)
+				s_data.add(s);
+			Sched_Table.setItems(s_data);
+		} catch (Exception e) {
+			System.out.println("Invalid ID");
+		}
+	}
+    
+    public void deleteSched(ActionEvent event) throws IOException{
+		ss.deleteSchedule(Integer.parseInt(COL_SID.getText()));
+		loadSched(null);
+	}
+    
+	public void updateSched(ActionEvent event) throws IOException{
+		Schedule sched = ss.getSchedule(Integer.parseInt(COL_SID.getText()));
+		sched.setStart(LocalDateTime.parse((CharSequence) COL_Start));
+		sched.setEnd(LocalDateTime.parse((CharSequence)COL_End));
+		sched.setCinema(cs.getCinema(Integer.parseInt( COL_sched_Cinema.getText())));
+		sched.setFilm(fs.getFilm(Integer.parseInt( COL_sched_FID.getText())));
+		ss.updateSchedule(sched);
+		loadSched(null);
+	}
+	
     
     public void loadReservations(ActionEvent event) throws IOException
     {
@@ -299,6 +409,66 @@ public class Admin_Option2Controller {
     	  R_Table.setItems(se_data);
     	
     }
+    
+/*    @FXML
+    private TableView<Reservation> R_Table;
+
+    @FXML
+    private TableColumn<Reservation, Integer> COL_RID;
+
+    @FXML
+    private TableColumn<Reservation, String> COL_Rcode;
+
+    @FXML
+    private TableColumn<Reservation, String> COL_Rtype;
+
+    @FXML
+    private TableColumn<Reservation, LocalDateTime> COL_RDate;
+
+    @FXML
+    private TableColumn<Reservation, String> Col_RStatus;
+
+    @FXML
+    private TableColumn<Reservation, User> Col_RUID;
+
+    @FXML
+    private TableColumn<Reservation, Seat> COL_RSEID;
+
+    @FXML
+    private TableColumn<Reservation, Schedule> COL_RSID;*/
+    
+ 
+    
+/*    public void searchSReservation(ActionEvent event) throws IOException {
+		loadReservations(null);
+		try {
+			ObservableList<Reservation> r_data = FXCollections.observableArrayList();
+			Schedule s = ss.getSchedule(Integer.parseInt(COL_SID.getText()));
+			if (s.getId() != 0)
+				s_data.add(s);
+			Sched_Table.setItems(s_data);
+		} catch (Exception e) {
+			System.out.println("Invalid ID");
+		}
+	}*/
+    
+    public void updateRes(ActionEvent event) throws IOException{
+		Reservation r = rs.getReservation(Integer.parseInt(COL_RID.getText()));
+		r.setCode( COL_Rcode.getText());
+		r.setType( COL_Rtype.getText());
+		r.setDatetime(LocalDateTime.parse((CharSequence) COL_Start));
+		r.setStatus(Col_RStatus.getText());
+		r.setUser(us.getUser(Integer.parseInt( Col_RUID.getText())));
+		r.setSchedule(ss.getSchedule(Integer.parseInt(COL_RSID.getText())));
+		r.setSeat(ses.getSeat(Integer.parseInt( COL_RSEID.getText())));
+		rs.updateReservation(r);
+		loadReservations(null);
+	}
+    
+    public void deleteReservation(ActionEvent event) throws IOException{
+  		rs.deleteReservation(Integer.parseInt(COL_RID.getText()));
+  		loadReservations(null);
+  	}
     
     public void toback(ActionEvent event) throws IOException
     {
