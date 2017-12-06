@@ -3,6 +3,7 @@ package sureseats.model;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.sql.ResultSetMetaData;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.sql.Types;
@@ -117,6 +118,116 @@ public class ReservationService {
 
 		// return list
 		return reservations;
+	}
+	
+	public List<Reservation> getReservationsWithUID(int uid) {
+		// create empty list of contacts
+		List<Reservation> reservations = new ArrayList<Reservation>();
+
+		// get connection from db
+		Connection cnt = connection.getConnection();
+
+		// create string query
+		String query = "SELECT * FROM " + Reservation.TABLE + " WHERE " + Reservation.COL_USER + " = ?";
+
+		try {
+			// create prepared statement
+			PreparedStatement ps = cnt.prepareStatement(query);
+			ps.setInt(1, uid);
+
+			// get result and store in result set
+			ResultSet rs = ps.executeQuery();
+
+			// transform set to list
+			// rs.next() means get next in result set
+			while (rs.next()) {
+				reservations.add(toReservation(rs));
+			}
+
+			// close all the resources
+			ps.close();
+			rs.close();
+			cnt.close();
+
+			System.out.println("[RESERVATION] SELECT SUCCESS!");
+		} catch (SQLException e) {
+			System.out.println("[RESERVATION] SELECT FAILED!");
+			e.printStackTrace();
+		}
+
+		// return list
+		return reservations;
+	}
+	
+	public List<List<String>> getTransactionHistory(int uid) {
+		// create empty list of contacts
+		List<List<String>> list = new ArrayList<List<String>>();
+
+		// get connection from db
+		Connection cnt = connection.getConnection();
+
+		// create string query
+		String query = 
+		
+				"SELECT "
+				+ "RDateTime AS DateTime, "
+				+ "RType AS Type, "
+				+ "(SELECT FTitle FROM FILM WHERE FID = (SELECT FID FROM SCHEDULE WHERE SCHEDULE.SID = RESERVATION.SID)) AS Title, "
+				
+				+ "(SELECT CNo FROM CINEMA WHERE CID = "
+				+ "(SELECT CID FROM SCHEDULE WHERE SCHEDULE.SID = RESERVATION.SID)) AS Cinema, "
+				+ "(SELECT SeRow FROM SEAT WHERE SEAT.SeID = RESERVATION.SeID) AS SeatRow, "
+				+ "(SELECT SeCol FROM SEAT WHERE SEAT.SeID = RESERVATION.SeID) AS SeatCol, "
+				
+				+ "RStatus AS Status "
+				+ "FROM RESERVATION "
+				+ "WHERE RESERVATION.UID = ? "
+				+ "ORDER BY RDateTime DESC";
+
+		try {
+			// create prepared statement
+			PreparedStatement ps = cnt.prepareStatement(query);
+			ps.setInt(1, uid);
+
+			// get result and store in result set
+			ResultSet rs = ps.executeQuery();
+			ResultSetMetaData rsmd = rs.getMetaData();
+			
+			/*for (int i = 0 ; i < rsmd.getColumnCount(); i++) {
+				ArrayList<String> col = new ArrayList<String>();
+				col.add(rsmd.getColumnName(i+1));
+				list.add(col);
+			}*/
+			
+			ArrayList<String> header = new ArrayList<String>();
+			for (int i = 0 ; i < rsmd.getColumnCount() ; i++) {
+				header.add(rsmd.getColumnName(i+1));
+			}
+			list.add(header);
+
+			// transform set to list
+			// rs.next() means get next in result set
+			while (rs.next()) {
+				ArrayList<String> row = new ArrayList<String>();
+				list.add(row);
+				for (int i = 0 ; i < rsmd.getColumnCount() ; i++) {
+					row.add(rs.getString(i+1));
+				}
+			}
+
+			// close all the resources
+			ps.close();
+			rs.close();
+			cnt.close();
+
+			System.out.println("[RESERVATION] SELECT SUCCESS!");
+		} catch (SQLException e) {
+			System.out.println("[RESERVATION] SELECT FAILED!");
+			e.printStackTrace();
+		}
+
+		// return list
+		return list;
 	}
 
 	public Reservation getReservation(int id) {
@@ -270,6 +381,7 @@ public class ReservationService {
 	}
 
 	public static void main(String[] args) {
+		/*
 		ReservationService service = new ReservationService(new SureseatsDB());
 		List<Reservation> reservations = service.getAll();
 		Reservation reservation = service.getReservation(1);
@@ -278,5 +390,14 @@ public class ReservationService {
 			System.out.println(r.toString());
 		}
 		System.out.println(reservation.toString());
+		*/
+		ReservationService service = new ReservationService(new SureseatsDB());
+		List<List<String>> history = service.getTransactionHistory(1);
+		for (List<String> row : history) {
+			for (String col : row) {
+				System.out.print(col);
+			}
+			System.out.println(row.size());
+		}
 	}
 }
