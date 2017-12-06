@@ -329,6 +329,8 @@ public class Admin_OptionsAController {
 		loadProvince(null);
 	}
 	
+	
+	
 	public void deleteProvince(ActionEvent event) throws IOException{
 		ps.deleteProvince(Integer.parseInt(PPID.getText()));
 		loadProvince(null);
