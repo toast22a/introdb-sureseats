@@ -32,244 +32,238 @@ import sureseats.model.User;
 import sureseats.model.UserService;
 
 public class Admin_OptionsAController {
-	
+
 	private SureseatsDB sureseatsDB;
 	private CinemaService cs;
-	
-	
+
 	private MallService ms;
-	
 
 	private ProvinceService ps;
-	
-	
+
 	private UserService us;
-	
 
 	private CityService cts;
-	 
-	
 
-    @FXML
-    private Button admin1Next;
+	@FXML
+	private Button admin1Next;
 
-    @FXML
-    private Button Back;
-    
-    @FXML
-    private TableView<Cinema> Cinema_Table;
-    
-    @FXML
-    private TableColumn<Cinema, Integer> COL_CID;
+	@FXML
+	private Button Back;
 
-    @FXML
-    private TableColumn<Cinema, String > COL_Cno;
+	@FXML
+	private TableView<Cinema> Cinema_Table;
 
-    @FXML
-    private TableColumn<Cinema, String> COL_CTpye;
+	@FXML
+	private TableColumn<Cinema, Integer> COL_CID;
 
-    @FXML
-    private TableColumn<Cinema, Mall > Cinema_COL_MID;
+	@FXML
+	private TableColumn<Cinema, String> COL_Cno;
 
-    @FXML
-    private Tab User_Malls;
-    
-    @FXML
-    private Button M_load;
-                                     
-    @FXML
-    private TableView<Mall> Mall_Tables;
-    
-    @FXML
-    private TableColumn<Mall, Integer> COL_MID;
+	@FXML
+	private TableColumn<Cinema, String> COL_CTpye;
 
-    @FXML
-    private TableColumn<Mall, String> COL_MName;
+	@FXML
+	private TableColumn<Cinema, Mall> Cinema_COL_MID;
 
-    @FXML
-    private TableColumn<Mall, City> Mall_COL_CID;
+	@FXML
+	private Tab User_Malls;
 
-    @FXML
-    private TableView<Province> Province_Table;
+	@FXML
+	private Button M_load;
 
-    @FXML
-    private TableColumn<Province, Integer> COL_PID;
+	@FXML
+	private TableView<Mall> Mall_Tables;
 
-    @FXML
-    private TableColumn<Province, String> COL_PName;
+	@FXML
+	private TableColumn<Mall, Integer> COL_MID;
 
-    @FXML
-    private Tab TCTID;
-    
-    @FXML
-    private Button CT_load;
+	@FXML
+	private TableColumn<Mall, String> COL_MName;
 
-    @FXML
-    private TableView<City> City_Table;
+	@FXML
+	private TableColumn<Mall, City> Mall_COL_CID;
 
-    @FXML
-    private TableColumn<City, Integer> COL_CTID;
+	@FXML
+	private TableView<Province> Province_Table;
 
-    @FXML
-    private TableColumn<City, String> COT_CTNAME;
+	@FXML
+	private TableColumn<Province, Integer> COL_PID;
 
-    @FXML
-    private TableColumn<City, String> COL_CTType;
+	@FXML
+	private TableColumn<Province, String> COL_PName;
 
-    @FXML
-    private TableColumn<City, Province> City_COL_PID;
+	@FXML
+	private Tab TCTID;
 
-    @FXML
-    private TextField CCID;
+	@FXML
+	private Button CT_load;
 
-    @FXML
-    private Button CSearch;
+	@FXML
+	private TableView<City> City_Table;
 
-    @FXML
-    private Button CDelete;
+	@FXML
+	private TableColumn<City, Integer> COL_CTID;
 
-    @FXML
-    private Button CUpdate;
+	@FXML
+	private TableColumn<City, String> COT_CTNAME;
 
-    @FXML
-    private TextField CCNo;
+	@FXML
+	private TableColumn<City, String> COL_CTType;
 
-    @FXML
-    private TextField CCtype;
+	@FXML
+	private TableColumn<City, Province> City_COL_PID;
 
-    @FXML
-    private TextField CMID;
+	@FXML
+	private TextField CCID;
 
-    @FXML
-    private Button Cadd;
-    
-    @FXML
-    private Button Cload;
-    
-    @FXML
-    private TextField MMID;
+	@FXML
+	private Button CSearch;
 
-    @FXML
-    private Button MSearch;
+	@FXML
+	private Button CDelete;
 
-    @FXML
-    private Button MDelete;
+	@FXML
+	private Button CUpdate;
 
-    @FXML
-    private Button MUpdate;
+	@FXML
+	private TextField CCNo;
 
-    @FXML
-    private Button Madd;
+	@FXML
+	private TextField CCtype;
 
-    @FXML
-    private TextField MMType;
+	@FXML
+	private TextField CMID;
 
-    @FXML
-    private TextField MCID;
+	@FXML
+	private Button Cadd;
 
-    @FXML
-    private TextField UUID;
+	@FXML
+	private Button Cload;
 
-    @FXML
-    private Button USearch;
+	@FXML
+	private TextField MMID;
 
-    @FXML
-    private Button UDelete;
+	@FXML
+	private Button MSearch;
 
-    @FXML
-    private Button Update;
+	@FXML
+	private Button MDelete;
 
-    @FXML
-    private TextField UUsername;
+	@FXML
+	private Button MUpdate;
 
-    @FXML
-    private RadioButton UFemale;
+	@FXML
+	private Button Madd;
 
-    @FXML
-    private RadioButton Umale;
+	@FXML
+	private TextField MMType;
 
-    @FXML
-    private RadioButton Ulocked;
+	@FXML
+	private TextField MCID;
 
-    @FXML
-    private RadioButton UUnlocked;
+	@FXML
+	private TextField UUID;
 
-    @FXML
-    private TextField UUEmail;
+	@FXML
+	private Button USearch;
 
-    @FXML
-    private TextField UUMobile;
+	@FXML
+	private Button UDelete;
 
-    @FXML
-    private TextField UUFirst;
+	@FXML
+	private Button Update;
 
-    @FXML
-    private TextField UUProvince;
+	@FXML
+	private TextField UUsername;
 
-    @FXML
-    private TextField UUPassword;
+	@FXML
+	private RadioButton UFemale;
 
-    @FXML
-    private TextField UUBdate;
+	@FXML
+	private RadioButton Umale;
 
-    @FXML
-    private TextField UULast;
+	@FXML
+	private RadioButton Ulocked;
 
-    @FXML
-    private Button UAdd;
+	@FXML
+	private RadioButton UUnlocked;
 
-    @FXML
-    private Button P_Load;
-    
-    @FXML
-    private ChoiceBox<?> UCID;
+	@FXML
+	private TextField UUEmail;
 
-    @FXML
-    private ChoiceBox<?> UPID;
+	@FXML
+	private TextField UUMobile;
 
-    @FXML
-    private TextField PPID;
+	@FXML
+	private TextField UUFirst;
 
-    @FXML
-    private Button PSearch;
+	@FXML
+	private TextField UUProvince;
 
-    @FXML
-    private Button PDelete;
+	@FXML
+	private TextField UUPassword;
 
-    @FXML
-    private Button PUpdate;
+	@FXML
+	private TextField UUBdate;
 
-    @FXML
-    private Button PAdd;
+	@FXML
+	private TextField UULast;
 
-    @FXML
-    private TextField PPName;
+	@FXML
+	private Button UAdd;
 
-    @FXML
-    private TextField CCTID;
+	@FXML
+	private Button P_Load;
 
-    @FXML
-    private Button CTSearch;
+	@FXML
+	private ChoiceBox<?> UCID;
 
-    @FXML
-    private Button CTDelete;
+	@FXML
+	private ChoiceBox<?> UPID;
 
-    @FXML
-    private Button CTUpdate;
+	@FXML
+	private TextField PPID;
 
-    @FXML
-    private Button CTAdd;
+	@FXML
+	private Button PSearch;
 
-    @FXML
-    private TextField CCTName;
+	@FXML
+	private Button PDelete;
 
-    @FXML
-    private TextField CCTType;
+	@FXML
+	private Button PUpdate;
 
-    @FXML
-    private TextField CTPID;
+	@FXML
+	private Button PAdd;
 
-    public void initialize() {
+	@FXML
+	private TextField PPName;
+
+	@FXML
+	private TextField CCTID;
+
+	@FXML
+	private Button CTSearch;
+
+	@FXML
+	private Button CTDelete;
+
+	@FXML
+	private Button CTUpdate;
+
+	@FXML
+	private Button CTAdd;
+
+	@FXML
+	private TextField CCTName;
+
+	@FXML
+	private TextField CCTType;
+
+	@FXML
+	private TextField CTPID;
+
+	public void initialize() {
 		sureseatsDB = new SureseatsDB();
 		us = new UserService(sureseatsDB);
 		cs = new CinemaService(sureseatsDB);
@@ -277,96 +271,86 @@ public class Admin_OptionsAController {
 		ms = new MallService(sureseatsDB);
 		cts = new CityService(sureseatsDB);
 	}
-    
-  
 
-    public void loadCinema(ActionEvent event) throws IOException
-    {
-    	  ObservableList<Cinema> C_data = FXCollections.observableArrayList(
-    	    		cs.getAll()
-    	    	);
-    	COL_CID.setCellValueFactory(new PropertyValueFactory<>("id"));
-    	COL_Cno.setCellValueFactory(new PropertyValueFactory<>("no"));
-    	COL_CTpye.setCellValueFactory(new PropertyValueFactory<>("type"));
-    	Cinema_COL_MID.setCellValueFactory(new PropertyValueFactory<>("mall"));
-  
-    	Cinema_Table.setItems(C_data);
-    	
-    }
-    
-    public void loadProvince(ActionEvent event) throws IOException
-    {
-    	  ObservableList<Province> p_data = FXCollections.observableArrayList(
-    	    		ps.getAll()
-    	    	);
-    	  
-    	  COL_PID.setCellValueFactory(new PropertyValueFactory<>("id"));
-    	  COL_PName.setCellValueFactory(new PropertyValueFactory<>("name"));
-    	
-    	 
-    	  Province_Table.setItems(p_data);
-    	
-    }
-    
+	public void loadCinema(ActionEvent event) throws IOException {
+		ObservableList<Cinema> C_data = FXCollections.observableArrayList(cs.getAll());
+		COL_CID.setCellValueFactory(new PropertyValueFactory<>("id"));
+		COL_Cno.setCellValueFactory(new PropertyValueFactory<>("no"));
+		COL_CTpye.setCellValueFactory(new PropertyValueFactory<>("type"));
+		Cinema_COL_MID.setCellValueFactory(new PropertyValueFactory<>("mall"));
 
-    public void loadMall(ActionEvent event) throws IOException
-    {
-    	  ObservableList<Mall> m_data = FXCollections.observableArrayList(
-    	    		ms.getAll()
-    	    	);
-    	  
-    	  COL_MID.setCellValueFactory(new PropertyValueFactory<>("id"));
-    	  COL_MName.setCellValueFactory(new PropertyValueFactory<>("name"));
-    	  Mall_COL_CID.setCellValueFactory(new PropertyValueFactory<>("city"));
-    	 
-    	  
-    	  Mall_Tables.setItems(m_data);
-    	
-    }
-    
-    
-    public void loadCity(ActionEvent event) throws IOException
-    {
-    	  ObservableList<City> ct_data = FXCollections.observableArrayList(
-    	    		cts.getAll()
-    	    	);
-    	  
-    	  COL_CTID.setCellValueFactory(new PropertyValueFactory<>("id"));
-    	  COT_CTNAME.setCellValueFactory(new PropertyValueFactory<>("name"));
-    	  COL_CTType.setCellValueFactory(new PropertyValueFactory<>("type"));
-    	  City_COL_PID.setCellValueFactory(new PropertyValueFactory<>("province"));
-    	  
-    	  City_Table.setItems(ct_data);
-    	
-    }
-    
-    
-    
-    
-    public void toNext(ActionEvent event) throws IOException
-    {
- 	   FXMLLoader loader = new FXMLLoader();
- 	   loader.setLocation(getClass().getResource("/sureseats/view/Admin_optionsB.fxml"));
-        Parent tableViewParent = loader.load(); 
-        Scene tableViewScene = new Scene(tableViewParent);
-        //This line gets the Stage information
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        
-        window.setScene(tableViewScene);
-        window.show();
-    }
-    
-    public void ToSignIn(ActionEvent event) throws IOException
-    {
- 	   FXMLLoader loader = new FXMLLoader();
- 	   loader.setLocation(getClass().getResource("/sureseats/view/Sign_In.fxml"));
-        Parent tableViewParent = loader.load(); 
-        Scene tableViewScene = new Scene(tableViewParent);
-        //This line gets the Stage information
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        
-        window.setScene(tableViewScene);
-        window.show();
-    }
+		Cinema_Table.setItems(C_data);
+
+	}
+
+	public void loadProvince(ActionEvent event) throws IOException {
+		ObservableList<Province> p_data = FXCollections.observableArrayList(ps.getAll());
+
+		COL_PID.setCellValueFactory(new PropertyValueFactory<>("id"));
+		COL_PName.setCellValueFactory(new PropertyValueFactory<>("name"));
+
+		Province_Table.setItems(p_data);
+
+	}
+
+	public void searchProvince(ActionEvent event) throws IOException {
+		loadProvince(null);
+		try {
+			ObservableList<Province> p_data = FXCollections.observableArrayList();
+			Province p = ps.getProvince(Integer.parseInt(PPID.getText()));
+			if (p.getId() != 0)
+				p_data.add(p);
+			Province_Table.setItems(p_data);
+		} catch (Exception e) {
+			System.out.println("Invalid ID");
+		}
+	}
+
+	public void loadMall(ActionEvent event) throws IOException {
+		ObservableList<Mall> m_data = FXCollections.observableArrayList(ms.getAll());
+
+		COL_MID.setCellValueFactory(new PropertyValueFactory<>("id"));
+		COL_MName.setCellValueFactory(new PropertyValueFactory<>("name"));
+		Mall_COL_CID.setCellValueFactory(new PropertyValueFactory<>("city"));
+
+		Mall_Tables.setItems(m_data);
+
+	}
+
+	public void loadCity(ActionEvent event) throws IOException {
+		ObservableList<City> ct_data = FXCollections.observableArrayList(cts.getAll());
+
+		COL_CTID.setCellValueFactory(new PropertyValueFactory<>("id"));
+		COT_CTNAME.setCellValueFactory(new PropertyValueFactory<>("name"));
+		COL_CTType.setCellValueFactory(new PropertyValueFactory<>("type"));
+		City_COL_PID.setCellValueFactory(new PropertyValueFactory<>("province"));
+
+		City_Table.setItems(ct_data);
+
+	}
+
+	public void toNext(ActionEvent event) throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("/sureseats/view/Admin_optionsB.fxml"));
+		Parent tableViewParent = loader.load();
+		Scene tableViewScene = new Scene(tableViewParent);
+		// This line gets the Stage information
+		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+		window.setScene(tableViewScene);
+		window.show();
+	}
+
+	public void ToSignIn(ActionEvent event) throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("/sureseats/view/Sign_In.fxml"));
+		Parent tableViewParent = loader.load();
+		Scene tableViewScene = new Scene(tableViewParent);
+		// This line gets the Stage information
+		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+		window.setScene(tableViewScene);
+		window.show();
+	}
 
 }
