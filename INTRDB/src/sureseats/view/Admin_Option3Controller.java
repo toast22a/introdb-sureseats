@@ -1,15 +1,41 @@
 package sureseats.view;
 
+import java.io.IOException;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+
+import javafx.collections.FXCollections;
+import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
 import javafx.scene.control.RadioButton;
 import javafx.scene.control.TableColumn;
+import javafx.scene.control.TableView;
 import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
+import javafx.scene.control.cell.PropertyValueFactory;
+import javafx.stage.Stage;
+import sureseats.model.City;
+import sureseats.model.Film;
+import sureseats.model.FilmService;
+import sureseats.model.MallService;
+import sureseats.model.Province;
+import sureseats.model.Schedule;
+import sureseats.model.SureseatsDB;
+import sureseats.model.User;
+import sureseats.model.UserService;
 
 public class Admin_Option3Controller {
+	
+	private SureseatsDB sureseatsDB;
+	private FilmService fs;
+	private UserService us;
 
     @FXML
     private Button admin1Next;
@@ -18,73 +44,82 @@ public class Admin_Option3Controller {
     private Button Back;
 
     @FXML
-    private TableColumn<?, ?> COL_FID;
+    private TableView<Film> Film_Table;
 
     @FXML
-    private TableColumn<?, ?> COL_Title;
+    private TableColumn<Film, Integer> COL_FID;
 
     @FXML
-    private TableColumn<?, ?> COL_Genre;
+    private TableColumn<Film, String> COL_Title;
 
     @FXML
-    private TableColumn<?, ?> COL_Date;
+    private TableColumn<Film, String> COL_Genre;
 
     @FXML
-    private TableColumn<?, ?> COL_Rating;
+    private TableColumn<Film, LocalDate> COL_Date;
 
     @FXML
-    private TableColumn<?, ?> COL_Cast;
+    private TableColumn<Film, String> COL_Rating;
 
     @FXML
-    private TableColumn<?, ?> COL_Runtime;
+    private TableColumn<Film, String> COL_Cast;
 
     @FXML
-    private TableColumn<?, ?> COL_Price;
+    private TableColumn<Film,Integer> COL_Runtime;
 
     @FXML
-    private TableColumn<?, ?> COL_Gender;
+    private TableColumn<Film, Double> COL_Price;
 
     @FXML
-    private TableColumn<?, ?> COL_mobile2;
+    private TableColumn<Film, String > COL_Synopsis;
 
     @FXML
-    private TableColumn<?, ?> COL_UID;
+    private TableColumn<Film, String> COL_Image;
 
     @FXML
-    private TableColumn<?, ?> COL_Username;
+    private TableView<User> Users_Table;
 
     @FXML
-    private TableColumn<?, ?> COL_Email;
+    private TableColumn<User, Integer> COL_UID;
 
     @FXML
-    private TableColumn<?, ?> COL_password;
+    private TableColumn<User, String> COL_Username;
 
     @FXML
-    private TableColumn<?, ?> COL_FName;
+    private TableColumn<User, String> COL_Email;
 
     @FXML
-    private TableColumn<?, ?> COL_FLast;
+    private TableColumn<User, String> COL_password;
 
     @FXML
-    private TableColumn<?, ?> COL_mobile;
+    private TableColumn<User, String> COL_FName;
 
     @FXML
-    private TableColumn<?, ?> COL_Bbate;
+    private TableColumn<User, String> COL_FLast;
 
     @FXML
-    private TableColumn<?, ?> COL_Last;
+    private TableColumn<User, String> COL_mobile;
 
     @FXML
-    private TableColumn<?, ?> COL_ResDate;
+    private TableColumn<User, String> COL_Gender;
 
     @FXML
-    private TableColumn<?, ?> COL_Locked;
+    private TableColumn<User, LocalDate> COL_Bbate;
 
     @FXML
-    private TableColumn<?, ?> COL_PID;
+    private TableColumn<User, LocalDateTime> COL_Last;
 
     @FXML
-    private TableColumn<?, ?> COL_CID;
+    private TableColumn<User, LocalDate> COL_ResDate;
+
+    @FXML
+    private TableColumn<User, Boolean> COL_Locked;
+
+    @FXML
+    private TableColumn<User, Province> COL_PID;
+
+    @FXML
+    private TableColumn<User, City> COL_CID;
 
     @FXML
     private TextField FFTitle;
@@ -190,14 +225,83 @@ public class Admin_Option3Controller {
 
     @FXML
     private Button ULoad;
+    
+    public void initialize()
+    {
+    	sureseatsDB = new SureseatsDB();
+    	fs= new FilmService(sureseatsDB );
+    	us= new UserService(sureseatsDB );
+    	
+    }
 
+    
+    public void loadFilm(ActionEvent event) throws IOException
+    {
+    	  ObservableList<Film> f_data = FXCollections.observableArrayList(
+    	    		fs.getAll()
+    	    	);
+    	COL_FID.setCellValueFactory(new PropertyValueFactory<>("id"));
+    	COL_Title.setCellValueFactory(new PropertyValueFactory<>("title"));
+    	COL_Genre.setCellValueFactory(new PropertyValueFactory<>("genre"));
+    	COL_Date.setCellValueFactory(new PropertyValueFactory<>("date"));
+    	COL_Rating.setCellValueFactory(new PropertyValueFactory<>("rating"));
+    	COL_Cast.setCellValueFactory(new PropertyValueFactory<>("cast"));
+    	COL_Runtime.setCellValueFactory(new PropertyValueFactory<>("runtime"));
+    	COL_Price.setCellValueFactory(new PropertyValueFactory<>("price"));
+    	COL_Synopsis.setCellValueFactory(new PropertyValueFactory<>("synopsis"));
+    	COL_Image.setCellValueFactory(new PropertyValueFactory<>("image"));
+    	Film_Table.setItems(f_data);
+    	
+    }
+    
+    public void loadUser(ActionEvent event) throws IOException
+    {
+    	  ObservableList<User> u_data = FXCollections.observableArrayList(
+    	    		us.getAll()
+    	    	);
+    	COL_UID.setCellValueFactory(new PropertyValueFactory<>("id"));
+    	COL_Username.setCellValueFactory(new PropertyValueFactory<>("user"));
+    	COL_Email.setCellValueFactory(new PropertyValueFactory<>("email"));
+    	COL_password.setCellValueFactory(new PropertyValueFactory<>("password"));
+    	COL_FName.setCellValueFactory(new PropertyValueFactory<>("firstname"));
+    	COL_FLast.setCellValueFactory(new PropertyValueFactory<>("lastname"));
+    	COL_mobile.setCellValueFactory(new PropertyValueFactory<>("mobileno"));
+    	COL_Gender.setCellValueFactory(new PropertyValueFactory<>("gender"));
+    	COL_Bbate.setCellValueFactory(new PropertyValueFactory<>("bdate"));
+    	COL_Last.setCellValueFactory(new PropertyValueFactory<>("lastlogin"));
+    	COL_ResDate.setCellValueFactory(new PropertyValueFactory<>("rdate"));
+    	COL_Locked.setCellValueFactory(new PropertyValueFactory<>("islocked"));
+    	COL_PID.setCellValueFactory(new PropertyValueFactory<>("province"));
+    	COL_CID.setCellValueFactory(new PropertyValueFactory<>("city"));
+    	
+    	Users_Table.setItems(u_data);
+    	
+    }
+    
     @FXML
-    void ToSignIn(ActionEvent event) {
-
+     public void Toback(ActionEvent event) throws IOException {
+    	 FXMLLoader loader = new FXMLLoader();
+    	 loader.setLocation(getClass().getResource("/sureseats/view/Admin_optionsB.fxml"));
+         Parent tableViewParent = loader.load(); 
+         Scene tableViewScene = new Scene(tableViewParent);
+         //This line gets the Stage information
+         Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+          
+         window.setScene(tableViewScene);
+         window.show();
     }
 
     @FXML
-    void toNext(ActionEvent event) {
+    public void toNext(ActionEvent event)throws IOException {
+    	FXMLLoader loader = new FXMLLoader();
+   	 	loader.setLocation(getClass().getResource("/sureseats/view/Admin_Transaction.fxml"));
+        Parent tableViewParent = loader.load(); 
+        Scene tableViewScene = new Scene(tableViewParent);
+        //This line gets the Stage information
+        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
+         
+        window.setScene(tableViewScene);
+        window.show();
 
     }
 
