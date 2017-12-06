@@ -18,51 +18,50 @@ import sureseats.model.User;
 import sureseats.model.UserService;
 
 public class UserTransactionController {
-	
+
 	private User user;
 	private SureseatsDB sureseatsDB;
 	private UserService us;
-	
-    @FXML
-    private Button to_Back;
 
-    @FXML
-    private TableView<?> Transac_Table;
+	@FXML
+	private Button to_Back;
 
-    @FXML
-    private TableColumn<?, ?> COL_Trans_Date;
+	@FXML
+	private TableView<?> Transac_Table;
 
-    @FXML
-    private TableColumn<?, ?> COL_Trans_type;
+	@FXML
+	private TableColumn<?, ?> COL_Trans_Date;
 
-    @FXML
-    private TableColumn<?, ?> COL_Trans_title;
+	@FXML
+	private TableColumn<?, ?> COL_Trans_type;
 
-    @FXML
-    private TableColumn<?, ?> COL_Trans_Cinema;
+	@FXML
+	private TableColumn<?, ?> COL_Trans_title;
 
-    @FXML
-    private TableColumn<?, ?> COL_Trans_Row;
+	@FXML
+	private TableColumn<?, ?> COL_Trans_Cinema;
 
-    @FXML
-    private TableColumn<?, ?> COL_Trans_Col;
+	@FXML
+	private TableColumn<?, ?> COL_Trans_Row;
 
-    @FXML
-    private TableColumn<?, ?> COL_Trans_Status;
-    
-    public void initialize() {
+	@FXML
+	private TableColumn<?, ?> COL_Trans_Col;
+
+	@FXML
+	private TableColumn<?, ?> COL_Trans_Status;
+
+	public void initialize() {
 		sureseatsDB = new SureseatsDB();
 		us = new UserService(sureseatsDB);
 	}
 
-    
-    public void goback(ActionEvent event) throws IOException {
-    	FXMLLoader loader = new FXMLLoader();
+	public void goback(ActionEvent event) throws IOException {
+		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("/sureseats/view/GUI.fxml"));
 		Parent tableViewParent = loader.load();
-	
+
 		GUIController gc = loader.<GUIController>getController();
-		gc.setUser(gc.getUser());
+		gc.setUser(user);
 		gc.setGuestMode(false);
 
 		Scene tableViewScene = new Scene(tableViewParent);
@@ -70,6 +69,14 @@ public class UserTransactionController {
 		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		window.setScene(tableViewScene);
 		window.show();
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
 	}
 
 }

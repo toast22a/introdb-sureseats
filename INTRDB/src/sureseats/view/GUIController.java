@@ -212,6 +212,8 @@ public class GUIController {
 		//scheduleController sc = loader.<scheduleController>getController();
 		//sc.setUser(user);
 		//sc.setFilm(film);
+		UserTransactionController utc = loader.<UserTransactionController>getController();
+		utc.setUser(user);
 		Scene tableViewScene = new Scene(tableViewParent);
 		// This line gets the Stage information
 		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
