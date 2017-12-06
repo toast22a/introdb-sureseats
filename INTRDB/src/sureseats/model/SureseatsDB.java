@@ -6,8 +6,7 @@ import java.sql.Connection;
 
 public class SureseatsDB {
 	private static String DRIVER_NAME = "com.mysql.jdbc.Driver";
-	//localhost on unix, 127.0.0.1 on windows
-	private static String URL = "jdbc:mysql://localhost:3306/";
+	private static String URL = "jdbc:mysql://127.0.0.1:3306/";
 	private static String USERNAME = "root";
 	private static String PASSWORD = "1234";
 	private static String DATABASE = "sureseats_db";
