@@ -199,7 +199,7 @@
                                                                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Cinema ID" GridPane.rowIndex="2" />
                                                                         <TextField fx:id="SSeRow" GridPane.columnIndex="1" />
                                                                         <TextField fx:id="SSeCol" GridPane.columnIndex="1" GridPane.rowIndex="1" />
-                                                                        <TextField GridPane.columnIndex="1" GridPane.rowIndex="2" />
+                                                                        <TextField fx:id="SSeCID" GridPane.columnIndex="1" GridPane.rowIndex="2" />
                                                                      </children>
                                                                   </GridPane>
                                                                   <Button fx:id="Seats_load" layoutX="47.0" layoutY="240.0" mnemonicParsing="false" onAction="#loadSeats" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="LOAD" textFill="#7bda6e">

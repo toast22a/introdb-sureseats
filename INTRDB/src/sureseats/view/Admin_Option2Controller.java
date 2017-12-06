@@ -19,21 +19,7 @@ import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.stage.Stage;
-import sureseats.model.Cinema;
-import sureseats.model.CinemaService;
-import sureseats.model.CityService;
-import sureseats.model.Film;
-import sureseats.model.MallService;
-import sureseats.model.ProvinceService;
-import sureseats.model.Reservation;
-import sureseats.model.ReservationService;
-import sureseats.model.Schedule;
-import sureseats.model.ScheduleService;
-import sureseats.model.Seat;
-import sureseats.model.SeatService;
-import sureseats.model.SureseatsDB;
-import sureseats.model.User;
-import sureseats.model.UserService;
+import sureseats.model.*;
 
 public class Admin_Option2Controller {
 	
@@ -41,6 +27,9 @@ public class Admin_Option2Controller {
 	private ScheduleService ss;
 	private SeatService ses;
 	private ReservationService rs;
+	private CinemaService cs;
+	private FilmService fs;
+	private UserService us;
 	
 	@FXML
     private TableView<Schedule> Sched_Table;
@@ -140,6 +129,9 @@ public class Admin_Option2Controller {
 
     @FXML
     private TextField SSeCol;
+    
+    @FXML
+    private TextField SSeCID;
 
     @FXML
     private Button Seats_load;
@@ -251,6 +243,17 @@ public class Admin_Option2Controller {
 		ss= new ScheduleService(sureseatsDB);
 		ses = new SeatService(sureseatsDB);
 		rs= new ReservationService(sureseatsDB);
+		cs = new CinemaService(sureseatsDB);
+		fs = new FilmService(sureseatsDB);
+		us = new UserService(sureseatsDB);
+		
+		try {
+			loadSched(null);
+			loadSeats(null);
+			loadReservations(null);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
     
     
@@ -268,6 +271,56 @@ public class Admin_Option2Controller {
     	
     }
     
+	public void searchSched(ActionEvent event) throws IOException {
+		loadSched(null);
+		try {
+			ObservableList<Schedule> s_data = FXCollections.observableArrayList();
+			Schedule s = ss.getSchedule(Integer.parseInt(SSID.getText()));
+			if (s.getId() != 0)
+				s_data.add(s);
+			Sched_Table.setItems(s_data);
+		} catch (Exception e) {
+			System.out.println("Invalid info");
+		}
+	}
+	
+	public void addSched(ActionEvent event) throws IOException{
+		try {
+			Schedule s = new Schedule();
+			s.setStart(LocalDateTime.parse(SStart.getText()));
+			s.setEnd(LocalDateTime.parse(SSEnd.getText()));
+			s.setCinema(cs.getCinema(Integer.parseInt(SCID.getText())));
+			s.setFilm(fs.getFilm(Integer.parseInt(SFID.getText())));
+			ss.addSchedule(s);
+			loadSched(null);
+		} catch (Exception e) {
+			System.out.println("Invalid info");
+		}
+	}
+	
+	public void updateSched(ActionEvent event) throws IOException{
+		try {
+			Schedule s = ss.getSchedule(Integer.parseInt(SSID.getText()));
+			s.setStart(LocalDateTime.parse(SStart.getText()));
+			s.setEnd(LocalDateTime.parse(SSEnd.getText()));
+			s.setCinema(cs.getCinema(Integer.parseInt(SCID.getText())));
+			s.setFilm(fs.getFilm(Integer.parseInt(SFID.getText())));
+			ss.updateSchedule(s);
+			loadSched(null);
+		} catch (Exception e) {
+			System.out.println("Invalid info");
+		}
+	}
+	
+	public void deleteSched(ActionEvent event) throws IOException{
+		try {
+			ss.deleteSchedule(Integer.parseInt(SSID.getText()));
+			loadSched(null);
+		} catch (Exception e) {
+			System.out.println("Invalid info");
+		}
+	}
+    
     public void loadSeats(ActionEvent event) throws IOException
     {
     	  ObservableList<Seat> se_data = FXCollections.observableArrayList(
@@ -281,6 +334,54 @@ public class Admin_Option2Controller {
     	Seats_Table.setItems(se_data);
     	
     }
+    
+	public void searchSeat(ActionEvent event) throws IOException {
+		loadSeats(null);
+		try {
+			ObservableList<Seat> s_data = FXCollections.observableArrayList();
+			Seat s = ses.getSeat(Integer.parseInt(SSeID.getText()));
+			if (s.getId() != 0)
+				s_data.add(s);
+			Seats_Table.setItems(s_data);
+		} catch (Exception e) {
+			System.out.println("Invalid info");
+		}
+	}
+	
+	public void addSeat(ActionEvent event) throws IOException{
+		try {
+			Seat s = new Seat();
+			s.setRow(SSeRow.getText());
+			s.setCol(Integer.parseInt(SSeCol.getText()));
+			s.setCinema(cs.getCinema(Integer.parseInt(SSeCID.getText())));
+			ses.addSeat(s);
+			loadSeats(null);
+		} catch (Exception e) {
+			System.out.println("Invalid info");
+		}
+	}
+	
+	public void updateSeat(ActionEvent event) throws IOException{
+		try {
+			Seat s = ses.getSeat(Integer.parseInt(SSeID.getText()));
+			s.setRow(SSeRow.getText());
+			s.setCol(Integer.parseInt(SSeCol.getText()));
+			s.setCinema(cs.getCinema(Integer.parseInt(SSeCID.getText())));
+			ses.updateSeat(s);
+			loadSeats(null);
+		} catch (Exception e) {
+			System.out.println("Invalid info");
+		}
+	}
+	
+	public void deleteSeat(ActionEvent event) throws IOException{
+		try {
+			ses.deleteSeat(Integer.parseInt(SSeID.getText()));
+			loadSeats(null);
+		} catch (Exception e) {
+			System.out.println("Invalid info");
+		}
+	}
     
     public void loadReservations(ActionEvent event) throws IOException
     {
@@ -299,6 +400,62 @@ public class Admin_Option2Controller {
     	  R_Table.setItems(se_data);
     	
     }
+    
+	public void searchReservation(ActionEvent event) throws IOException {
+		loadReservations(null);
+		try {
+			ObservableList<Reservation> r_data = FXCollections.observableArrayList();
+			Reservation r = rs.getReservation(Integer.parseInt(RRid.getText()));
+			if (r.getId() != 0)
+				r_data.add(r);
+			R_Table.setItems(r_data);
+		} catch (Exception e) {
+			System.out.println("Invalid info");
+		}
+	}
+	
+	public void addReservation(ActionEvent event) throws IOException{
+		try {
+			Reservation r = new Reservation();
+			r.setCode(RRCode.getText());
+			r.setType(RRType.getText());
+			r.setDatetime(LocalDateTime.parse(RRDateTime.getText()));
+			r.setStatus(RRStatus.getText());
+			r.setUser(us.getUser(Integer.parseInt(RUID.getText())));
+			r.setSeat(ses.getSeat(Integer.parseInt(RSeID.getText())));
+			r.setSchedule(ss.getSchedule(Integer.parseInt(RSID.getText())));
+			rs.addReservation(r);
+			loadReservations(null);
+		} catch (Exception e) {
+			System.out.println("Invalid info");
+		}
+	}
+	
+	public void updateReservation(ActionEvent event) throws IOException{
+		try {
+			Reservation r = rs.getReservation(Integer.parseInt(RRid.getText()));
+			r.setCode(RRCode.getText());
+			r.setType(RRType.getText());
+			r.setDatetime(LocalDateTime.parse(RRDateTime.getText()));
+			r.setStatus(RRStatus.getText());
+			r.setUser(us.getUser(Integer.parseInt(RUID.getText())));
+			r.setSeat(ses.getSeat(Integer.parseInt(RSeID.getText())));
+			r.setSchedule(ss.getSchedule(Integer.parseInt(RSID.getText())));
+			rs.updateReservation(r);
+			loadReservations(null);
+		} catch (Exception e) {
+			System.out.println("Invalid info");
+		}
+	}
+	
+	public void deleteReservation(ActionEvent event) throws IOException{
+		try {
+			rs.deleteReservation(Integer.parseInt(RRid.getText()));
+			loadReservations(null);
+		} catch (Exception e) {
+			System.out.println("Invalid info");
+		}
+	}
     
     public void toback(ActionEvent event) throws IOException
     {
