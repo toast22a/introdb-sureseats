@@ -10,11 +10,11 @@ public class Schedule {
 	private Film film;
 
 	public static final String TABLE = "SCHEDULE";
-	public static final String COL_ID = "SID";
-	public static final String COL_START = "SStart";
-	public static final String COL_END = "SEnd";
-	public static final String COL_CINEMA = "CID";
-	public static final String COL_FILM = "FID";
+	public static final String COL_ID = TABLE + ".SID";
+	public static final String COL_START = TABLE + ".SStart";
+	public static final String COL_END = TABLE + ".SEnd";
+	public static final String COL_CINEMA = TABLE + ".CID";
+	public static final String COL_FILM = TABLE + ".FID";
 
 	public int getId() {
 		return id;

@@ -5,8 +5,8 @@ public class Province {
 	private String name;
 
 	public static final String TABLE = "PROVINCE";
-	public static final String COL_ID = "PID";
-	public static final String COL_NAME = "PName";
+	public static final String COL_ID = TABLE + ".PID";
+	public static final String COL_NAME = TABLE + ".PName";
 
 	public int getId() {
 		return id;

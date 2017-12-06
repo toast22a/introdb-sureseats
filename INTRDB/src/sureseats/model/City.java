@@ -7,10 +7,10 @@ public class City {
 	private Province province;
 
 	public static final String TABLE = "CITY";
-	public static final String COL_ID = "CTID";
-	public static final String COL_NAME = "CTName";
-	public static final String COL_TYPE = "CTType";
-	public static final String COL_PROVINCE = "PID";
+	public static final String COL_ID = TABLE + ".CTID";
+	public static final String COL_NAME = TABLE + ".CTName";
+	public static final String COL_TYPE = TABLE + ".CTType";
+	public static final String COL_PROVINCE = TABLE + ".PID";
 
 	public int getId() {
 		return id;

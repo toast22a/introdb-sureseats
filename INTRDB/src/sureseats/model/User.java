@@ -20,24 +20,24 @@ public class User {
 	private City city;
 
 	public static final String TABLE = "USER";
-	public static final String COL_ID = "UID";
-	public static final String COL_USERNAME = "UUsername";
-	public static final String COL_EMAIL = "UEmail";
-	public static final String COL_PASSWORD = "UPassword";
-	public static final String COL_MOBILENO = "UMobileNo";
-	public static final String COL_FIRSTNAME = "UFirstName";
-	public static final String COL_LASTNAME = "ULastName";
-	public static final String COL_GENDER = "UGender";
-	public static final String COL_BDATE = "UBDate";
-	public static final String COL_RDATE = "URDate";
-	public static final String COL_LASTLOGIN = "ULastLogin";
-	public static final String COL_ISLOCKED = "UIsLocked";
-	public static final String COL_PROVINCE = "PID";
-	public static final String COL_CITY = "CTID";
+	public static final String COL_ID = TABLE + ".UID";
+	public static final String COL_USERNAME = TABLE + ".UUsername";
+	public static final String COL_EMAIL = TABLE + ".UEmail";
+	public static final String COL_PASSWORD = TABLE + ".UPassword";
+	public static final String COL_MOBILENO = TABLE + ".UMobileNo";
+	public static final String COL_FIRSTNAME = TABLE + ".UFirstName";
+	public static final String COL_LASTNAME = TABLE + ".ULastName";
+	public static final String COL_GENDER = TABLE + ".UGender";
+	public static final String COL_BDATE = TABLE + ".UBDate";
+	public static final String COL_RDATE = TABLE + ".URDate";
+	public static final String COL_LASTLOGIN = TABLE + ".ULastLogin";
+	public static final String COL_ISLOCKED = TABLE + ".UIsLocked";
+	public static final String COL_PROVINCE = TABLE + ".PID";
+	public static final String COL_CITY = TABLE + ".CTID";
 
 	public static final String TABLE_PREFMALLS = "PREFERS";
-	public static final String PMCOL_USER = User.COL_ID;
-	public static final String PMCOL_MALL = Mall.COL_ID;
+	public static final String PMCOL_USER = TABLE_PREFMALLS + "." + User.COL_ID;
+	public static final String PMCOL_MALL = TABLE_PREFMALLS + "." + Mall.COL_ID;
 
 	public int getId() {
 		return id;

@@ -7,10 +7,10 @@ public class Cinema {
 	private Mall mall;
 
 	public static final String TABLE = "CINEMA";
-	public static final String COL_ID = "CID";
-	public static final String COL_NO = "CNo";
-	public static final String COL_TYPE = "CType";
-	public static final String COL_MALL = "MID";
+	public static final String COL_ID = TABLE + ".CID";
+	public static final String COL_NO = TABLE + ".CNo";
+	public static final String COL_TYPE = TABLE + ".CType";
+	public static final String COL_MALL = TABLE + ".MID";
 
 	public int getId() {
 		return id;

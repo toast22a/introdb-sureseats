@@ -54,6 +54,136 @@ public class SeatService {
 		// return list
 		return seats;
 	}
+	
+	public List<Seat> getSeatsInCinema(Cinema cinema){
+		// create empty list of contacts
+		List<Seat> seats = new ArrayList<Seat>();
+
+		// get connection from db
+		Connection cnt = connection.getConnection();
+
+		// create string query
+		String query = 
+				"SELECT * FROM " + Seat.TABLE + " WHERE " + Seat.COL_ID + " IN "
+				+ "(SELECT " + Reservation.COL_SEAT + " FROM " + Reservation.TABLE
+				+ " WHERE " + Seat.COL_CINEMA + " = ?";
+
+		try {
+			// create prepared statement
+			PreparedStatement ps = cnt.prepareStatement(query);
+			ps.setInt(1, cinema.getId());
+
+			// get result and store in result set
+			ResultSet rs = ps.executeQuery();
+
+			// transform set to list
+			// rs.next() means get next in result set
+			while (rs.next()) {
+				seats.add(toSeat(rs));
+			}
+
+			// close all the resources
+			ps.close();
+			rs.close();
+			cnt.close();
+
+			System.out.println("[SCHEDULE] SELECT SUCCESS!");
+		} catch (SQLException e) {
+			System.out.println("[SCHEDULE] SELECT FAILED!");
+			e.printStackTrace();
+		}
+
+		// return list
+		return seats;
+	}
+	
+	public List<Seat> getOccupied(Schedule schedule){
+		// create empty list of contacts
+		List<Seat> seats = new ArrayList<Seat>();
+
+		// get connection from db
+		Connection cnt = connection.getConnection();
+
+		// create string query
+		String query = 
+				"SELECT * FROM " + Seat.TABLE + " WHERE " + Seat.COL_ID + " IN "
+				+ "(SELECT " + Reservation.COL_SEAT + " FROM " + Reservation.TABLE
+				+ " WHERE " + Reservation.COL_SCHEDULE + " = ?"
+				+ " AND " + Reservation.COL_STATUS + " <> \"cancelled\")"
+				+ " ORDER BY " + Seat.COL_ROW + "," + Seat.COL_COL;
+
+		try {
+			// create prepared statement
+			PreparedStatement ps = cnt.prepareStatement(query);
+			ps.setInt(1, schedule.getId());
+
+			// get result and store in result set
+			ResultSet rs = ps.executeQuery();
+
+			// transform set to list
+			// rs.next() means get next in result set
+			while (rs.next()) {
+				seats.add(toSeat(rs));
+			}
+
+			// close all the resources
+			ps.close();
+			rs.close();
+			cnt.close();
+
+			System.out.println("[SCHEDULE] SELECT SUCCESS!");
+		} catch (SQLException e) {
+			System.out.println("[SCHEDULE] SELECT FAILED!");
+			e.printStackTrace();
+		}
+
+		// return list
+		return seats;
+	}
+	
+	public List<Seat> getFree(Schedule schedule){
+		// create empty list of contacts
+		List<Seat> seats = new ArrayList<Seat>();
+
+		// get connection from db
+		Connection cnt = connection.getConnection();
+
+		// create string query
+		String query = 
+				"SELECT * FROM " + Seat.TABLE + " WHERE " + Seat.COL_ID + " NOT IN "
+				+ "(SELECT " + Reservation.COL_SEAT + " FROM " + Reservation.TABLE
+				+ " WHERE " + Reservation.COL_SCHEDULE + " = ?"
+				+ " AND " + Reservation.COL_STATUS + " <> \"cancelled\")"
+				+ " ORDER BY " + Seat.COL_ROW + "," + Seat.COL_COL;
+
+		try {
+			// create prepared statement
+			PreparedStatement ps = cnt.prepareStatement(query);
+			ps.setInt(1, schedule.getId());
+
+			// get result and store in result set
+			ResultSet rs = ps.executeQuery();
+
+			// transform set to list
+			// rs.next() means get next in result set
+			while (rs.next()) {
+				seats.add(toSeat(rs));
+			}
+
+			// close all the resources
+			ps.close();
+			rs.close();
+			cnt.close();
+
+			System.out.println("[SCHEDULE] SELECT SUCCESS!");
+		} catch (SQLException e) {
+			System.out.println("[SCHEDULE] SELECT FAILED!");
+			e.printStackTrace();
+		}
+
+		// return list
+		return seats;
+	}
 
 	public Seat getSeat(int id) {
 		Seat seat = new Seat();
