@@ -291,6 +291,54 @@ public class Admin_OptionsAController {
 		Cinema_Table.setItems(C_data);
 
 	}
+	
+	public void searchCinema(ActionEvent event) throws IOException {
+		loadCinema(null);
+		try {
+			ObservableList<Cinema> c_data = FXCollections.observableArrayList();
+			Cinema c = cs.getCinema(Integer.parseInt(CCID.getText()));
+			if (c.getId() != 0)
+				c_data.add(c);
+			Cinema_Table.setItems(c_data);
+		} catch (Exception e) {
+			System.out.println("Invalid info");
+		}
+	}
+	
+	public void addCinema(ActionEvent event) throws IOException{
+		try {
+			Cinema c = new Cinema();
+			c.setNo(Integer.parseInt(CCNo.getText()));
+			c.setType(CCtype.getText());
+			c.setMall(ms.getMall(Integer.parseInt(CMID.getText())));
+			cs.addCinema(c);
+			loadCinema(null);
+		} catch (Exception e) {
+			System.out.println("Invalid info");
+		}
+	}
+	
+	public void updateCinema(ActionEvent event) throws IOException{
+		try {
+			Cinema c = cs.getCinema(Integer.parseInt(CCID.getText()));
+			c.setNo(Integer.parseInt(CCNo.getText()));
+			c.setType(CCtype.getText());
+			c.setMall(ms.getMall(Integer.parseInt(CMID.getText())));
+			cs.updateCinema(c);
+			loadCinema(null);
+		} catch (Exception e) {
+			System.out.println("Invalid info");
+		}
+	}
+	
+	public void deleteCinema(ActionEvent event) throws IOException{
+		try {
+			cs.deleteCinema(Integer.parseInt(CCID.getText()));
+			loadCinema(null);
+		} catch (Exception e) {
+			System.out.println("Invalid info");
+		}
+	}
 
 	public void loadProvince(ActionEvent event) throws IOException {
 		ObservableList<Province> p_data = FXCollections.observableArrayList(ps.getAll());
@@ -311,29 +359,41 @@ public class Admin_OptionsAController {
 				p_data.add(p);
 			Province_Table.setItems(p_data);
 		} catch (Exception e) {
-			System.out.println("Invalid ID");
+			System.out.println("Invalid info");
 		}
 	}
 	
 	public void addProvince(ActionEvent event) throws IOException{
-		Province p = new Province();
-		p.setName(PPName.getText());
-		ps.addProvince(p);
-		loadProvince(null);
+		try {
+			Province p = new Province();
+			p.setName(PPName.getText());
+			ps.addProvince(p);
+			loadProvince(null);
+		} catch (Exception e) {
+			System.out.println("Invalid info");
+		}
 	}
 	
 	public void updateProvince(ActionEvent event) throws IOException{
-		Province p = ps.getProvince(Integer.parseInt(PPID.getText()));
-		p.setName(PPName.getText());
-		ps.updateProvince(p);
-		loadProvince(null);
+		try {
+			Province p = ps.getProvince(Integer.parseInt(PPID.getText()));
+			p.setName(PPName.getText());
+			ps.updateProvince(p);
+			loadProvince(null);
+		} catch (Exception e) {
+			System.out.println("Invalid info");
+		}
 	}
 	
 	
 	
 	public void deleteProvince(ActionEvent event) throws IOException{
-		ps.deleteProvince(Integer.parseInt(PPID.getText()));
-		loadProvince(null);
+		try {
+			ps.deleteProvince(Integer.parseInt(PPID.getText()));
+			loadProvince(null);
+		} catch (Exception e) {
+			System.out.println("Invalid info");
+		}
 	}
 
 	public void loadMall(ActionEvent event) throws IOException {
@@ -346,6 +406,52 @@ public class Admin_OptionsAController {
 		Mall_Tables.setItems(m_data);
 
 	}
+	
+	public void searchMall(ActionEvent event) throws IOException {
+		loadMall(null);
+		try {
+			ObservableList<Mall> m_data = FXCollections.observableArrayList();
+			Mall m = ms.getMall(Integer.parseInt(MMID.getText()));
+			if (m.getId() != 0)
+				m_data.add(m);
+			Mall_Tables.setItems(m_data);
+		} catch (Exception e) {
+			System.out.println("Invalid info");
+		}
+	}
+	
+	public void addMall(ActionEvent event) throws IOException{
+		try {
+			Mall m = new Mall();
+			m.setName(MMType.getText());
+			m.setCity(cts.getCity(Integer.parseInt(MCID.getText())));
+			ms.addMall(m);
+			loadMall(null);
+		} catch (Exception e) {
+			System.out.println("Invalid info");
+		}
+	}
+	
+	public void updateMall(ActionEvent event) throws IOException{
+		try {
+			Mall m = ms.getMall(Integer.parseInt(MMID.getText()));
+			m.setName(MMType.getText());
+			m.setCity(cts.getCity(Integer.parseInt(MCID.getText())));
+			ms.updateMall(m);
+			loadMall(null);
+		} catch (Exception e) {
+			System.out.println("Invalid info");
+		}
+	}
+	
+	public void deleteMall(ActionEvent event) throws IOException{
+		try {
+			ms.deleteMall(Integer.parseInt(MMID.getText()));
+			loadMall(null);
+		} catch (Exception e) {
+			System.out.println("Invalid info");
+		}
+	}
 
 	public void loadCity(ActionEvent event) throws IOException {
 		ObservableList<City> ct_data = FXCollections.observableArrayList(cts.getAll());
@@ -357,6 +463,54 @@ public class Admin_OptionsAController {
 
 		City_Table.setItems(ct_data);
 
+	}
+	
+	public void searchCity(ActionEvent event) throws IOException {
+		loadCity(null);
+		try {
+			ObservableList<City> c_data = FXCollections.observableArrayList();
+			City c = cts.getCity(Integer.parseInt(CCTID.getText()));
+			if (c.getId() != 0)
+				c_data.add(c);
+			City_Table.setItems(c_data);
+		} catch (Exception e) {
+			System.out.println("Invalid info");
+		}
+	}
+	
+	public void addCity(ActionEvent event) throws IOException{
+		try {
+			City c = new City();
+			c.setName(CCTName.getText());
+			c.setType(CCTType.getText());
+			c.setProvince(ps.getProvince(Integer.parseInt(CTPID.getText())));
+			cts.addCity(c);
+			loadCity(null);
+		} catch (Exception e) {
+			System.out.println("Invalid info");
+		}
+	}
+	
+	public void updateCity(ActionEvent event) throws IOException{
+		try {
+			City c = cts.getCity(Integer.parseInt(CCTID.getText()));
+			c.setName(CCTName.getText());
+			c.setType(CCTType.getText());
+			c.setProvince(ps.getProvince(Integer.parseInt(CTPID.getText())));
+			cts.updateCity(c);
+			loadCity(null);
+		} catch (Exception e) {
+			System.out.println("Invalid info");
+		}
+	}
+	
+	public void deleteCity(ActionEvent event) throws IOException{
+		try {
+			cts.deleteCity(Integer.parseInt(CCTID.getText()));
+			loadCity(null);
+		} catch (Exception e) {
+			System.out.println("Invalid info");
+		}
 	}
 
 	public void toNext(ActionEvent event) throws IOException {
