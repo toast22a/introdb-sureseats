@@ -26,10 +26,10 @@ public class Admin_Option2Controller {
 	private SureseatsDB sureseatsDB;
 	private ScheduleService ss;
 	private SeatService ses;
+	private UserService us;
 	private ReservationService rs;
 	private CinemaService cs;
 	private FilmService fs;
-	private UserService us;
 	
 	@FXML
     private TableView<Schedule> Sched_Table;
@@ -241,12 +241,12 @@ public class Admin_Option2Controller {
     public void initialize() {
 		sureseatsDB = new SureseatsDB();
 		ss= new ScheduleService(sureseatsDB);
+		us = new UserService(sureseatsDB);
 		ses = new SeatService(sureseatsDB);
 		rs= new ReservationService(sureseatsDB);
 		cs = new CinemaService(sureseatsDB);
 		fs = new FilmService(sureseatsDB);
 		us = new UserService(sureseatsDB);
-		
 		try {
 			loadSched(null);
 			loadSeats(null);
@@ -267,6 +267,7 @@ public class Admin_Option2Controller {
     	COL_End.setCellValueFactory(new PropertyValueFactory<>("end"));
     	COL_sched_Cinema.setCellValueFactory(new PropertyValueFactory<>("cinema"));
     	COL_sched_FID.setCellValueFactory(new PropertyValueFactory<>("film"));
+    	
     	Sched_Table.setItems(s_data);
     	
     }

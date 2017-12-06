@@ -385,6 +385,8 @@ public class Admin_OptionsAController {
 		}
 	}
 	
+	
+	
 	public void deleteProvince(ActionEvent event) throws IOException{
 		try {
 			ps.deleteProvince(Integer.parseInt(PPID.getText()));
