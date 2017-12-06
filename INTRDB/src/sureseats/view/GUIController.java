@@ -192,7 +192,7 @@ public class GUIController {
 		window.show();
 	}
 
-	@FXML
+@FXML
 	public void gotoSched(MouseEvent event) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("/sureseats/view/schedule.fxml"));

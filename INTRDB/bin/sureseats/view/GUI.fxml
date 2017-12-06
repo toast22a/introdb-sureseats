@@ -17,8 +17,16 @@
         <content>
           <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="435.0" prefWidth="692.0">
                <children>
-                  <Button fx:id="btn_logout" layoutX="701.0" layoutY="68.0" mnemonicParsing="false" onAction="#gotologin" prefHeight="27.0" prefWidth="131.0" text="Logout" />
-                  <Button fx:id="moviesBtnTHistory" layoutX="696.0" layoutY="27.0" mnemonicParsing="false" onAction="#gotoTrans" prefHeight="28.0" prefWidth="136.0" text="Transaction History" />
+                  <Button fx:id="btn_logout" layoutX="701.0" layoutY="68.0" mnemonicParsing="false" onAction="#gotologin" prefHeight="27.0" prefWidth="131.0" style="-fx-background-color: Orange;" text="Logout" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
+                  <Button fx:id="moviesBtnTHistory" layoutX="696.0" layoutY="27.0" mnemonicParsing="false" onAction="#gotoTrans" prefHeight="28.0" prefWidth="136.0" style="-fx-background-color: orange;" text="Transaction History" textFill="WHITE">
+                     <font>
+                        <Font name="System Bold" size="14.0" />
+                     </font>
+                  </Button>
                   <Button fx:id="moviesBtnRegister" layoutX="696.0" layoutY="27.0" mnemonicParsing="false" onAction="#gotoreg" prefHeight="28.0" prefWidth="136.0" style="-fx-background-color: ORANGE;" text="Register" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="13.0" />
