@@ -270,6 +270,15 @@ public class Admin_OptionsAController {
 		ps = new ProvinceService(sureseatsDB);
 		ms = new MallService(sureseatsDB);
 		cts = new CityService(sureseatsDB);
+		
+		try {
+			loadCinema(null);
+			loadProvince(null);
+			loadMall(null);
+			loadCity(null);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public void loadCinema(ActionEvent event) throws IOException {
@@ -304,6 +313,25 @@ public class Admin_OptionsAController {
 		} catch (Exception e) {
 			System.out.println("Invalid ID");
 		}
+	}
+	
+	public void addProvince(ActionEvent event) throws IOException{
+		Province p = new Province();
+		p.setName(PPName.getText());
+		ps.addProvince(p);
+		loadProvince(null);
+	}
+	
+	public void updateProvince(ActionEvent event) throws IOException{
+		Province p = ps.getProvince(Integer.parseInt(PPID.getText()));
+		p.setName(PPName.getText());
+		ps.updateProvince(p);
+		loadProvince(null);
+	}
+	
+	public void deleteProvince(ActionEvent event) throws IOException{
+		ps.deleteProvince(Integer.parseInt(PPID.getText()));
+		loadProvince(null);
 	}
 
 	public void loadMall(ActionEvent event) throws IOException {

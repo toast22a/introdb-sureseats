@@ -294,12 +294,12 @@
                                                                         <Font name="System Bold" size="14.0" />
                                                                      </font>
                                                                   </Button>
-                                                                  <Button fx:id="PDelete" layoutX="314.0" layoutY="87.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="81.0" style="-fx-background-color: gray;" text="DELETE" textFill="#f5f5f5">
+                                                                  <Button fx:id="PDelete" layoutX="314.0" layoutY="87.0" mnemonicParsing="false" onAction = "#deleteProvince" prefHeight="30.0" prefWidth="81.0" style="-fx-background-color: gray;" text="DELETE" textFill="#f5f5f5">
                                                                      <font>
                                                                         <Font name="System Bold" size="14.0" />
                                                                      </font>
                                                                   </Button>
-                                                                  <Button fx:id="PUpdate" layoutX="210.0" layoutY="86.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="UPDATE" textFill="#f5f5f5">
+                                                                  <Button fx:id="PUpdate" layoutX="210.0" layoutY="86.0" mnemonicParsing="false" onAction = "#updateProvince" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="UPDATE" textFill="#f5f5f5">
                                                                      <font>
                                                                         <Font name="System Bold" size="14.0" />
                                                                      </font>
@@ -310,7 +310,7 @@
                                                                <children>
                                                                   <AnchorPane layoutX="281.0" layoutY="223.0" prefHeight="101.0" prefWidth="136.0">
                                                                      <children>
-                                                                        <Button fx:id="PAdd" layoutX="23.0" layoutY="20.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="ADD" textFill="#f5f5f5">
+                                                                        <Button fx:id="PAdd" layoutX="23.0" layoutY="20.0" mnemonicParsing="false" onAction = "#addProvince" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="ADD" textFill="#f5f5f5">
                                                                            <font>
                                                                               <Font name="System Bold" size="14.0" />
                                                                            </font>
