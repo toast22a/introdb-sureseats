@@ -144,17 +144,17 @@
                                                                            </font>
                                                                         </Label>
                                                                         <TextField fx:id="CCID" layoutX="219.0" layoutY="35.0" prefHeight="27.0" prefWidth="180.0" AnchorPane.leftAnchor="219.0" AnchorPane.topAnchor="35.0" />
-                                                                        <Button fx:id="CSearch" layoutX="113.0" layoutY="86.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="SEARCH" textFill="WHITE" AnchorPane.leftAnchor="113.0" AnchorPane.topAnchor="86.0">
+                                                                        <Button fx:id="CSearch" layoutX="113.0" layoutY="86.0" mnemonicParsing="false" onAction = "#searchCinema" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="SEARCH" textFill="WHITE" AnchorPane.leftAnchor="113.0" AnchorPane.topAnchor="86.0">
                                                                            <font>
                                                                               <Font name="System Bold" size="14.0" />
                                                                            </font>
                                                                         </Button>
-                                                                        <Button fx:id="CDelete" layoutX="323.0" layoutY="87.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="81.0" style="-fx-background-color: gray;" text="DELETE" textFill="WHITE" AnchorPane.leftAnchor="323.0" AnchorPane.topAnchor="87.0">
+                                                                        <Button fx:id="CDelete" layoutX="323.0" layoutY="87.0" mnemonicParsing="false" onAction = "#deleteCinema" prefHeight="30.0" prefWidth="81.0" style="-fx-background-color: gray;" text="DELETE" textFill="WHITE" AnchorPane.leftAnchor="323.0" AnchorPane.topAnchor="87.0">
                                                                            <font>
                                                                               <Font name="System Bold" size="14.0" />
                                                                            </font>
                                                                         </Button>
-                                                                        <Button fx:id="CUpdate" layoutX="219.0" layoutY="86.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="UPDATE" textFill="WHITE">
+                                                                        <Button fx:id="CUpdate" layoutX="219.0" layoutY="86.0" mnemonicParsing="false" onAction = "#updateCinema" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="UPDATE" textFill="WHITE">
                                                                            <font>
                                                                               <Font name="System Bold" size="14.0" />
                                                                            </font>
@@ -186,7 +186,7 @@
                                                                   </GridPane>
                                                                   <AnchorPane layoutX="281.0" layoutY="220.0" prefHeight="101.0" prefWidth="136.0">
                                                                      <children>
-                                                                        <Button fx:id="Cadd" layoutX="32.0" layoutY="20.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="ADD" textFill="WHITE">
+                                                                        <Button fx:id="Cadd" layoutX="32.0" layoutY="20.0" mnemonicParsing="false" onAction = "#addCinema" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="ADD" textFill="WHITE">
                                                                            <font>
                                                                               <Font name="System Bold" size="14.0" />
                                                                            </font>
@@ -219,17 +219,17 @@
                                                                      </font>
                                                                   </Label>
                                                                   <TextField fx:id="MMID" layoutX="210.0" layoutY="37.0" prefHeight="27.0" prefWidth="165.0" />
-                                                                  <Button fx:id="MSearch" layoutX="94.0" layoutY="85.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="SEARCH" textFill="#f4ff99">
+                                                                  <Button fx:id="MSearch" layoutX="94.0" layoutY="85.0" mnemonicParsing="false" onAction = "#searchMall" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="SEARCH" textFill="#f4ff99">
                                                                      <font>
                                                                         <Font name="System Bold" size="14.0" />
                                                                      </font>
                                                                   </Button>
-                                                                  <Button fx:id="MDelete" layoutX="300.0" layoutY="86.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="81.0" style="-fx-background-color: gray;" text="DELETE" textFill="#f4ff99">
+                                                                  <Button fx:id="MDelete" layoutX="300.0" layoutY="86.0" mnemonicParsing="false" onAction = "#deleteMall" prefHeight="30.0" prefWidth="81.0" style="-fx-background-color: gray;" text="DELETE" textFill="#f4ff99">
                                                                      <font>
                                                                         <Font name="System Bold" size="14.0" />
                                                                      </font>
                                                                   </Button>
-                                                                  <Button fx:id="MUpdate" layoutX="195.0" layoutY="85.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="UPDATE" textFill="#fff5b7">
+                                                                  <Button fx:id="MUpdate" layoutX="195.0" layoutY="85.0" mnemonicParsing="false" onAction = "#updateMall" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="UPDATE" textFill="#fff5b7">
                                                                      <font>
                                                                         <Font name="System Bold" size="14.0" />
                                                                      </font>
@@ -240,7 +240,7 @@
                                                                <children>
                                                                   <AnchorPane layoutX="281.0" layoutY="223.0" prefHeight="101.0" prefWidth="136.0">
                                                                      <children>
-                                                                        <Button fx:id="Madd" layoutX="32.0" layoutY="15.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="ADD" textFill="#fff5b7">
+                                                                        <Button fx:id="Madd" layoutX="32.0" layoutY="15.0" mnemonicParsing="false" onAction = "#addMall" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="ADD" textFill="#fff5b7">
                                                                            <font>
                                                                               <Font name="System Bold" size="14.0" />
                                                                            </font>
@@ -361,17 +361,17 @@
                                                                      </font>
                                                                   </Label>
                                                                   <TextField fx:id="CCTID" layoutX="210.0" layoutY="37.0" prefHeight="27.0" prefWidth="180.0" />
-                                                                  <Button fx:id="CTSearch" layoutX="106.0" layoutY="86.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="SEARCH" textFill="#f4ff99">
+                                                                  <Button fx:id="CTSearch" layoutX="106.0" layoutY="86.0" mnemonicParsing="false" onAction = "#searchCity" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="SEARCH" textFill="#f4ff99">
                                                                      <font>
                                                                         <Font name="System Bold" size="14.0" />
                                                                      </font>
                                                                   </Button>
-                                                                  <Button fx:id="CTDelete" layoutX="314.0" layoutY="87.0" mnemonicParsing="false" prefHeight="30.0" prefWidth="81.0" style="-fx-background-color: gray;" text="DELETE" textFill="#f4ff99">
+                                                                  <Button fx:id="CTDelete" layoutX="314.0" layoutY="87.0" mnemonicParsing="false" onAction = "#deleteCity" prefHeight="30.0" prefWidth="81.0" style="-fx-background-color: gray;" text="DELETE" textFill="#f4ff99">
                                                                      <font>
                                                                         <Font name="System Bold" size="14.0" />
                                                                      </font>
                                                                   </Button>
-                                                                  <Button fx:id="CTUpdate" layoutX="210.0" layoutY="86.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="UPDATE" textFill="#fff5b7">
+                                                                  <Button fx:id="CTUpdate" layoutX="210.0" layoutY="86.0" mnemonicParsing="false" onAction = "#updateCity" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="UPDATE" textFill="#fff5b7">
                                                                      <font>
                                                                         <Font name="System Bold" size="14.0" />
                                                                      </font>
@@ -382,7 +382,7 @@
                                                                <children>
                                                                   <AnchorPane layoutX="281.0" layoutY="223.0" prefHeight="101.0" prefWidth="136.0">
                                                                      <children>
-                                                                        <Button fx:id="CTAdd" layoutX="23.0" layoutY="20.0" mnemonicParsing="false" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="ADD" textFill="#fff5b7">
+                                                                        <Button fx:id="CTAdd" layoutX="23.0" layoutY="20.0" mnemonicParsing="false" onAction = "#addCity" prefHeight="31.0" prefWidth="90.0" style="-fx-background-color: gray;" text="ADD" textFill="#fff5b7">
                                                                            <font>
                                                                               <Font name="System Bold" size="14.0" />
                                                                            </font>

@@ -98,7 +98,7 @@ public class CinemaService {
 		Cinema cinema = new Cinema();
 
 		cinema.setId(rs.getInt(Cinema.COL_ID));
-		cinema.setNo(rs.getString(Cinema.COL_NO));
+		cinema.setNo(rs.getInt(Cinema.COL_NO));
 		cinema.setType(rs.getString(Cinema.COL_TYPE));
 		cinema.setMall(mallService.getMall(rs.getInt(Cinema.COL_MALL)));
 
@@ -118,9 +118,9 @@ public class CinemaService {
 
 			// prepare the values
 			ps.setInt(1, Types.NULL); // because id is auto-increment anyway
-			ps.setString(2, cinema.getNo());
+			ps.setInt(2, cinema.getNo());
 			ps.setString(3, cinema.getType());
-			ps.setInt(3, cinema.getMall().getId());
+			ps.setInt(4, cinema.getMall().getId());
 
 			// execute the update
 			ps.executeUpdate();
@@ -153,7 +153,7 @@ public class CinemaService {
 
 			// prepare the values
 			ps.setInt(4, cinema.getId()); // because id is auto-increment anyway
-			ps.setString(1, cinema.getNo());
+			ps.setInt(1, cinema.getNo());
 			ps.setString(2, cinema.getType());
 			ps.setInt(3, cinema.getMall().getId());
 
