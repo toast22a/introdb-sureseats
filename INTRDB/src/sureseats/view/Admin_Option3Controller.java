@@ -226,7 +226,12 @@ public class Admin_Option3Controller {
     	fs= new FilmService(sureseatsDB );
     	us= new UserService(sureseatsDB );
     	ps= new ProvinceService(sureseatsDB );
-    	
+		try {
+			loadFilm(null);
+			loadUser(null);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
     	
     }
 
