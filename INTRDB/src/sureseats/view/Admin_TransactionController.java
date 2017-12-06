@@ -1,11 +1,12 @@
 package sureseats.view;
 
+
+
 import java.io.IOException;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -16,37 +17,27 @@ import javafx.stage.Stage;
 public class Admin_TransactionController {
 
     @FXML
-    private TableView<?> Claimed_Table;
-
-    @FXML
-    private Tab Unclaimed_Table;
-
-    @FXML
-    private Tab Cancelled_Table;
-
-    @FXML
-    private Tab Active_Table;
-
-    @FXML
-    private TableView<?> Users_Table;
-
-    @FXML
-    private Tab Inactive_Table;
-
-    @FXML
-    private TableView<?> Province_Table;
-
-    @FXML
-    private Tab Genre_Tickets_Table;
-
-    @FXML
-    private TableView<?> City_Table;
+    private Button Back;
 
     @FXML
     private Button admin1Next;
 
     @FXML
-    private Button Back;
+    private Tab Claimed_Table;
+
+    @FXML
+    private TableView<?> Unclaimed_Table;
+
+    @FXML
+    private TableView<?> Active_Table;
+
+    @FXML
+    private TableView<?> Inactive_Table;
+
+    @FXML
+    private TableView<?> Genre_Tickets_Table;
+
+
 
     @FXML
     void ToSignIn(ActionEvent event) throws IOException {

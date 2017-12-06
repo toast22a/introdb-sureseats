@@ -55,13 +55,11 @@ public class Comming_SoonController {
     private User user;
 	private SureseatsDB sureseatsDB;
 	private UserService us;
-	
+
 	public void initialize() {
 		sureseatsDB = new SureseatsDB();
 		us = new UserService(sureseatsDB);
 	}
-
-	
 
 	public void goback(ActionEvent event) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
@@ -75,6 +73,30 @@ public class Comming_SoonController {
 		Scene tableViewScene = new Scene(tableViewParent);
 		// This line gets the Stage information
 		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		window.setScene(tableViewScene);
+		window.show();
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+	}
+	
+	@FXML
+	public void gotoSched(MouseEvent event) throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("/sureseats/view/schedule.fxml"));
+		Parent tableViewParent = loader.load();
+		//scheduleController sc = loader.<scheduleController>getController();
+		//sc.setUser(user);
+		//sc.setFilm(film);
+		Scene tableViewScene = new Scene(tableViewParent);
+		// This line gets the Stage information
+		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
 		window.setScene(tableViewScene);
 		window.show();
 	}
