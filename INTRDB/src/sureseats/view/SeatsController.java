@@ -9,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
 
@@ -29,9 +30,13 @@ public class SeatsController {
 	    
 	    public void initialize()
 	    {
-	    	Seats_pane.setPadding(new Insets(5,5,5,5));
-	    	Seats_pane.setVgap(3);
-	    	Seats_pane.setHgap(5);
+	    	int r,c;
+	    	int i;
+	    	char[] row= new char[26];
+	    	for(i=65;i<90;i++)
+	    		row[i-65]= ((char)i);
+	    	
+	    	
 	    	
 	    }
 	    

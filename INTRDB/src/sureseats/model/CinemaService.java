@@ -54,7 +54,9 @@ public class CinemaService {
 		// return list
 		return cinemas;
 	}
+	
 
+	
 	public Cinema getCinema(int id) {
 		Cinema cinema = new Cinema();
 

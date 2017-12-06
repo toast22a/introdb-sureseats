@@ -25,8 +25,13 @@ public class GUIController {
 	private SureseatsDB sdb;
 	private FilmService fs;
 	
+	
+	
 	@FXML
 	private AnchorPane apMain;
+	
+    @FXML
+    private Button moviesBtnTHistory;
 
 	@FXML
 	private Button moviesBtnRegister;
@@ -39,6 +44,9 @@ public class GUIController {
 		this.moviesBtnRegister = moviesBtnRegister;
 	}
 
+	public void setMoviesBtnTransaction(Button moviesBtnTHistory) {
+		this.moviesBtnRegister = moviesBtnTHistory;
+	}
 	public Button getMoviesBtnLogin() {
 		return moviesBtnLogin;
 	}
@@ -196,6 +204,22 @@ public class GUIController {
 		window.show();
 	}
 	
+
+	public void gotoTrans(ActionEvent event) throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("/sureseats/view/User_TransactionHistory.fxml"));
+		Parent tableViewParent = loader.load();
+		//scheduleController sc = loader.<scheduleController>getController();
+		//sc.setUser(user);
+		//sc.setFilm(film);
+		Scene tableViewScene = new Scene(tableViewParent);
+		// This line gets the Stage information
+		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+		window.setScene(tableViewScene);
+		window.show();
+	}
+	
 	public User getUser() {
 		return user;
 	}
@@ -207,5 +231,6 @@ public class GUIController {
 	public void setGuestMode(boolean choice) {
 		moviesBtnRegister.visibleProperty().set(choice);
 		moviesBtnLogin.visibleProperty().set(choice);
+	
 	}
 }

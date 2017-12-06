@@ -85,18 +85,23 @@ public class scheduleController {
 		return Sback;
 	}
 	
-	public void toback(ActionEvent event) throws IOException
-    {
- 	   FXMLLoader loader = new FXMLLoader();
- 	   loader.setLocation(getClass().getResource("/sureseats/view/GUI.fxml"));
-        Parent tableViewParent = loader.load(); 
-        Scene tableViewScene = new Scene(tableViewParent);
-        //This line gets the Stage information
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        
-        window.setScene(tableViewScene);
-        window.show();
-    }
+
+	
+	  public void toback(ActionEvent event) throws IOException {
+	    	FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("/sureseats/view/GUI.fxml"));
+			Parent tableViewParent = loader.load();
+		
+			GUIController gc = loader.<GUIController>getController();
+			gc.setUser(gc.getUser());
+			gc.setGuestMode(false);
+
+			Scene tableViewScene = new Scene(tableViewParent);
+			// This line gets the Stage information
+			Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			window.setScene(tableViewScene);
+			window.show();
+		}
 	
 	public void toReseve(ActionEvent event) throws IOException
     {
