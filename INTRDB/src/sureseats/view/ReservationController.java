@@ -11,8 +11,20 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
+import sureseats.model.FilmService;
+import sureseats.model.ReservationService;
+import sureseats.model.ScheduleService;
+import sureseats.model.SureseatsDB;
+import sureseats.model.User;
 
 public class ReservationController {
+	
+	private User user;
+	private SureseatsDB sdb;
+	private ReservationService rs;
+	private ScheduleService ss;
+	private FilmService fs;
+	
 
     @FXML
     private Button to_Back;
@@ -34,19 +46,39 @@ public class ReservationController {
 
     @FXML
     private Text Total;
+    
+    public void initialize() {
+		sdb = new SureseatsDB();
+		rs = new ReservationService(sdb);
+		ss = new ScheduleService(sdb);
+		fs = new FilmService(sdb);
+	}
 
-    public void toback(ActionEvent event) throws IOException
-    {
- 	   FXMLLoader loader = new FXMLLoader();
- 	   loader.setLocation(getClass().getResource("/sureseats/view/GUI.fxml"));
-        Parent tableViewParent = loader.load(); 
-        Scene tableViewScene = new Scene(tableViewParent);
-        //This line gets the Stage information
-        Stage window = (Stage)((Node)event.getSource()).getScene().getWindow();
-        
-        window.setScene(tableViewScene);
-        window.show();
-    }
+    public void goback(ActionEvent event) throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("/sureseats/view/GUI.fxml"));
+		Parent tableViewParent = loader.load();
+		if(user!=null) {
+		GUIController gc = loader.<GUIController>getController();
+		gc.setUser(user);
+		gc.setGuestMode(false);
+		
+		}
+		Scene tableViewScene = new Scene(tableViewParent);
+		// This line gets the Stage information
+		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		window.setScene(tableViewScene);
+		window.show();
+	}
+
+	public User getUser() {
+		return user;
+	}
+
+	public void setUser(User user) {
+		this.user = user;
+		
+	}
 
 }
 
