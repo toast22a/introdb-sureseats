@@ -57,7 +57,8 @@ public class Admin_TransactionController {
     @FXML
     private TableView<List<String>> Genre_Tickets_Table;
     
-
+    @FXML
+    private TableView<List<String>> Canceled_Table;
     
     public void ActiveloadTable() {
 
