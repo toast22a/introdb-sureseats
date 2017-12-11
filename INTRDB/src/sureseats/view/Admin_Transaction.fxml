@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.SplitPane?>
+<?import javafx.scene.control.Tab?>
+<?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TitledPane?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.BorderPane?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx/9" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sureseats.view.Admin_TransactionController">
+   <children>
+      <TitledPane animated="false" layoutX="-84.0" prefHeight="648.0" prefWidth="1050.0" text="SURE SEATS" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+         <content>
+            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="599.0" prefWidth="914.0">
+               <children>
+                  <Label layoutX="353.0" layoutY="390.0" />
+                  <BorderPane layoutX="20.4" layoutY="18.4" prefHeight="622.0" prefWidth="1118.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                     <top>
+                        <BorderPane prefHeight="86.0" prefWidth="1099.0" BorderPane.alignment="CENTER">
+                           <right>
+                              <Button fx:id="admin1Next" mnemonicParsing="false" onAction="#ToSignIn" prefHeight="53.0" prefWidth="98.0" style="-fx-background-color: orange;" text="To Sign In" textFill="WHITE" BorderPane.alignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Button>
+                           </right>
+                           <center>
+                              <ImageView fitHeight="83.0" fitWidth="296.0" BorderPane.alignment="CENTER">
+                                 <image>
+                                    <Image url="@../../Resources/logo.png" />
+                                 </image>
+                              </ImageView>
+                           </center>
+                           <left>
+                              <Button fx:id="Back" mnemonicParsing="false" onAction="#toback" prefHeight="53.0" prefWidth="118.0" style="-fx-background-color: orange;" text="Back" textFill="WHITE" BorderPane.alignment="CENTER">
+                                 <font>
+                                    <Font name="System Bold" size="14.0" />
+                                 </font>
+                              </Button>
+                           </left>
+                        </BorderPane>
+                     </top>
+                     <center>
+                        <SplitPane dividerPositions="0.9961013645224172" prefHeight="510.0" prefWidth="1089.0" BorderPane.alignment="CENTER">
+                           <items>
+                              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="160.0" prefWidth="100.0">
+                                 <children>
+                                    <TabPane layoutX="41.0" layoutY="14.0" prefHeight="464.0" prefWidth="712.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                       <tabs>
+                                          <Tab fx:id="" text="Unclaimed Tickets">
+                                             <content>
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                   <children>
+                                                      <TableView layoutX="236.0" layoutY="110.0" prefHeight="479.0" prefWidth="1018.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                        <columns>
+                                                          <TableColumn prefWidth="75.0" text="C1" />
+                                                          <TableColumn prefWidth="75.0" text="C2" />
+                                                        </columns>
+                                                      </TableView>
+                                                   </children>
+                                                </AnchorPane>
+                                             </content>
+                                          </Tab>
+                                          <Tab text="Cancelled Tickets">
+                                             <content>
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                   <children>
+                                                      <TableView fx:id="Canceled_Table" layoutX="232.0" layoutY="129.0" prefHeight="479.0" prefWidth="1018.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                        <columns>
+                                                          <TableColumn prefWidth="75.0" text="C1" />
+                                                          <TableColumn prefWidth="75.0" text="C2" />
+                                                        </columns>
+                                                      </TableView>
+                                                   </children>
+                                                </AnchorPane>
+                                             </content>
+                                          </Tab>
+                                          <Tab text="Active users">
+                                             <content>
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                   <children>
+                                                      <TableView fx:id="Active_Table" layoutX="87.0" layoutY="40.0" prefHeight="479.0" prefWidth="1018.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                        <columns>
+                                                          <TableColumn prefWidth="75.0" text="C1" />
+                                                          <TableColumn prefWidth="75.0" text="C2" />
+                                                        </columns>
+                                                      </TableView>
+                                                   </children>
+                                                </AnchorPane>
+                                             </content>
+                                          </Tab>
+                                          <Tab fx:id="TCTID" text="Inactive Users">
+                                             <content>
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                   <children>
+                                                      <TableView fx:id="Inactive_Table" layoutX="247.0" layoutY="107.0" prefHeight="479.0" prefWidth="1018.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                        <columns>
+                                                          <TableColumn prefWidth="75.0" text="C1" />
+                                                          <TableColumn prefWidth="75.0" text="C2" />
+                                                        </columns>
+                                                      </TableView>
+                                                   </children>
+                                                </AnchorPane>
+                                             </content>
+                                          </Tab>
+                                          <Tab fx:id="TCTID1" text="Tickets sold(By Genre)">
+                                             <content>
+                                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                                   <children>
+                                                      <TableView fx:id="Genre_Tickets_Table" layoutX="137.0" layoutY="88.0" prefHeight="479.0" prefWidth="1018.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                                        <columns>
+                                                          <TableColumn prefWidth="75.0" text="C1" />
+                                                          <TableColumn prefWidth="75.0" text="C2" />
+                                                        </columns>
+                                                      </TableView>
+                                                   </children>
+                                                </AnchorPane>
+                                             </content>
+                                          </Tab>
+                                       </tabs>
+                                    </TabPane>
+                                 </children>
+                              </AnchorPane>
+                              <SplitPane prefHeight="512.0" prefWidth="212.0">
+                                 <items>
+                                    <TabPane prefHeight="506.0" prefWidth="437.0" tabClosingPolicy="UNAVAILABLE" />
+                                 </items>
+                              </SplitPane>
+                           </items>
+                        </SplitPane>
+                     </center>
+                  </BorderPane>
+               </children>
+            </AnchorPane>
+         </content>
+      </TitledPane>
+   </children>
+</AnchorPane>
