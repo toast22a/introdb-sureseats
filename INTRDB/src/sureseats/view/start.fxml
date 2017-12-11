@@ -28,7 +28,7 @@
                   </Text>
                   <ImageView fitHeight="205.0" fitWidth="379.0" layoutX="256.0" layoutY="42.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../../bin/Resources/logo.png" />
+                        <Image url="/Resources/logo.png" />
                      </image>
                   </ImageView>
                   <Text strokeType="OUTSIDE" strokeWidth="0.0" text="Text" />

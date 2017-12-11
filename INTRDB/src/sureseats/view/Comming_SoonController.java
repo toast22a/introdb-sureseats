@@ -1,6 +1,9 @@
 package sureseats.view;
 
 import java.io.IOException;
+import java.util.Arrays;
+import java.util.Iterator;
+import java.util.List;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -9,13 +12,12 @@ import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.GridPane;
 import javafx.stage.Stage;
-import sureseats.model.SureseatsDB;
-import sureseats.model.User;
-import sureseats.model.UserService;
+import sureseats.model.*;
 
 public class Comming_SoonController {
 
@@ -53,23 +55,40 @@ public class Comming_SoonController {
     private ImageView panel00;
     
     private User user;
-	private SureseatsDB sureseatsDB;
-	private UserService us;
+	private SureseatsDB sdb;
+	private FilmService fs;
 
 	public void initialize() {
-		sureseatsDB = new SureseatsDB();
-		us = new UserService(sureseatsDB);
+		sdb = new SureseatsDB();
+		fs = new FilmService(sdb);
+		
+		List<ImageView> ivs = Arrays.asList(panel00, panel01, panel02, panel03, panel04, panel05);
+		List<Film> films = fs.getComingSoon();
+		
+		Iterator<ImageView> ivsi = ivs.iterator();
+		Iterator<Film> filmsi = films.iterator();
+		
+		for (ImageView iv : ivs) {
+			iv.setImage(null);
+		}
+		
+		ivsi.forEachRemaining(iv -> {
+			if (filmsi.hasNext()) {
+				String url = filmsi.next().getImage();
+				iv.setImage(new Image("/Resources/" + url));
+			} else {
+				iv.setVisible(false);
+			}
+		});
 	}
 
 	public void goback(ActionEvent event) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("/sureseats/view/GUI.fxml"));
 		Parent tableViewParent = loader.load();
-		if(user!=null) {
 		GUIController gc = loader.<GUIController>getController();
 		gc.setUser(user);
-		gc.setGuestMode(false);
-		}
+		gc.setGuestMode(user==null);
 		Scene tableViewScene = new Scene(tableViewParent);
 		// This line gets the Stage information
 		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();

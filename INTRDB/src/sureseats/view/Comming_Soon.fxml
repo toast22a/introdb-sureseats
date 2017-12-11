@@ -21,7 +21,7 @@
                      <font>
                         <Font name="System Bold" size="19.0" />
                      </font></Button>
-                  <Text layoutX="246.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Comming Soon ">
+                  <Text layoutX="246.0" layoutY="191.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Coming Soon ">
                      <font>
                         <Font size="52.0" />
                      </font>

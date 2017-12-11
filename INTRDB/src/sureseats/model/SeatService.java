@@ -6,6 +6,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Types;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 public class SeatService {
@@ -55,6 +56,21 @@ public class SeatService {
 		return seats;
 	}
 	
+	public List<Integer> getCinemaDimensions(Cinema cinema) {
+		List<Seat> seats = getSeatsInCinema(cinema);
+		char hiRow = 'A';
+		int hiCol = 1;
+		
+		for (Seat seat : seats) {
+			if (seat.getRow() > hiRow)
+				hiRow = seat.getRow();
+			if (seat.getCol() > hiCol)
+				hiCol = seat.getCol();
+		}
+		
+		return Arrays.asList((int)hiRow, hiCol);
+	}
+	
 	public List<Seat> getSeatsInCinema(Cinema cinema){
 		// create empty list of contacts
 		List<Seat> seats = new ArrayList<Seat>();
@@ -64,9 +80,8 @@ public class SeatService {
 
 		// create string query
 		String query = 
-				"SELECT * FROM " + Seat.TABLE + " WHERE " + Seat.COL_ID + " IN "
-				+ "(SELECT " + Reservation.COL_SEAT + " FROM " + Reservation.TABLE
-				+ " WHERE " + Seat.COL_CINEMA + " = ?";
+				"SELECT * FROM " + Seat.TABLE + " WHERE " + Seat.COL_CINEMA
+				+ " = ?";
 
 		try {
 			// create prepared statement
@@ -226,7 +241,7 @@ public class SeatService {
 		Seat seat = new Seat();
 
 		seat.setId(rs.getInt(Seat.COL_ID));
-		seat.setRow(rs.getString(Seat.COL_ROW));
+		seat.setRow(rs.getString(Seat.COL_ROW).charAt(0));
 		seat.setCol(rs.getInt(Seat.COL_COL));
 		seat.setCinema(cinemaService.getCinema(rs.getInt(Seat.COL_CINEMA)));
 
@@ -246,7 +261,7 @@ public class SeatService {
 
 			// prepare the values
 			ps.setInt(1, Types.NULL); // because id is auto-increment anyway
-			ps.setString(2, seat.getRow());
+			ps.setInt(2, seat.getRow());
 			ps.setInt(3, seat.getCol());
 			ps.setInt(4, seat.getCinema().getId());
 
@@ -281,7 +296,7 @@ public class SeatService {
 
 			// prepare the values
 			ps.setInt(4, seat.getId()); // because id is auto-increment anyway
-			ps.setString(1, seat.getRow());
+			ps.setString(1, Character.toString(seat.getRow()));
 			ps.setInt(2, seat.getCol());
 			ps.setInt(3, seat.getCinema().getId());
 

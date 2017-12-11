@@ -16,20 +16,10 @@
    <children>
       <TitledPane animated="false" layoutX="10.0" layoutY="10.0" prefHeight="567.0" prefWidth="865.0" text="SURE SEATS">
          <content>
-            <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="435.0" prefWidth="692.0">
+            <AnchorPane fx:id="anchorPane" minHeight="0.0" minWidth="0.0" prefHeight="435.0" prefWidth="692.0">
                <children>
                   <Button fx:id="to_Back" layoutX="745.0" layoutY="27.0" mnemonicParsing="false" onAction="#toback" prefHeight="28.0" prefWidth="86.0" text="Back" />
                   <Button fx:id="to_Reserve" layoutX="746.0" layoutY="63.0" mnemonicParsing="false" prefHeight="29.0" prefWidth="84.0" text="Reserve" />
-                  <Text layoutX="385.0" layoutY="160.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Seats">
-                     <font>
-                        <Font size="52.0" />
-                     </font>
-                  </Text>
-                  <ImageView fitHeight="99.0" fitWidth="292.0" layoutX="35.0" layoutY="31.0" pickOnBounds="true" preserveRatio="true">
-                     <image>
-                        <Image url="@../../../bin/Resources/logo.png" />
-                     </image>
-                  </ImageView>
                   <FlowPane layoutX="45.0" layoutY="207.0" />
                   <GridPane fx:id="Seats_pane" alignment="CENTER" gridLinesVisible="true" layoutX="144.0" layoutY="173.0">
                     <columnConstraints>
@@ -192,7 +182,7 @@
                         <Button mnemonicParsing="false" prefHeight="25.0" prefWidth="54.0" text="A11" textAlignment="CENTER" GridPane.columnIndex="10" GridPane.rowIndex="31" />
                      </children>
                   </GridPane>
-                  <Text fill="#00ff44" layoutX="200.0" layoutY="524.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SCREEN" textAlignment="CENTER" wrappingWidth="479.099609375">
+                  <Text fill="#00ff44" layoutX="175" layoutY="50.0" strokeType="OUTSIDE" strokeWidth="0.0" text="SCREEN" textAlignment="CENTER" wrappingWidth="479.099609375">
                      <font>
                         <Font size="24.0" />
                      </font>

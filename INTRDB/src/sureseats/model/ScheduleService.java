@@ -57,6 +57,45 @@ public class ScheduleService {
 		// return list
 		return schedules;
 	}
+	
+	public List<Schedule> getSchedulesOfFilm(Film film) {
+		// create empty list of contacts
+		List<Schedule> schedules = new ArrayList<Schedule>();
+
+		// get connection from db
+		Connection cnt = connection.getConnection();
+
+		// create string query
+		String query = "SELECT * FROM " + Schedule.TABLE + " WHERE " + Schedule.COL_FILM + " = ?";
+
+		try {
+			// create prepared statement
+			PreparedStatement ps = cnt.prepareStatement(query);
+			ps.setInt(1, film.getId());
+
+			// get result and store in result set
+			ResultSet rs = ps.executeQuery();
+
+			// transform set to list
+			// rs.next() means get next in result set
+			while (rs.next()) {
+				schedules.add(toSchedule(rs));
+			}
+
+			// close all the resources
+			ps.close();
+			rs.close();
+			cnt.close();
+
+			System.out.println("[SCHEDULE] SELECT SUCCESS!");
+		} catch (SQLException e) {
+			System.out.println("[SCHEDULE] SELECT FAILED!");
+			e.printStackTrace();
+		}
+
+		// return list
+		return schedules;
+	}
 
 	public Schedule getSchedule(int id) {
 		Schedule schedule = new Schedule();

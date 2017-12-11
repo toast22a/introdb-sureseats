@@ -64,14 +64,58 @@ public class FilmService {
 		Connection cnt = connection.getConnection();
 
 		// create string query
-		String query = "SELECT * FROM " + Film.TABLE + " WHERE MONTH("
-				+ Film.COL_DATE + ") = MONTH(?) ORDER BY " + Film.COL_TITLE;
+		String query = "SELECT * FROM " + Film.TABLE + " WHERE "
+				+ "DATEDIFF(NOW()," + Film.COL_DATE + ") >= 0 AND "
+				+ "MONTH(" + Film.COL_DATE + ") = MONTH(NOW()) ORDER BY " + Film.COL_DATE;
 
 		try {
 			// create prepared statement
 			PreparedStatement ps = cnt.prepareStatement(query);
 			
-			ps.setDate(1, Date.valueOf(LocalDate.now()));
+			//ps.setDate(1, Date.valueOf(LocalDate.now()));
+
+			// get result and store in result set
+			ResultSet rs = ps.executeQuery();
+
+			// transform set to list
+			// rs.next() means get next in result set
+			while (rs.next()) {
+				films.add(toFilm(rs));
+			}
+
+			// close all the resources
+			ps.close();
+			rs.close();
+			cnt.close();
+
+			System.out.println("[FILM] SELECT SUCCESS!");
+		} catch (SQLException e) {
+			System.out.println("[FILM] SELECT FAILED!");
+			e.printStackTrace();
+		}
+
+		// return list
+		return films;
+	}
+	
+	public List<Film> getComingSoon(){
+		// create empty list of contacts
+		List<Film> films = new ArrayList<Film>();
+
+		// get connection from db
+		Connection cnt = connection.getConnection();
+
+		// create string query
+		String query = "SELECT * FROM " + Film.TABLE + " WHERE "
+				+ Film.COL_DATE + " > DATE(NOW()) AND "
+				+ Film.COL_DATE + " <= LAST_DAY(NOW()) "
+				+ "ORDER BY " + Film.COL_DATE;
+
+		try {
+			// create prepared statement
+			PreparedStatement ps = cnt.prepareStatement(query);
+			
+			//ps.setDate(1, Date.valueOf(LocalDate.now()));
 
 			// get result and store in result set
 			ResultSet rs = ps.executeQuery();

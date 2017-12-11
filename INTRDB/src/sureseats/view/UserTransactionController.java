@@ -61,7 +61,7 @@ public class UserTransactionController {
 	@FXML
 	private TableColumn<?, ?> COL_Trans_Status;
 	
-	public void loadTable() {
+	public void loadContent() {
 		/*ObservableList<Reservation> r_data;
 		if (user != null)
 			r_data = FXCollections.observableArrayList(rs.getReservationsWithUID(user.getId()));
@@ -136,7 +136,6 @@ public class UserTransactionController {
 
 	public void setUser(User user) {
 		this.user = user;
-		loadTable();
 	}
 
 }

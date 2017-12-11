@@ -2,7 +2,7 @@ package sureseats.model;
 
 public class Seat {
 	private int id;
-	private String row;
+	private char row;
 	private int col;
 	private Cinema cinema;
 
@@ -20,11 +20,11 @@ public class Seat {
 		this.id = id;
 	}
 
-	public String getRow() {
+	public char getRow() {
 		return row;
 	}
 
-	public void setRow(String row) {
+	public void setRow(char row) {
 		this.row = row;
 	}
 

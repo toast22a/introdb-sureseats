@@ -352,7 +352,7 @@ public class Admin_Option2Controller {
 	public void addSeat(ActionEvent event) throws IOException{
 		try {
 			Seat s = new Seat();
-			s.setRow(SSeRow.getText());
+			s.setRow((char)Integer.parseInt(SSeRow.getText()));
 			s.setCol(Integer.parseInt(SSeCol.getText()));
 			s.setCinema(cs.getCinema(Integer.parseInt(SSeCID.getText())));
 			ses.addSeat(s);
@@ -365,7 +365,7 @@ public class Admin_Option2Controller {
 	public void updateSeat(ActionEvent event) throws IOException{
 		try {
 			Seat s = ses.getSeat(Integer.parseInt(SSeID.getText()));
-			s.setRow(SSeRow.getText());
+			s.setRow((char)Integer.parseInt(SSeRow.getText()));
 			s.setCol(Integer.parseInt(SSeCol.getText()));
 			s.setCinema(cs.getCinema(Integer.parseInt(SSeCID.getText())));
 			ses.updateSeat(s);

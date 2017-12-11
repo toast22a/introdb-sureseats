@@ -21,11 +21,11 @@ import sureseats.model.*;
 
 public class GUIController {
 	private User user;
-	private Film film;
 	private SureseatsDB sdb;
 	private FilmService fs;
 	
-	
+	private List<ImageView> ivs;
+	private List<Film> films;
 	
 	@FXML
 	private AnchorPane apMain;
@@ -145,8 +145,8 @@ public class GUIController {
 		sdb = new SureseatsDB();
 		fs = new FilmService(sdb);
 		
-		List<ImageView> ivs = Arrays.asList(panel00, panel01, panel02, panel03, panel04, panel05);
-		List<Film> films = fs.getFilmsInMonth();
+		ivs = Arrays.asList(panel00, panel01, panel02, panel03, panel04, panel05);
+		films = fs.getFilmsInMonth();
 		
 		Iterator<ImageView> ivsi = ivs.iterator();
 		Iterator<Film> filmsi = films.iterator();
@@ -197,9 +197,10 @@ public class GUIController {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("/sureseats/view/schedule.fxml"));
 		Parent tableViewParent = loader.load();
-		//scheduleController sc = loader.<scheduleController>getController();
-		//sc.setUser(user);
-		//sc.setFilm(film);
+		scheduleController sc = loader.<scheduleController>getController();
+		sc.setUser(user);
+		sc.setFilm(films.get(ivs.indexOf(event.getSource())));
+		sc.loadContent();
 		Scene tableViewScene = new Scene(tableViewParent);
 		// This line gets the Stage information
 		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -214,6 +215,8 @@ public class GUIController {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("/sureseats/view/Comming_Soon.fxml"));
 		Parent tableViewParent = loader.load();
+		Comming_SoonController csc = loader.<Comming_SoonController>getController();
+		csc.setUser(user);
 		Scene tableViewScene = new Scene(tableViewParent);
 		// This line gets the Stage information
 		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -231,6 +234,7 @@ public class GUIController {
 		//sc.setFilm(film);
 		UserTransactionController utc = loader.<UserTransactionController>getController();
 		utc.setUser(user);
+		utc.loadContent();
 		Scene tableViewScene = new Scene(tableViewParent);
 		// This line gets the Stage information
 		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
@@ -243,11 +247,6 @@ public class GUIController {
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("/sureseats/view/Sign_up.fxml"));
 		Parent tableViewParent = loader.load();
-		//scheduleController sc = loader.<scheduleController>getController();
-		//sc.setUser(user);
-		//sc.setFilm(film);
-		UserTransactionController utc = loader.<UserTransactionController>getController();
-		utc.setUser(user);
 		Scene tableViewScene = new Scene(tableViewParent);
 		// This line gets the Stage information
 		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();

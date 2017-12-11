@@ -98,7 +98,7 @@
                         <Image url="@../../Resources/logo.png" />
                      </image>
                   </ImageView>
-                  <Button fx:id="moviesBtnCommingSoon" layoutX="696.0" layoutY="116.0" mnemonicParsing="false" onAction="#gotoCommingSoon" prefHeight="29.0" prefWidth="137.0" style="-fx-background-color: orange;" text="Comming Soon" textFill="WHITE">
+                  <Button fx:id="moviesBtnCommingSoon" layoutX="696.0" layoutY="116.0" mnemonicParsing="false" onAction="#gotoCommingSoon" prefHeight="29.0" prefWidth="137.0" style="-fx-background-color: orange;" text="Coming Soon" textFill="WHITE">
                      <font>
                         <Font name="System Bold" size="13.0" />
                      </font>
