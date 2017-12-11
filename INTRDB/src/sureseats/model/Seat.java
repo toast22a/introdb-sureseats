@@ -48,4 +48,12 @@ public class Seat {
 	public String toString() {
 		return String.format("SEAT ID=%s\nMALL=%s\nCINEMA=%s\nROW=%s\nCOL=%s\n", id, cinema.getMall().getName(), cinema.getNo(), row, col);
 	}
+	
+	@Override
+	public boolean equals(Object obj) {
+		if (obj instanceof Seat) {
+			return this.id == ((Seat)obj).getId();
+		}
+		return false;
+	}
 }

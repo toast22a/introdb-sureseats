@@ -199,6 +199,48 @@ public class SeatService {
 		// return list
 		return seats;
 	}
+	
+	public Seat getSeat(Cinema cinema, char row, int col) {
+		Seat seat = new Seat();
+
+		// get connection from db
+		Connection cnt = connection.getConnection();
+
+		// create string query
+		String query = "SELECT * FROM " + Seat.TABLE + " WHERE "
+		+ Seat.COL_CINEMA + " = ? AND "
+		+ Seat.COL_ROW + " = ? AND "
+		+ Seat.COL_COL + " = ?";
+
+		try {
+			// create prepared statement
+			PreparedStatement ps = cnt.prepareStatement(query);
+			
+			ps.setInt(1, cinema.getId());
+			ps.setString(2, String.valueOf(row));
+			ps.setInt(3, col);
+
+			// get result and store in result set
+			ResultSet rs = ps.executeQuery();
+
+			if (rs.next()) {
+				seat = toSeat(rs);
+			}
+
+			// close all the resources
+			ps.close();
+			rs.close();
+			cnt.close();
+
+			System.out.println("[SEAT] SELECT SUCCESS!");
+		} catch (SQLException e) {
+			System.out.println("[SEAT] SELECT FAILED!");
+			e.printStackTrace();
+		}
+
+		// return list
+		return seat;
+	}
 
 	public Seat getSeat(int id) {
 		Seat seat = new Seat();

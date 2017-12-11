@@ -8,8 +8,10 @@ import java.awt.geom.AffineTransform;
 import java.awt.geom.Rectangle2D;
 import java.awt.image.ColorModel;
 import java.io.IOException;
+import java.text.NumberFormat;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Locale;
 
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -51,6 +53,9 @@ public class SeatsController {
 
 	@FXML
 	private GridPane Seats_pane;
+	
+	private Text seatsLabel;
+	private Text priceLabel;
 
 	public void initialize() {
 		sdb = new SureseatsDB();
@@ -68,7 +73,7 @@ public class SeatsController {
 		List<Integer> dimensions = ses.getCinemaDimensions(schedule.getCinema());
 		anchorPane.getChildren().remove(Seats_pane);
 		Seats_pane = new GridPane();
-		Seats_pane.setLayoutX(175);
+		Seats_pane.setLayoutX(175+(26-dimensions.get(1)));
 		Seats_pane.setLayoutY(60.0);
 		Seats_pane.setAlignment(Pos.CENTER);
 		//Seats_pane.setMinSize(1000,1000);
@@ -88,7 +93,7 @@ public class SeatsController {
 		}*/
 		anchorPane.getChildren().add(Seats_pane);
 		for (int col = 0 ; col < dimensions.get(1)+3 ; col+=dimensions.get(1)+2) {
-			for(int row = 0 ; row < dimensions.get(0)-'A' ; row++) {
+			for(int row = 0 ; row < dimensions.get(0)-'A'+1 ; row++) {
 				Text t  = new Text(String.valueOf((char)(row+'A')));
 				GridPane.setColumnIndex(t, col);
 				GridPane.setRowIndex(t, row+1);
@@ -105,7 +110,7 @@ public class SeatsController {
 			Seats_pane.getChildren().add(t);
 		}
 		for (int col = 0 ; col < dimensions.get(1) ; col++) {
-			for (int row = 0 ; row < dimensions.get(0)-'A' ; row++) {
+			for (int row = 0 ; row < dimensions.get(0)-'A'+1 ; row++) {
 				final char onPressRow = (char)(row+'A');
 				final int onPressCol = col+1;
 				Button b = new Button();
@@ -121,6 +126,15 @@ public class SeatsController {
 				Seats_pane.getChildren().add(b);
 			}
 		}
+		seatsLabel = new Text();
+		seatsLabel.setLayoutX(35);
+		seatsLabel.setLayoutY(350);
+		seatsLabel.setWrappingWidth(100);
+		priceLabel = new Text(NumberFormat.getCurrencyInstance(new Locale("en", "PH")).format(0));
+		priceLabel.setLayoutX(35);
+		priceLabel.setLayoutY(450);
+		anchorPane.getChildren().add(seatsLabel);
+		anchorPane.getChildren().add(priceLabel);
 	}
 
 	public void toback(ActionEvent event) throws IOException {
@@ -139,8 +153,61 @@ public class SeatsController {
 		window.show();
 	}
 	
+	public void updateSeatsLabel() {
+		String tmp = "";
+		for (Seat s : selected) {
+			tmp += String.valueOf(s.getRow()) + String.valueOf(s.getCol()) + ", ";
+		}
+		seatsLabel.setText(tmp);
+	}
+	
+	public void updatePriceLabel() {
+		double price = schedule.getFilm().getPrice();
+		priceLabel.setText(NumberFormat.getCurrencyInstance(new Locale("en", "PH")).format(price*selected.size()));
+	}
+	
+	public void select(Button button, Seat seat) {
+		selected.add(seat);
+		System.out.println(button.getStyleClass());
+		button.setStyle("-fx-background-color: lawngreen;");
+		updateSeatsLabel();
+		updatePriceLabel();
+	}
+	
+	public void deselect(Button button, Seat seat) {
+		System.out.println("Hi");
+		selected.remove(seat);
+		button.setStyle("");
+		updateSeatsLabel();
+		updatePriceLabel();
+	}
+	
 	public void clickSeat(Button button, char row, int col){
+		Seat seat = ses.getSeat(schedule.getCinema(), row, col);
+		if (seat.getId() != 0) {
+			System.out.println(selected);
+			if (selected.contains(seat))
+				deselect(button, seat);
+			else
+				select(button, seat);
+		}
+	}
+	
+	public void toReserve(ActionEvent event) throws IOException {
+		FXMLLoader loader = new FXMLLoader();
+		loader.setLocation(getClass().getResource("/sureseats/view/Reservation.fxml"));
+		Parent tableViewParent = loader.load();
+		ReservationController rc = loader.<ReservationController>getController();
+		rc.setUser(user);
+		/*rc.setSchedule(schedule);
+		rc.setSeats(seats);
+		rc.loadContent()*/
+		Scene tableViewScene = new Scene(tableViewParent);
+		// This line gets the Stage information
+		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 		
+		window.setScene(tableViewScene);
+		window.show();
 	}
 
 	public User getUser() {
