@@ -194,19 +194,32 @@ public class GUIController {
 
 @FXML
 	public void gotoSched(MouseEvent event) throws IOException {
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("/sureseats/view/schedule.fxml"));
-		Parent tableViewParent = loader.load();
-		scheduleController sc = loader.<scheduleController>getController();
-		sc.setUser(user);
-		sc.setFilm(films.get(ivs.indexOf(event.getSource())));
-		sc.loadContent();
-		Scene tableViewScene = new Scene(tableViewParent);
-		// This line gets the Stage information
-		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		if(user != null) {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("/sureseats/view/schedule.fxml"));
+			Parent tableViewParent = loader.load();
+			scheduleController sc = loader.<scheduleController>getController();
+			sc.setUser(user);
+			sc.setFilm(films.get(ivs.indexOf(event.getSource())));
+			sc.loadContent();
+			Scene tableViewScene = new Scene(tableViewParent);
+			// This line gets the Stage information
+			Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-		window.setScene(tableViewScene);
-		window.show();
+			window.setScene(tableViewScene);
+			window.show();
+		}
+		else {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("/sureseats/view/Sign_In.fxml"));
+			Parent tableViewParent = loader.load();
+			Scene tableViewScene = new Scene(tableViewParent);
+			// This line gets the Stage information
+			Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+			window.setScene(tableViewScene);
+			window.show();
+		}
 	}
 	
 

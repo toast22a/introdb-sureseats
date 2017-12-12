@@ -117,6 +117,44 @@ public class registerController {
 		window.setScene(tableViewScene);
 		window.show();
 	}
+	
+	public String validate() {
+		if (rUsername.getText().isEmpty())
+			return "No username provided";
+		if (rEmail.getText().isEmpty())
+			return "No email address provided";
+		if (rMobile.getText().isEmpty())
+			return "No mobile number provided";
+		if (rPassword.getText().isEmpty())
+			return "No password provided";
+		if (!rPassword.getText().equals(rVPassword.getText()))
+			return "Did not retype password correctly";
+		if (rFName.getText().isEmpty())
+			return "No first name provided";
+		if (rLName.getText().isEmpty())
+			return "No last name provided";
+		if (rBirthdate.getValue() == null)
+			return "No birthdate provided";
+		if (!rCBFemale.isSelected() && !rCBMale.isSelected())
+			return "No gender provided";
+		if (rCity.getValue() == null)
+			return "No city provided";
+		if (rProvince.getValue() == null)
+			return "No province provided";
+		if (rp1.getValue() == null)
+			return "Need at least one preferred mall!";
+		if (rp1.getValue() == rp2.getValue())
+			return "Cannot have duplicate preferred malls!";
+		if (rp2.getValue() == rp3.getValue())
+			return "Cannot have duplicate preferred malls!";
+		if (rp1.getValue() == rp3.getValue())
+			return "Cannot have duplicate preferred malls!";
+		if (us.getUser(rUsername.getText()).getId() != 0)
+			return "Username is taken";
+		if (us.getUserWithEmail(rEmail.getText()).getId() != 0)
+			return "Email has already been used";
+		return "";
+	}
 
 	public void confirmRegister(ActionEvent event) throws IOException {
 
@@ -125,12 +163,8 @@ public class registerController {
 		 * ProvinceService(sureseatsDB); List<Province> listOfProvinces =
 		 * pservice.getAll()
 		 */
-		if (rPassword.getText().equals(rVPassword.getText()) && rEmail.getText().equals("") == false
-				&& rFName.getText().equals("") == false && rLName.getText().equals("") == false
-				&& rUsername.getText().equals("") == false && rMobile.getText().equals("") == false
-				&& (rCBFemale.isSelected() || rCBMale.isSelected()) && rBirthdate.getValue() != null
-				&& rp1.getValue() != null && (rp1.getValue() != rp2.getValue()) && (rp2.getValue() != rp3.getValue())
-				&& (rp1.getValue() != rp3.getValue())){
+		String msg = validate();
+		if (msg.isEmpty()){
 			user = new User();
 			user.setEmail(rEmail.getText());
 			user.setPassword(rPassword.getText());
@@ -170,9 +204,9 @@ public class registerController {
 			window.show();
 		} else {
 			Alert alert = new Alert(AlertType.ERROR);
-			alert.setTitle("Error");
+			alert.setTitle("ERROR");
 			alert.setHeaderText("Registration unsuccessful");
-			alert.setContentText("Missing information or password does not match");
+			alert.setContentText(msg);
 
 			alert.showAndWait();
 		}

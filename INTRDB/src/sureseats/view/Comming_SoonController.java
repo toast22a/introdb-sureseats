@@ -57,13 +57,16 @@ public class Comming_SoonController {
     private User user;
 	private SureseatsDB sdb;
 	private FilmService fs;
+	
+	private List<ImageView> ivs;
+	private List<Film> films;
 
 	public void initialize() {
 		sdb = new SureseatsDB();
 		fs = new FilmService(sdb);
 		
-		List<ImageView> ivs = Arrays.asList(panel00, panel01, panel02, panel03, panel04, panel05);
-		List<Film> films = fs.getComingSoon();
+		ivs = Arrays.asList(panel00, panel01, panel02, panel03, panel04, panel05);
+		films = fs.getComingSoon();
 		
 		Iterator<ImageView> ivsi = ivs.iterator();
 		Iterator<Film> filmsi = films.iterator();
@@ -106,18 +109,32 @@ public class Comming_SoonController {
 	
 	@FXML
 	public void gotoSched(MouseEvent event) throws IOException {
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("/sureseats/view/schedule.fxml"));
-		Parent tableViewParent = loader.load();
-		//scheduleController sc = loader.<scheduleController>getController();
-		//sc.setUser(user);
-		//sc.setFilm(film);
-		Scene tableViewScene = new Scene(tableViewParent);
-		// This line gets the Stage information
-		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+		if(user != null) {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("/sureseats/view/schedule.fxml"));
+			Parent tableViewParent = loader.load();
+			scheduleController sc = loader.<scheduleController>getController();
+			sc.setUser(user);
+			sc.setFilm(films.get(ivs.indexOf(event.getSource())));
+			sc.loadContent();
+			Scene tableViewScene = new Scene(tableViewParent);
+			// This line gets the Stage information
+			Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
 
-		window.setScene(tableViewScene);
-		window.show();
+			window.setScene(tableViewScene);
+			window.show();
+		}
+		else {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("/sureseats/view/Sign_In.fxml"));
+			Parent tableViewParent = loader.load();
+			Scene tableViewScene = new Scene(tableViewParent);
+			// This line gets the Stage information
+			Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+
+			window.setScene(tableViewScene);
+			window.show();
+		}
 	}
 
     @FXML

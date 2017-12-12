@@ -175,6 +175,43 @@ public class UserService {
 		// return list
 		return user;
 	}
+	
+	public User getUserWithEmail(String email) {
+		User user = new User();
+
+		// get connection from db
+		Connection cnt = connection.getConnection();
+
+		// create string query
+		String query = "SELECT * FROM " + User.TABLE + " WHERE " + User.COL_EMAIL + " = ?";
+
+		try {
+			// create prepared statement
+			PreparedStatement ps = cnt.prepareStatement(query);
+			
+			ps.setString(1, email);
+
+			// get result and store in result set
+			ResultSet rs = ps.executeQuery();
+
+			if (rs.next()) {
+				user = toUser(rs);
+			}
+
+			// close all the resources
+			ps.close();
+			rs.close();
+			cnt.close();
+
+			System.out.println("[USER] SELECT SUCCESS!");
+		} catch (SQLException e) {
+			System.out.println("[USER] SELECT FAILED!");
+			e.printStackTrace();
+		}
+
+		// return list
+		return user;
+	}
 
 	private User toUser(ResultSet rs) throws SQLException {
 		User user = new User();
@@ -387,146 +424,9 @@ public class UserService {
 			e.printStackTrace();
 		}
 	}
-	
-	public List<List<String>> getActiveUsers(int uid) {
-		// create empty list of contacts
-		List<List<String>> list = new ArrayList<List<String>>();
-
-		// get connection from db
-		Connection cnt = connection.getConnection();
-
-		// create string query
-		String query = 
-		
-	
-				"SELECT"
-						+ "UUsername AS Username, "
-						+ "UEmail AS email, "
-						+ "ULastLogin AS LastLogin, "
-						+ "DATEDIFF(NOW(), ULastLogin) AS DaysInactive"
-						+ "FROM USER"
-						+ "WHERE DATEDIFF(NOW(), ULastLogin) = 0"
-						+ "ORDER BY ULastLogin ASC, UUsername ASC"
-						+ "LIMIT 5";
-		try {
-			// create prepared statement
-			PreparedStatement ps = cnt.prepareStatement(query);
-			ps.setInt(1, uid);
-
-			// get result and store in result set
-			ResultSet rs = ps.executeQuery();
-			ResultSetMetaData rsmd = rs.getMetaData();
-			
-			/*for (int i = 0 ; i < rsmd.getColumnCount(); i++) {
-				ArrayList<String> col = new ArrayList<String>();
-				col.add(rsmd.getColumnName(i+1));
-				list.add(col);
-			}*/
-			
-			ArrayList<String> header = new ArrayList<String>();
-			for (int i = 0 ; i < rsmd.getColumnCount() ; i++) {
-				header.add(rsmd.getColumnName(i+1));
-			}
-			list.add(header);
-
-			// transform set to list
-			// rs.next() means get next in result set
-			while (rs.next()) {
-				ArrayList<String> row = new ArrayList<String>();
-				list.add(row);
-				for (int i = 0 ; i < rsmd.getColumnCount() ; i++) {
-					row.add(rs.getString(i+1));
-				}
-			}
-
-			// close all the resources
-			ps.close();
-			rs.close();
-			cnt.close();
-
-			System.out.println("[RESERVATION] SELECT SUCCESS!");
-		} catch (SQLException e) {
-			System.out.println("[RESERVATION] SELECT FAILED!");
-			e.printStackTrace();
-		}
-
-		// return list
-		return list;
-	}
-	
-	
-	public List<List<String>> getInactiveUsers(int uid) {
-		// create empty list of contacts
-		List<List<String>> list = new ArrayList<List<String>>();
-
-		// get connection from db
-		Connection cnt = connection.getConnection();
-
-		// create string query
-		String query = 
-		
-				"SELECT"
-						+"UUsername AS Username, UEmail AS email, ULastLogin AS LastLogin, DATEDIFF(NOW(), ULastLogin) AS DaysInactive"
-						+"FROM USER"
-						+"ORDER BY ULastLogin ASC, UUsername ASC"
-						+"LIMIT 5";
-
-		try {
-			// create prepared statement
-			PreparedStatement ps = cnt.prepareStatement(query);
-			ps.setInt(1, uid);
-
-			// get result and store in result set
-			ResultSet rs = ps.executeQuery();
-			ResultSetMetaData rsmd = rs.getMetaData();
-			
-			/*for (int i = 0 ; i < rsmd.getColumnCount(); i++) {
-				ArrayList<String> col = new ArrayList<String>();
-				col.add(rsmd.getColumnName(i+1));
-				list.add(col);
-			}*/
-			
-			ArrayList<String> header = new ArrayList<String>();
-			for (int i = 0 ; i < rsmd.getColumnCount() ; i++) {
-				header.add(rsmd.getColumnName(i+1));
-			}
-			list.add(header);
-
-			// transform set to list
-			// rs.next() means get next in result set
-			while (rs.next()) {
-				ArrayList<String> row = new ArrayList<String>();
-				list.add(row);
-				for (int i = 0 ; i < rsmd.getColumnCount() ; i++) {
-					row.add(rs.getString(i+1));
-				}
-			}
-
-			// close all the resources
-			ps.close();
-			rs.close();
-			cnt.close();
-
-			System.out.println("[RESERVATION] SELECT SUCCESS!");
-		} catch (SQLException e) {
-			System.out.println("[RESERVATION] SELECT FAILED!");
-			e.printStackTrace();
-		}
-
-		// return list
-		return list;
-	}
 
 	public static void main(String[] args) {
 		UserService service = new UserService(new SureseatsDB());
-		
-		List<List<String>> active = service.getActiveUsers(0);
-		for (List<String> row : active) {
-			for (String col : row) {
-				System.out.print(col);
-			}
-			System.out.println(row.size());
-		}
 		/*MallService mservice = new MallService(new SureseatsDB());
 		List<User> users = service.getAll();
 		User user = service.getUser(1);

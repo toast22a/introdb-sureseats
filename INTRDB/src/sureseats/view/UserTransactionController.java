@@ -30,9 +30,7 @@ public class UserTransactionController {
 
 	private User user;
 	private SureseatsDB sdb;
-	private ReservationService rs;
-	private ScheduleService ss;
-	private FilmService fs;
+	private ReportService rs;
 
 	@FXML
 	private Button to_Back;
@@ -76,7 +74,7 @@ public class UserTransactionController {
 		});*/
 		List<String> header;
 		ObservableList<List<String>> data;
-		data = FXCollections.observableArrayList(rs.getTransactionHistory(user.getId()));
+		data = FXCollections.observableArrayList(rs.getTransactionHistory(user));
 		
 		header = data.get(0);
 		data.remove(0);
@@ -109,9 +107,7 @@ public class UserTransactionController {
 
 	public void initialize() {
 		sdb = new SureseatsDB();
-		rs = new ReservationService(sdb);
-		ss = new ScheduleService(sdb);
-		fs = new FilmService(sdb);
+		rs = new ReportService(sdb);
 	}
 
 	public void goback(ActionEvent event) throws IOException {

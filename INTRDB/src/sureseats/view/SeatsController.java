@@ -9,6 +9,7 @@ import java.awt.geom.Rectangle2D;
 import java.awt.image.ColorModel;
 import java.io.IOException;
 import java.text.NumberFormat;
+import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Locale;
@@ -23,8 +24,10 @@ import javafx.geometry.Pos;
 import javafx.scene.Node;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.ColumnConstraints;
 import javafx.scene.layout.GridPane;
@@ -39,6 +42,7 @@ public class SeatsController {
 	private Schedule schedule;
 	private SureseatsDB sdb;
 	private SeatService ses;
+	private ReservationService rs;
 	
 	private List<Seat> selected;
 	
@@ -60,6 +64,7 @@ public class SeatsController {
 	public void initialize() {
 		sdb = new SureseatsDB();
 		ses = new SeatService(sdb);
+		rs = new ReservationService(sdb);
 		selected = new ArrayList<Seat>();
 
 	}
@@ -71,9 +76,11 @@ public class SeatsController {
 		for (i = 65; i < 90; i++)
 			row[i - 65] = ((char) i);*/
 		List<Integer> dimensions = ses.getCinemaDimensions(schedule.getCinema());
+		List<Seat> allSeats = ses.getSeatsInCinema(schedule.getCinema());
+		List<Seat> occupiedSeats = ses.getOccupied(schedule);
 		anchorPane.getChildren().remove(Seats_pane);
 		Seats_pane = new GridPane();
-		Seats_pane.setLayoutX(175+(26-dimensions.get(1)));
+		Seats_pane.setLayoutX(90+(dimensions.get(1)*30));
 		Seats_pane.setLayoutY(60.0);
 		Seats_pane.setAlignment(Pos.CENTER);
 		//Seats_pane.setMinSize(1000,1000);
@@ -120,6 +127,13 @@ public class SeatsController {
 						clickSeat(b, onPressRow, onPressCol); //stopped here!
 					}
 				});
+				Seat seat = ses.getSeat(schedule.getCinema(), onPressRow, onPressCol);
+				if (!allSeats.contains(seat))
+					b.setVisible(false);
+				if(occupiedSeats.contains(seat)) {
+					b.setDisable(true);
+					b.setStyle("-fx-background-color: red;");
+				}
 				b.setPrefSize(30, 30);
 				GridPane.setColumnIndex(b, col+1);
 				GridPane.setRowIndex(b, row+1);
@@ -193,21 +207,60 @@ public class SeatsController {
 		}
 	}
 	
+	public String processReservation() {
+		if (selected.size() > 0) {
+			String code = rs.generateCode();
+			List<Seat> occupied = ses.getOccupied(schedule);
+			while(rs.getReservationsWithCode(code).size() > 0) {
+				code = rs.generateCode();
+			}
+			for(Seat s : selected) {
+				if(occupied.contains(s))
+					return "";
+			}
+			for (Seat s : selected) {
+				Reservation r = new Reservation();
+				r.setCode(code);
+				r.setDatetime(LocalDateTime.now());
+				r.setType("R");
+				r.setStatus("pending");
+				r.setSchedule(schedule);
+				r.setSeat(s);
+				r.setUser(user);
+				rs.addReservation(r);
+			}
+			return code;
+		}
+		return "";
+	}
+	
 	public void toReserve(ActionEvent event) throws IOException {
-		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("/sureseats/view/Reservation.fxml"));
-		Parent tableViewParent = loader.load();
-		ReservationController rc = loader.<ReservationController>getController();
-		rc.setUser(user);
-		/*rc.setSchedule(schedule);
-		rc.setSeats(seats);
-		rc.loadContent()*/
-		Scene tableViewScene = new Scene(tableViewParent);
-		// This line gets the Stage information
-		Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
-		
-		window.setScene(tableViewScene);
-		window.show();
+		String code = processReservation();
+		if(!code.isEmpty()) {
+			FXMLLoader loader = new FXMLLoader();
+			loader.setLocation(getClass().getResource("/sureseats/view/Reservation.fxml"));
+			Parent tableViewParent = loader.load();
+			ReservationController rc = loader.<ReservationController>getController();
+			rc.setUser(user);
+			rc.setSchedule(schedule);
+			rc.setSeats(selected);
+			rc.setCode(code);
+			rc.loadContent();
+			Scene tableViewScene = new Scene(tableViewParent);
+			// This line gets the Stage information
+			Stage window = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			
+			window.setScene(tableViewScene);
+			window.show();
+		}
+		else {
+			Alert alert = new Alert(AlertType.ERROR);
+			alert.setTitle("ERROR");
+			alert.setHeaderText("Reservation failed");
+			alert.setContentText("There was a problem with your selection.");
+
+			alert.showAndWait();
+		}
 	}
 
 	public User getUser() {

@@ -1,6 +1,9 @@
 package sureseats.view;
 
 import java.io.IOException;
+import java.text.NumberFormat;
+import java.util.List;
+import java.util.Locale;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -11,15 +14,15 @@ import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.text.Text;
 import javafx.stage.Stage;
-import sureseats.model.FilmService;
-import sureseats.model.ReservationService;
-import sureseats.model.ScheduleService;
-import sureseats.model.SureseatsDB;
-import sureseats.model.User;
+import sureseats.model.*;
 
 public class ReservationController {
 	
 	private User user;
+	private List<Seat> seats;
+	private Schedule schedule;
+	private String code;
+	
 	private SureseatsDB sdb;
 	private ReservationService rs;
 	private ScheduleService ss;
@@ -53,6 +56,27 @@ public class ReservationController {
 		ss = new ScheduleService(sdb);
 		fs = new FilmService(sdb);
 	}
+    
+    public void loadContent() {
+    		String seatTextTemp = "";
+    		for (Seat s : seats) {
+    			seatTextTemp += String.valueOf(s.getRow()) + String.valueOf(s.getCol()) + ", ";
+    		}
+    		Seat_text.setText(seatTextTemp);
+    		Movie_Title.setText(schedule.getFilm().getTitle());
+    		if(seats.size()==1)
+	    		Quantity_price.setText(seats.size() + " Ticket x "
+	    				+ NumberFormat.getCurrencyInstance(new Locale("en", "PH")).format(schedule.getFilm().getPrice())
+	    				+ " each");
+    		else
+	    		Quantity_price.setText(seats.size() + " Tickets x "
+	    				+ NumberFormat.getCurrencyInstance(new Locale("en", "PH")).format(schedule.getFilm().getPrice())
+	    				+ " each");
+    		double totalPrice = schedule.getFilm().getPrice() * seats.size();
+    		Total.setText(NumberFormat.getCurrencyInstance(new Locale("en", "PH")).format(totalPrice));
+    		Confirmation_Code.setText(code);
+    		Reservation_Code.setText(code);
+    }
 
     public void goback(ActionEvent event) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
@@ -79,6 +103,32 @@ public class ReservationController {
 		this.user = user;
 		
 	}
+
+	public List<Seat> getSeats() {
+		return seats;
+	}
+
+	public void setSeats(List<Seat> seats) {
+		this.seats = seats;
+	}
+
+	public Schedule getSchedule() {
+		return schedule;
+	}
+
+	public void setSchedule(Schedule schedule) {
+		this.schedule = schedule;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
+	}
+	
+	
 
 }
 

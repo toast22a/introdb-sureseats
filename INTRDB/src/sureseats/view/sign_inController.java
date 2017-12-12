@@ -66,7 +66,7 @@ public class sign_inController {
 				us.updateUser(user);
 			} else {
 				Alert alert = new Alert(AlertType.ERROR);
-				alert.setTitle("Error");
+				alert.setTitle("ERROR");
 				alert.setHeaderText("Sign up unsuccessful");
 				alert.setContentText("Invalid credentials");
 
