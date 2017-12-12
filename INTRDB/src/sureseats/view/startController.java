@@ -36,7 +36,7 @@ public class startController {
     public void goAdminOptions(ActionEvent event) throws IOException
     {
  	   FXMLLoader loader = new FXMLLoader();
- 	   loader.setLocation(getClass().getResource("/sureseats/view/sign_in.fxml"));
+ 	   loader.setLocation(getClass().getResource("/sureseats/view/Sign_In.fxml"));
         Parent tableViewParent = loader.load(); 
         Scene tableViewScene = new Scene(tableViewParent);
         //This line gets the Stage information
