@@ -258,7 +258,7 @@ public class GUIController {
 	
 	public void log_out(ActionEvent event) throws IOException {
 		FXMLLoader loader = new FXMLLoader();
-		loader.setLocation(getClass().getResource("/sureseats/view/Sign_up.fxml"));
+		loader.setLocation(getClass().getResource("/sureseats/view/Sign_In.fxml"));
 		Parent tableViewParent = loader.load();
 		Scene tableViewScene = new Scene(tableViewParent);
 		// This line gets the Stage information

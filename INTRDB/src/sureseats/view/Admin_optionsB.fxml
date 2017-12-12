@@ -348,7 +348,7 @@
                            <center>
                               <ImageView fitHeight="100.0" fitWidth="295.0" BorderPane.alignment="CENTER">
                                  <image>
-                                    <Image url="@../../Resources/logo.png" />
+                                    <Image url="/Resources/logo.png" />
                                  </image>
                               </ImageView>
                            </center>

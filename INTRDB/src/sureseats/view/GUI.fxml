@@ -58,13 +58,13 @@
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="                  1" wrappingWidth="95.46875" GridPane.rowIndex="1" />
                         <ImageView fx:id="panel01" fitHeight="200.0" fitWidth="127.0" GridPane.columnIndex="1">
                            <image>
-                              <Image url="@../../Resources/poster2.jpg" />
+                              <Image url="/Resources/poster2.jpg" />
                            </image>
                         </ImageView>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="                  2" wrappingWidth="121.755859375" GridPane.columnIndex="1" GridPane.rowIndex="1" />
                         <ImageView fx:id="panel02" fitHeight="200.0" fitWidth="127.0" GridPane.columnIndex="2">
                            <image>
-                              <Image url="@../../Resources/poster3.jpg" />
+                              <Image url="/Resources/poster3.jpg" />
                            </image>
                         </ImageView>
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="                 3" wrappingWidth="119.13671875" GridPane.columnIndex="2" GridPane.rowIndex="1" />
@@ -73,29 +73,29 @@
                         <Text strokeType="OUTSIDE" strokeWidth="0.0" text="                 6" wrappingWidth="117.296875" GridPane.columnIndex="5" GridPane.rowIndex="1" />
                         <ImageView fx:id="panel03" fitHeight="200.0" fitWidth="125.0" GridPane.columnIndex="3">
                            <image>
-                              <Image url="@../../Resources/poster4.jpg" />
+                              <Image url="/Resources/poster4.jpg" />
                            </image>
                         </ImageView>
                         <ImageView fx:id="panel04" fitHeight="200.0" fitWidth="126.0" GridPane.columnIndex="4">
                            <image>
-                              <Image url="@../../Resources/poster5.jpg" />
+                              <Image url="/Resources/poster5.jpg" />
                            </image>
                         </ImageView>
                         <ImageView fx:id="panel05" fitHeight="200.0" fitWidth="135.0" GridPane.columnIndex="5">
                            <image>
-                              <Image url="@../../../../introdb-sureseats/INTRDB/bin/Resources/poster6.jpg" />
+                              <Image url="/Resources/poster6.jpg" />
                            </image>
                         </ImageView>
                         <ImageView fx:id="panel00" fitHeight="200.0" fitWidth="127.0" onMouseClicked="#gotoSched">
                            <image>
-                              <Image url="@../../Resources/poster1.jpg" />
+                              <Image url="/Resources/poster1.jpg" />
                            </image>
                         </ImageView>
                      </children>
                   </GridPane>
                   <ImageView fitHeight="99.0" fitWidth="305.0" layoutX="14.0" layoutY="13.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../Resources/logo.png" />
+                        <Image url="/Resources/logo.png" />
                      </image>
                   </ImageView>
                   <Button fx:id="moviesBtnCommingSoon" layoutX="696.0" layoutY="116.0" mnemonicParsing="false" onAction="#gotoCommingSoon" prefHeight="29.0" prefWidth="137.0" style="-fx-background-color: orange;" text="Coming Soon" textFill="WHITE">

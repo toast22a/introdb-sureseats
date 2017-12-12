@@ -24,7 +24,7 @@
                   </Text>
                   <ImageView fx:id="SMovie" fitHeight="256.0" fitWidth="183.0" layoutX="38.0" layoutY="193.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../Resources/poster1.jpg" />
+                        <Image url="/Resources/poster1.jpg" />
                      </image>
                   </ImageView>
                   <Text fx:id="SDate" layoutX="237.0" layoutY="207.0" strokeType="OUTSIDE" strokeWidth="0.0" text="Date: November 27,2017" wrappingWidth="260.115234375">
@@ -61,7 +61,7 @@
                   </Button>
                   <ImageView fitHeight="114.0" fitWidth="301.0" layoutX="34.0" layoutY="18.0" pickOnBounds="true" preserveRatio="true">
                      <image>
-                        <Image url="@../../Resources/logo.png" />
+                        <Image url="/Resources/logo.png" />
                      </image>
                   </ImageView>
                </children>

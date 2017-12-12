@@ -47,7 +47,7 @@ public class sign_inController {
 	public void gotoNext(ActionEvent event) throws IOException {
 		if (Lusername.getText().equals("admin")) {
 			FXMLLoader loader = new FXMLLoader();
-			loader.setLocation(getClass().getResource("/sureseats/view/admin_optionsA.fxml"));
+			loader.setLocation(getClass().getResource("/sureseats/view/Admin_optionsA.fxml"));
 			Parent tableViewParent = loader.load();
 			Scene tableViewScene = new Scene(tableViewParent);
 			// This line gets the Stage information

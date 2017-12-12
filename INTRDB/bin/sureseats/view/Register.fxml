@@ -68,7 +68,7 @@
             <ChoiceBox fx:id="rp3" layoutX="440.0" layoutY="305.0" prefWidth="150.0" AnchorPane.leftAnchor="430.0" AnchorPane.topAnchor="300.0" />
             <ImageView fitHeight="89.0" fitWidth="317.0" layoutX="190.0" layoutY="8.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../../../bin/Resources/logo.png" />
+                  <Image url="/../bin/Resources/logo.png" />
                </image>
             </ImageView>
          </children>

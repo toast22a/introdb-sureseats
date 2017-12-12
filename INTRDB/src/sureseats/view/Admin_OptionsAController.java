@@ -321,9 +321,12 @@ public class Admin_OptionsAController {
 	public void updateCinema(ActionEvent event) throws IOException{
 		try {
 			Cinema c = cs.getCinema(Integer.parseInt(CCID.getText()));
-			c.setNo(Integer.parseInt(CCNo.getText()));
-			c.setType(CCtype.getText());
-			c.setMall(ms.getMall(Integer.parseInt(CMID.getText())));
+			if (!CCNo.getText().isEmpty())
+				c.setNo(Integer.parseInt(CCNo.getText()));
+			if (!CCtype.getText().isEmpty())
+				c.setType(CCtype.getText());
+			if (!CMID.getText().isEmpty())
+				c.setMall(ms.getMall(Integer.parseInt(CMID.getText())));
 			cs.updateCinema(c);
 			loadCinema(null);
 		} catch (Exception e) {
@@ -377,7 +380,8 @@ public class Admin_OptionsAController {
 	public void updateProvince(ActionEvent event) throws IOException{
 		try {
 			Province p = ps.getProvince(Integer.parseInt(PPID.getText()));
-			p.setName(PPName.getText());
+			if (!PPName.getText().isEmpty())
+				p.setName(PPName.getText());
 			ps.updateProvince(p);
 			loadProvince(null);
 		} catch (Exception e) {
@@ -435,8 +439,10 @@ public class Admin_OptionsAController {
 	public void updateMall(ActionEvent event) throws IOException{
 		try {
 			Mall m = ms.getMall(Integer.parseInt(MMID.getText()));
-			m.setName(MMType.getText());
-			m.setCity(cts.getCity(Integer.parseInt(MCID.getText())));
+			if (!MMType.getText().isEmpty())
+				m.setName(MMType.getText());
+			if (!MCID.getText().isEmpty())
+				m.setCity(cts.getCity(Integer.parseInt(MCID.getText())));
 			ms.updateMall(m);
 			loadMall(null);
 		} catch (Exception e) {
@@ -494,9 +500,12 @@ public class Admin_OptionsAController {
 	public void updateCity(ActionEvent event) throws IOException{
 		try {
 			City c = cts.getCity(Integer.parseInt(CCTID.getText()));
-			c.setName(CCTName.getText());
-			c.setType(CCTType.getText());
-			c.setProvince(ps.getProvince(Integer.parseInt(CTPID.getText())));
+			if (!CCTName.getText().isEmpty())
+				c.setName(CCTName.getText());
+			if (!CCTType.getText().isEmpty())
+				c.setType(CCTType.getText());
+			if (!CTPID.getText().isEmpty())
+				c.setProvince(ps.getProvince(Integer.parseInt(CTPID.getText())));
 			cts.updateCity(c);
 			loadCity(null);
 		} catch (Exception e) {

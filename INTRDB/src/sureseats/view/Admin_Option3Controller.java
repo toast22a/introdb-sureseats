@@ -290,15 +290,24 @@ public class Admin_Option3Controller {
 	public void updateFilm(ActionEvent event) throws IOException{
 		try {
 			Film f = fs.getFilm(Integer.parseInt(FFID.getText()));
-			f.setTitle(FFTitle.getText());
-			f.setGenre(FFGenre.getText());
-			f.setDate(LocalDate.parse(FFDate.getText()));
-			f.setRating(FFRating.getText());
-			f.setCast(FFCast.getText());
-			f.setRuntime(Integer.parseInt(FFRuntime.getText()));
-			f.setPrice(Double.parseDouble(FFPrice.getText()));
-			f.setSynopsis(FFSynopsis.getText());
-			f.setImage(FFImage.getText());
+			if(!FFTitle.getText().isEmpty())
+				f.setTitle(FFTitle.getText());
+			if(!FFGenre.getText().isEmpty())
+				f.setGenre(FFGenre.getText());
+			if(!FFDate.getText().isEmpty())
+				f.setDate(LocalDate.parse(FFDate.getText()));
+			if(!FFRating.getText().isEmpty())
+				f.setRating(FFRating.getText());
+			if(!FFCast.getText().isEmpty())
+				f.setCast(FFCast.getText());
+			if(!FFRuntime.getText().isEmpty())
+				f.setRuntime(Integer.parseInt(FFRuntime.getText()));
+			if(!FFPrice.getText().isEmpty())
+				f.setPrice(Double.parseDouble(FFPrice.getText()));
+			if(!FFSynopsis.getText().isEmpty())
+				f.setSynopsis(FFSynopsis.getText());
+			if(!FFImage.getText().isEmpty())
+				f.setImage(FFImage.getText());
 			fs.updateFilm(f);
 			loadFilm(null);
 		} catch (Exception e) {
@@ -391,24 +400,31 @@ public class Admin_Option3Controller {
 	public void updateUser(ActionEvent event) throws IOException{
 		try {
 			User u = us.getUser(Integer.parseInt(UUID.getText()));
-			u.setUsername(UUsername.getText());
-			u.setEmail(UUEmail.getText());
-			u.setPassword(UUPassword.getText());
-			u.setMobileno(UUMobile.getText());
-			u.setFirstname(UUFirst.getText());
-			u.setLastname(UULast.getText());
+			if (!UUsername.getText().isEmpty())
+				u.setUsername(UUsername.getText());
+			if (!UUEmail.getText().isEmpty())
+				u.setEmail(UUEmail.getText());
+			if (!UUPassword.getText().isEmpty())
+				u.setPassword(UUPassword.getText());
+			if (!UUMobile.getText().isEmpty())
+				u.setMobileno(UUMobile.getText());
+			if (!UUFirst.getText().isEmpty())
+				u.setFirstname(UUFirst.getText());
+			if (!UULast.getText().isEmpty())
+				u.setLastname(UULast.getText());
 			
 			if (Umale.isSelected()) {
 				u.setGender("M");
-			} else {
+			} else if (UFemale.isSelected()) {
 				u.setGender("F");
 			}
 			
-			u.setBdate(LocalDate.parse(UUBdate.getText()));
+			if (!UUBdate.getText().isEmpty())
+				u.setBdate(LocalDate.parse(UUBdate.getText()));
 			
 			if (Ulocked.isSelected()) {
 				u.setIslocked(true);
-			} else {
+			} else if (UUnlocked.isSelected()) {
 				u.setIslocked(false);
 			}
 			

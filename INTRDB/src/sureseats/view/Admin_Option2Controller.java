@@ -302,10 +302,14 @@ public class Admin_Option2Controller {
 	public void updateSched(ActionEvent event) throws IOException{
 		try {
 			Schedule s = ss.getSchedule(Integer.parseInt(SSID.getText()));
-			s.setStart(LocalDateTime.parse(SStart.getText()));
-			s.setEnd(LocalDateTime.parse(SSEnd.getText()));
-			s.setCinema(cs.getCinema(Integer.parseInt(SCID.getText())));
-			s.setFilm(fs.getFilm(Integer.parseInt(SFID.getText())));
+			if (!SStart.getText().isEmpty())
+				s.setStart(LocalDateTime.parse(SStart.getText()));
+			if (!SSEnd.getText().isEmpty())
+				s.setEnd(LocalDateTime.parse(SSEnd.getText()));
+			if (!SCID.getText().isEmpty())
+				s.setCinema(cs.getCinema(Integer.parseInt(SCID.getText())));
+			if (!SFID.getText().isEmpty())
+				s.setFilm(fs.getFilm(Integer.parseInt(SFID.getText())));
 			ss.updateSchedule(s);
 			loadSched(null);
 		} catch (Exception e) {
@@ -365,9 +369,12 @@ public class Admin_Option2Controller {
 	public void updateSeat(ActionEvent event) throws IOException{
 		try {
 			Seat s = ses.getSeat(Integer.parseInt(SSeID.getText()));
-			s.setRow((char)Integer.parseInt(SSeRow.getText()));
-			s.setCol(Integer.parseInt(SSeCol.getText()));
-			s.setCinema(cs.getCinema(Integer.parseInt(SSeCID.getText())));
+			if (!SSeRow.getText().isEmpty())
+				s.setRow((char)Integer.parseInt(SSeRow.getText()));
+			if (!SSeCol.getText().isEmpty())
+				s.setCol(Integer.parseInt(SSeCol.getText()));
+			if (!SSeCID.getText().isEmpty())
+				s.setCinema(cs.getCinema(Integer.parseInt(SSeCID.getText())));
 			ses.updateSeat(s);
 			loadSeats(null);
 		} catch (Exception e) {
@@ -435,13 +442,20 @@ public class Admin_Option2Controller {
 	public void updateReservation(ActionEvent event) throws IOException{
 		try {
 			Reservation r = rs.getReservation(Integer.parseInt(RRid.getText()));
-			r.setCode(RRCode.getText());
-			r.setType(RRType.getText());
-			r.setDatetime(LocalDateTime.parse(RRDateTime.getText()));
-			r.setStatus(RRStatus.getText());
-			r.setUser(us.getUser(Integer.parseInt(RUID.getText())));
-			r.setSeat(ses.getSeat(Integer.parseInt(RSeID.getText())));
-			r.setSchedule(ss.getSchedule(Integer.parseInt(RSID.getText())));
+			if (!RRCode.getText().isEmpty())
+				r.setCode(RRCode.getText());
+			if (!RRType.getText().isEmpty())
+				r.setType(RRType.getText());
+			if (!RRDateTime.getText().isEmpty())
+				r.setDatetime(LocalDateTime.parse(RRDateTime.getText()));
+			if (!RRStatus.getText().isEmpty())
+				r.setStatus(RRStatus.getText());
+			if (!RUID.getText().isEmpty())
+				r.setUser(us.getUser(Integer.parseInt(RUID.getText())));
+			if (!RSeID.getText().isEmpty())
+				r.setSeat(ses.getSeat(Integer.parseInt(RSeID.getText())));
+			if (!RSID.getText().isEmpty())
+				r.setSchedule(ss.getSchedule(Integer.parseInt(RSID.getText())));
 			rs.updateReservation(r);
 			loadReservations(null);
 		} catch (Exception e) {
